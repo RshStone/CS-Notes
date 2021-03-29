@@ -16,9 +16,10 @@
 
 ​	课程适合入门学习，教材阅读可以选择*The Elements of Computing System*
 
-![001](Nand-to-Tetris/001.png)
+- ![001](Nand-to-Tetris/001.png)
 
-![002](Nand-to-Tetris/002.png)
+- ![002](Nand-to-Tetris/002.png)
+
 
 ​	课程里的一些注意事项的补充：
 
