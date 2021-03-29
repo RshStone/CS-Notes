@@ -21,7 +21,7 @@ from shutil import copyfile
 ## Please change the GITHUB_REPO_PREFIX value according to your own GitHub user name and relative directory. ##
 ###############################################################################################################
 # Your image folder remote link
-GITHUB_REPO_PREFIX = "https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/"
+GITHUB_REPO_PREFIX = "https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/"
 COMPRESS_THRESHOLD = 5e5 # The threshold of compression
 
 # The main function for this program
