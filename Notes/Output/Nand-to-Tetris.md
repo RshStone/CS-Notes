@@ -16,9 +16,9 @@
 
 ​	课程适合入门学习，教材阅读可以选择*The Elements of Computing System*
 
-![001](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/001.png)
+![001](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/001.png)
 
-![002](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/002.png)
+![002](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/002.png)
 
 ​	课程里的一些注意事项的补充：
 
@@ -36,7 +36,7 @@
 
 三个简单逻辑的hardware diagram的表示方法
 
-![003](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/003.png)
+![003](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/003.png)
 
 **几个我当时犹豫思考后觉得有趣的地方：**
 
@@ -48,9 +48,9 @@
 
 这是我在阅读The Element of Computer System时有一个概念没有看懂叫做Canonical Representation中文翻译规范表达。摘了一段进行加强理解.
 
-![004](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/004.png)
+![004](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/004.png)
 
-Thus the canonical representation of the Boolean function shown in figure 1.1 is f(x,y,z) = ![005](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/005.png)
+Thus the canonical representation of the Boolean function shown in figure 1.1 is f(x,y,z) = ![005](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/005.png)
 
 这里的Canonical representation有点像是最简表达式的韵味了。
 
@@ -80,7 +80,7 @@ HDL(hardware description language)其实就是设计硬件的语言。
 
 常见的HDLs:
 
-![010](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/010.png)
+![010](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/010.png)
 
 ### 	Hardware Simulation:
 
@@ -88,11 +88,11 @@ HDL(hardware description language)其实就是设计硬件的语言。
 
 下面的这张截图是对用Hardware Simulator仿真的一些内容。可以看出有几个部分内容是挺重要的丢，hdl语言部分，tst描述执行文件，.out文件,.cmp文件。
 
-![image-20210228095907442](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/006.png)
+![image-20210228095907442](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/006.png)
 
 基本的概念得知道，现在的硬件设计者不需要再用手去设计硬件产品如芯片啦，设计过程自动化，他们是system architecht,写HDL项目用电脑软件Hardware simulator进行反复的仿真测试chip的正确性(可能会有几个月甚至更久哦~)。那他们干嘛呢？计算速度，能量消耗，成本等是他们去注意的呦~。
 
-![007](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/007.png)
+![007](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/007.png)
 
 ### 	Mux & DMux:
 
@@ -108,13 +108,13 @@ DMux可以理解为对Mux的一种解码或者解密，具体看书会更清楚�
 
 ​	下面的这张图是15个最长使用的gates，也是作业里要做的内容，注意，作业里的HDL语言是经过简化过的，比起现在商业化用的VHDL等，简单很多。
 
-![008](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/008.png)
+![008](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/008.png)
 
 ​	做这个作业最大的收获还是感受一下逻辑设计的过程，思考方式，当然可能会与实际有所不同。
 
 一些做作业的时候需要注意的地方。
 
-![image-20210228144103177](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/009.png)
+![image-20210228144103177](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/009.png)
 
 ### 	做作业过程中收获的地方:
 
@@ -144,15 +144,15 @@ DMux可以理解为对Mux的一种解码或者解密，具体看书会更清楚�
 
 这里引入了一个2's complement method(补码)的一个思想方法，这里的补码可以理解为取负的意思，注意和Bitwise negation区别开来。
 
-![011](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/011.png)
+![011](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/011.png)
 
 这样问题就迎刃而解了，具体为什么，如果你对着感兴趣的话，可以自行学习下。
 
 之后再看一看ALU的功能
 
-![012](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/012.png)
+![012](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/012.png)
 
-![013](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/013.png)
+![013](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/013.png)
 
 最后还有一个Inc16的chip(这里的Inc其实是Incrementor的缩写),其功能是在16bits输入的情况下，输出In+1的情况。
 
@@ -190,7 +190,7 @@ no module 用Not16 chip和 Mux16进行选择判断
 
 与学习前面类似，从一个名叫DFF(data flip-flop)的chip出发，这门课里老师直接把这个给你了，你可以直接从DFF开始进行设计。什么是DFF呢？它的具体实现形式是怎么样的？
 
-![image-20210318095814860](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/014.png)
+![image-20210318095814860](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/014.png)
 
 从功能的角度来看，out(t) = in(t-1),有意思的地方在于，这个chip将时间t进行关联。
 
@@ -208,7 +208,7 @@ no module 用Not16 chip和 Mux16进行选择判断
 
 #### 如何实现
 
-![image-20210318103005794](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/015.png)
+![image-20210318103005794](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/015.png)
 
 ### Register(16bits register)
 
@@ -228,7 +228,7 @@ RAM可以看作是多个Register的一个集成体，与Register不同的地方�
 
 下面是它的implementation的图
 
-![image-20210319133423975](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/016.png)
+![image-20210319133423975](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/016.png)
 
 写的时候我卡了很久，思路也未完全理清。中间尝试使用Logisim的硬件模拟软件，还是有点糊涂，不过有机会再尝试。这里附上实现代码。
 
@@ -318,7 +318,7 @@ To eliminate the difficulty of write code with machine language, there is a medi
 
 The following below is picture that displays briefly how hack computer works or other computers with simplified model.
 
-![017](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/017.png)
+![017](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/017.png)
 
 In particular, note that every
 operation involving a memory location requires two Hack commands: One for selecting the address on
@@ -348,7 +348,7 @@ which we want to operate, and one for specifying the desired operation.
 
 #### The A-instruction:
 
-![018](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/018.png)
+![018](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/018.png)
 
 A指令是由15位bit所组成的，对于16位的hack computer,当然第一位就取0了。
 
@@ -382,7 +382,7 @@ jump是跳出的意思，可以理解为goto的意思，跳到哪了？做什么
 
 comp, dest, jump具体有哪些？下图截取部分内容。
 
-![019](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/019.png)
+![019](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/019.png)
 
 观察一下你会发现，为什么comp有这么多的东西，而相比较而言dest, jump 的种类会这么少？这就需要看C指令的二进制语法了。
 
@@ -390,7 +390,7 @@ comp, dest, jump具体有哪些？下图截取部分内容。
 
 其中蓝色部分的第一位的a，表示是取左边框框的东东呢，还是右边框框的东西呢。
 
-![020](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/020.png)
+![020](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/020.png)
 
 ## 4.Hack programming
 
@@ -398,19 +398,19 @@ comp, dest, jump具体有哪些？下图截取部分内容。
 
 ### Working with registers and memory
 
-![021](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/021.png)
+![021](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/021.png)
 
 ### Branching
 
-![022](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/022.png)
+![022](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/022.png)
 
 ### Variables
 
-![image-20210324103650433](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/023.png)
+![image-20210324103650433](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/023.png)
 
 ### Iteration
 
-![image-20210324105729134](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/024.png)
+![image-20210324105729134](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/024.png)
 
 ### infinite loop
 
@@ -432,7 +432,7 @@ memory of which we know the base address of this segment and, and
 
 the length of the array that the programmer has decided to declare.
 
-![image-20210324135720192](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/025.png)
+![image-20210324135720192](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/025.png)
 
 ### Input/output
 
@@ -450,7 +450,7 @@ Screen memory map就应用了这个原理。
 
 为什么Screen memory map是从16384开始的，这点可以理解为默认。
 
-![image-20210322155123770](https://raw.githubusercontent.com/RshStone/CSNotes/mynote/Notes/Nand-to-Tetris/026.png)
+![image-20210322155123770](https://raw.githubusercontent.com/RshStone/CS-Notes/mynote/Notes/Nand-to-Tetris/026.png)
 
 Input其实对应的就是我们的鼠标、键盘。
 
