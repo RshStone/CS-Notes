@@ -195,7 +195,7 @@ no module 用Not16 chip和 Mux16进行选择判断
 
 从功能的角度来看，out(t) = in(t-1),有意思的地方在于，这个chip将时间t进行关联。
 
-如果你对DFF的实现形式感兴趣的话，我暂时用一句话先解释下，DFF的设计是用两个Nand来实现的,coursera上的perspective具体讲了下，不过我觉得也还不是很清楚，如果你想了解更多，建议把perspective看完，然后感兴趣的话去自己学习，搜索相关资料，如果你觉得你的资料不错，不妨留言，告诉我你的学习过程，或者帮我完善这部分的学习笔记，让更多的人受益。 
+如果你对DFF的实现形式感兴趣的话，我暂时用一句话先解释下，DFF的设计是用两个Nand来实现的,coursera上的perspective具体讲了下，不过我觉得perspective里讲得也还不是很清楚，如果你想了解更多，建议把perspective看完，然后感兴趣的话去自己学习，搜索相关资料，如果你觉得你的资料不错，不妨留言，告诉我你的学习过程，或者帮我完善这部分的学习笔记，让更多的人受益。 
 
 ### Bit(1-bit register)
 
@@ -224,6 +224,14 @@ RAM可以看作是多个Register的一个集成体，与Register不同的地方�
 ### RAM64
 
 与RAM8类似，只不过这个是由64个寄存器组成的东东。
+
+4.6补充
+
+想要构造register4k时，脑袋里卡了下。简单回顾了下前三章的内容。对于RAM8的构造很明显，但延伸到RAM64的时候，对于它的DMux8Ways有点不理解，不明白在哪个register进行存储应用的。
+
+对于多register的结构，以8个为一个单元，无论是64，512，还是4k,对于Hack computer（单线程的电脑？），一次只有一个register参与应用。
+
+具体哪个位置，哪个寄存器，没有那么重要，和你内部实现代码的内部写法有关系。
 
 ### 最后是硬核的PC chip
 
@@ -471,9 +479,124 @@ Input其实对应的就是我们的鼠标、键盘。
 
 
 
+# Computer Architecture
 
+## Von Neumann Architechture
 
+### computer architechture
 
+![031](Nand-to-Tetris/031.png)
 
+- 结构：input, hack box, output. Hack box 里面是计算机的核心组成部分，分别是Memory,CPU, CPU负责计算，有计算逻辑单元ALU,和接受指令的Registers. Memory内存，存data的同时也需要指令，所以有program。
+- 冯诺依曼结构中只有一个memory但要负责两个功能，一个是指令的program,另一个是data，会不会有冲突的时候呢？答案是会的，所以，后面有了一个叫做Harvard Architecture，当然，这里只是一个引子，后面会详细介绍这种结构。
 
+### Information Flows
 
+![image-20210330145431993](Nand-to-Tetris/027.png)
+
+- Sometimes all these three pieces of the, each one of these pieces of information is actually going to be implemented b	y wires(电线), by a set of wires sometimes called a bus(计算机科学里的总线)
+- 这张图展现了计算机黑盒子里是如何开始工作的，三条总线和各部分结构相互作用，相互联系。
+- 这里的Memory有两个作用，存储电脑运行时的指令和存储数据。
+
+## The Fetch-Execute Cycle（指令周期）
+
+Fetch: Which instruction to fetch next is determined by the jump bits of the current instruction and by the
+ALU output. Taken together, these values determine whether a jump should materialize. If so, the PC is set
+to the value of the A-register; otherwise, the PC is incremented by 1. In the next clock cycle, the
+instruction that the program counter points at emerges from the ROM’s output, and the cycle continues.
+
+Execute: Various bit parts of the current instruction are simultaneously fed to various chips in the
+computer. If it’s an address instruction (most significant bit = 0), the A-register is set to the 15-bit
+constant embedded in the instruction. If it’s a compute instruction (MSB = 1), its underlying a-, c-, d- and
+j-bits are treated as control bits that cause the ALU and the registers to execute the instruction.
+
+This particular fetch-execute cycle implies that in the Hack platform, elementary operations involving
+memory access usually require two instructions: an address instruction to set the A register to a particular
+address, and a subsequent compute instruction that operates on this address (a read/write operation on the
+RAM or a jump operation into the ROM).
+
+冲突时怎么办？改进后的Hardvard architecture。
+
+![image-20210331090732904](Nand-to-Tetris/032.png)
+
+![033](Nand-to-Tetris/033.png)
+
+几个需要注意的地方
+
+- 用了一个Multiplexor进行选择program的指令还是data
+- 从Memory中输出指令到Instruction register，然后再从Instruction register到Control bus中
+- Fetch指的是得到指令，Execute的话是运行指令。
+
+- Program Counter : The contents of the PC are then used as the address for fetching
+  instructions from the instruction memory. Thus, in the process of executing the current instruction, the CPU
+  updates the PC in one of two ways. If the current instruction contains no goto directive, the PC is
+  incremented to point to the next instruction in the program(加1). If the current instruction includes a goto n
+  directive that should be executed, the CPU loads n into the PC（去n那）
+- The computer architecture is wired in such a way that the output of the program counter (PC) chip is
+  connected to the address input of the ROM chip. This way, the ROM chip always emits the word
+  ROM[PC], namely, the contents of the instruction memory location whose address is “pointed at” by the
+  PC. This value is called the current instruction.
+
+有些地方我并没有完全搞懂
+
+整个周期实现的动态过程模拟。
+
+## Central Processing Unit
+
+![028](Nand-to-Tetris/028.png)
+
+![034](Nand-to-Tetris/034.png)
+
+![image-20210330155111839](Nand-to-Tetris/029.png)
+
+## The Hack Computer
+
+![image-20210330200114695](Nand-to-Tetris/030.png)
+
+## Project5
+
+![image-20210404194020332](Nand-to-Tetris/035 (1).png)
+
+[CircuitVerse - nand2tetrisPart1](https://circuitverse.org/users/23429/projects/73996)
+
+第四章的内容讲Machine language的时候提到了instrcution的组成，A的1+15bits,C由3+7+3+3四部分组成。
+
+这一次写project的时候，对于Hack computer的instruction的每一个bit都需要明确知道对应的是哪个部分。不然会很懵逼，我在想做作业的时候，望着一个项目发呆，想却想不通，只好回去查漏补缺。最后的结果是之前CPU视频部分完全没有搞懂，就妄图做作业，无疑是做梦啊。
+
+对于des部分的3个bits,分别是d1d2d3，这里d1、d2、d3都代表一个bit。
+
+d1——A register, d2——Memory[A], d3——D register。
+
+对于jump部分的3个Bits，j1j2j3，这里的j1、j2、j3分别代表一个bit
+
+j1——out < 0，j2——out = 0， j3——out > 0。
+
+有三种情况：
+
+000 No jump
+
+111 Jump
+
+Others Conditional jump
+
+另外一个难点是c(control bit)的选择。第一个Mux16的control bit为什么需要绕一下，因为要考虑两种instruction的情况啊。第二个Mux16的control bit 仍然从这两个方向去思考，这里对于C指令还是不熟悉，comp的部分，第一位的a为什么重要，仔细看的话，0的时候不涉及到M，1的时候都涉及到M
+
+PC的实现中比原本写其代码时少用了部分东西。
+
+![image-20210405151511135](Nand-to-Tetris/036.png)
+
+另一个难点就是这个PC了，考虑两种不同指令的情况，ALU后的ng和zr有什么用，怎么用？如何结合instruction？
+
+# Assembler
+
+## Assembly Languages and Assemblers
+
+## The Hack Assembly Language
+
+## The Assembly Process-Handling Instructions
+
+## The Assembly Process-Handling Symbols
+
+## Developing a Hack Assembler
+
+## Programming Option
