@@ -57,11 +57,11 @@ Tree的三种dfs遍历方式,bfs，递归的写法以及iterative的写法
 
 [leetcode110](#110)
 
-[剑指Offer 32](#剑指Offer 32)
+[剑指Offer 32](#从上到下打印二叉树系列)
 
-[剑指Offer 07](#剑指Offer 07)
+[剑指Offer 07](#重建二叉树)
 
-[剑指Offer 34](#剑指Offer 34)
+[剑指Offer 34](# 二叉树中和为某一值的路径)
 
 ## 具体的题解
 
