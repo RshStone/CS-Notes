@@ -82,15 +82,11 @@ Tree的三种dfs遍历方式,bfs，递归的写法以及iterative的写法
 
 [剑指Offer 32](#剑指Offer 32)
 
+[剑指Offer 07](#剑指Offer 07)
+
+[剑指Offer 34](#剑指Offer 34)
+
 ## 具体的题解
-
-**不会的：看题解 重构二叉树 编号07  思维：首先想清楚一个整理步骤 然后递进 分治思想进来啦， 最后的难点在于应用分治的边界选择问题****3.23再刷不会**
-
-分治思想下的树的边界条件，左子树，右子树，从那开始，在哪结束，用什么方法能够让inorder和preorder两个数组进行联动起来？
-
-分治思想下的辅助方法怎么写，递归结束条件是什么，递归的实际含义是什么？子问题是怎么样的。
-
-​                       
 
 
 
@@ -110,3 +106,36 @@ Tree的三种dfs遍历方式,bfs，递归的写法以及iterative的写法
 
 第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推                                           Deque + 分类处理
 
+- [剑指Offer 07]<a name = "重建二叉树"> 重建二叉树](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof) 
+
+  不会的：看题解 重构二叉树 编号07  思维：首先想清楚一个整理步骤 然后递进 分治思想进来啦， 最后的难点在于应用分治的边界选择问题3.23再刷不会**
+
+  分治思想下的树的边界条件，左子树，右子树，从那开始，在哪结束，用什么方法能够让inorder和preorder两个数组进行联动起来？
+
+  分治思想下的辅助方法怎么写，递归结束条件是什么，递归的实际含义是什么？子问题是怎么样的。</a>
+
+```java
+class Solution {
+    int[] preorder;
+    HashMap<Integer, Integer> hp = new HashMap<>();
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        this.preorder = preorder;
+        for(int i = 0; i < inorder.length; i++){
+            hp.put(inorder[i],i);
+        }
+        return helper(0,0, inorder.length-1);
+    }
+    public TreeNode helper(int root, int left, int right){
+        if(left > right)return null;
+        TreeNode node = new TreeNode(preorder[root]);
+        int i = hp.get(preorder[root]);
+        node.left = helper(root+1,left,i-1);
+        node.right = helper(root + i - left + 1,i+1,right);
+        return node;
+    }
+}
+```
+
+[剑指Offer 34]<a name = "二叉树中和为某一值的路径> 二叉树中和为某一值的路径(https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof) 
+
+回溯思想 : 先序遍历+记录
