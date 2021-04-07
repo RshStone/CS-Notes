@@ -106,7 +106,7 @@ Tree的三种dfs遍历方式,bfs，递归的写法以及iterative的写法
 
 第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推                                           Deque + 分类处理
 
-- [剑指Offer 07]<a name = "重建二叉树"> 重建二叉树](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof) 
+- [剑指Offer 07]<a name = "重建二叉树"> 重建二叉树</a>(https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof) 
 
   不会的：看题解 重构二叉树 编号07  思维：首先想清楚一个整理步骤 然后递进 分治思想进来啦， 最后的难点在于应用分治的边界选择问题3.23再刷不会**
 
@@ -136,6 +136,6 @@ class Solution {
 }
 ```
 
-- [剑指Offer 34]<a name  = "二叉树中和为某一值的路径> 二叉树中和为某一值的路径</a>(https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof) 
+- [剑指Offer 34]<a name = "二叉树中和为某一值的路径"> 二叉树中和为某一值的路径</a>(https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof) 
 
   回溯思想 : 先序遍历+记录
