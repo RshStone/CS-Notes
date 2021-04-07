@@ -136,6 +136,6 @@ class Solution {
 }
 ```
 
-- [剑指Offer 34]<a name = "二叉树中和为某一值的路径> 二叉树中和为某一值的路径(https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof) 
+- [剑指Offer 34]<a name  = "二叉树中和为某一值的路径> 二叉树中和为某一值的路径</a>(https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof) 
 
   回溯思想 : 先序遍历+记录
