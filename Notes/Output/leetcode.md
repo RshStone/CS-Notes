@@ -70,21 +70,31 @@
 
 # Tree
 
-## 必会的知识点
+## 思考方式
 
-Tree的三种dfs遍历方式,bfs，递归的写法以及iterative的写法
+树的基本框架的构建，是用BFS还是DFS，BFS怎么用，DFS的话是pre,in,post中的哪一个或者只是要对树进行单纯的遍历。结合树的类型一般的树，二叉树，二叉搜索树等。
 
-时间复杂度的分析，为什么是这样，内在的分析过程是怎么样的。
+方案的时间复杂度和空间复杂度是怎么样的。
+
+难点：想清楚递归，递归终止条件，是否是大问题转化为小问题，每个小问题是否独立。
 
 ## 涉及到的题目
 
-[leetcode110](#110)
+[leetcode110](#110)平衡二叉树     涉及到高度
 
-[剑指Offer 32](#从上到下打印二叉树系列)
+[剑指Offer 32](#从上到下打印二叉树系列)从上到下打印二叉树   层序遍历+一些变形
 
-[剑指Offer 07](#重建二叉树)
+[剑指Offer 07](#重建二叉树)重建二叉树   利用不同dfs结果的特点逆向进行思考
 
-[剑指Offer 34](#二叉树中和为某一值的路径)
+[剑指Offer 34](#二叉树中和为某一值的路径)二叉树中和为某一值的路径 
+
+[leetcode449](#449. Serialize and Deserialize BST)Serialize and Deserialize BST   
+
+[leetcode98](#98)Validate Binary Search Tree    中序遍历
+
+[leetcode124](#124)Binary Tree Maximum Path Sum  
+
+[leetcode173](#173)Binary Search Tree Iterator
 
 ## 具体的题解
 
@@ -93,6 +103,8 @@ Tree的三种dfs遍历方式,bfs，递归的写法以及iterative的写法
 - leetcode<a name="110">110</a>
 
 平衡二叉树  两种方法 自顶而下暴力解 自底而上 + 剪枝思想 
+
+4.8 again 写辅助函数的时候，采用DFS中的哪种模式？返回值为int的时候，终止条件，递归函数，返回值等如何思考。
 
 - 剑指Offer 32 - I, II, III <a name="从上到下打印二叉树系列">从上到下打印二叉树系列 </a>
 
@@ -139,3 +151,152 @@ class Solution {
 - [剑指Offer 34]<a name = "二叉树中和为某一值的路径"> 二叉树中和为某一值的路径</a>(https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof) 
 
   回溯思想 : 先序遍历+记录
+
+- [leetcode449]<a name = "449. Serialize and Deserialize BST">449. Serialize and Deserialize BST</a>(https://leetcode.com/problems/serialize-and-deserialize-bst/)
+
+  serialize & deserialize
+
+  ```java
+  public class Codec {
+  
+      // Encodes a tree to a single string.
+      StringBuilder sb = new StringBuilder();
+      public String serialize(TreeNode root) {
+          inorder(root);
+          if(!sb.toString().equals("")){sb.deleteCharAt(sb.length()-1);}
+          return sb.toString();
+      }
+      public void inorder(TreeNode root){
+          if(root == null)return;
+          sb.append(root.val);
+          sb.append(",");
+          inorder(root.left);
+          inorder(root.right);
+      }
+  
+      // Decodes your encoded data to tree.
+  public TreeNode deserialize(String data) {
+          if (data.isEmpty()) return null;
+          Queue<String> q = new LinkedList<>(Arrays.asList(data.split(",")));
+          return deserialize(q, Integer.MIN_VALUE, Integer.MAX_VALUE);
+      }
+      
+      public TreeNode deserialize(Queue<String> q, int lower, int upper) {
+          if (q.isEmpty()) return null;
+          String s = q.peek();
+          int val = Integer.parseInt(s);
+          if (val < lower || val > upper) return null;
+          q.poll();
+          TreeNode root = new TreeNode(val);
+          root.left = deserialize(q, lower, val);
+          root.right = deserialize(q, val, upper);
+          return root;
+      }
+  }
+  
+  ```
+
+  - leetcode<a name="98">98</a>Validate Binary Search Tree
+
+    一眼看出中序遍历，BST的中序遍历有数据值递增的性质。问题就转化为判断此树中序遍历后的结果是否为递增。
+
+    容器储存遍历的结果——优化：1、参数上优化，加上min和max 2、用一个pre节点储存上一次遍历的值，与当前值进行比较。
+
+  - leetcode<a name="124">124</a>Binary Tree Maximum Path Sum
+
+    写出基本框架后，发现需要用一个全局变量max来处理路径的最大值。
+
+    ```java
+        //my code
+    	//适用条件：作为当前一个子树的maxSum传到子树所在的root节点
+    	//报错情况:[-3][-1]直接求root节点maxPathSum的情况未考虑
+        public int maxPathSum(TreeNode root) {
+            if(root == null)return 0;
+            int left = maxPathSum(root.left);
+            if(left < 0 )left = 0;
+            int right = maxPathSum(root.right);
+            if(right < 0)right = 0;
+            return Math.max(Math.max(left + root.val + right, left), right);
+        }
+    ```
+
+    ```c++
+    //相似思路的题解代码
+    int max = Integer.MIN_VALUE;
+        public int maxPathSum(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            dfs(root);
+            return max;
+        }
+        public int dfs(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            int leftMax = Math.max(0, dfs(root.left));
+            int rightMax = Math.max(0, dfs(root.right));
+            max = Math.max(max, root.val + leftMax + rightMax);
+            return root.val + Math.max(leftMax, rightMax);
+        }
+    ```
+
+    - leetcode<a name="173">173</a> Binary Search Tree Iterator
+    
+      一般的思路ArrayList储存每一个节点，hasNext(),next(), Time complexity: O(1) O(1) Space complexity:O(n)
+    
+      n- the node of the tree
+    
+      升级想法：Space complexity:O(h)    h-the height of the tree
+    
+      ```
+      Before I come up with this solution, I really draw a lot binary trees and try inorder traversal on them. We all know that, once you get to a TreeNode, in order to get the smallest, you need to go all the way down its left branch. So our first step is to point to pointer to the left most TreeNode. The problem is how to do back trace. Since the TreeNode doesn't have father pointer, we cannot get a TreeNode's father node in O(1) without store it beforehand. Back to the first step, when we are traversal to the left most TreeNode, we store each TreeNode we met ( They are all father nodes for back trace).
+      
+      After that, I try an example, for next(), I directly return where the pointer pointing at, which should be the left most TreeNode I previously found. What to do next? After returning the smallest TreeNode, I need to point the pointer to the next smallest TreeNode. When the current TreeNode has a right branch (It cannot have left branch, remember we traversal to the left most), we need to jump to its right child first and then traversal to its right child's left most TreeNode. When the current TreeNode doesn't have a right branch, it means there cannot be a node with value smaller than itself father node, point the pointer at its father node.
+      
+      The overall thinking leads to the structure Stack, which fits my requirement so well.
+      ```
+    
+      ```java
+      public class BSTIterator {
+          
+          private Stack<TreeNode> stack;
+          public BSTIterator(TreeNode root) {
+              stack = new Stack<>();
+              TreeNode cur = root;
+              while(cur != null){
+                  stack.push(cur);
+                  if(cur.left != null)
+                      cur = cur.left;
+                  else
+                      break;
+              }
+          }
+      
+          /** @return whether we have a next smallest number */
+          public boolean hasNext() {
+              return !stack.isEmpty();
+          }
+      
+          /** @return the next smallest number */
+          public int next() {
+              TreeNode node = stack.pop();
+              TreeNode cur = node;
+              // traversal right branch
+              if(cur.right != null){
+                  cur = cur.right;
+                  while(cur != null){
+                      stack.push(cur);
+                      if(cur.left != null)
+                          cur = cur.left;
+                      else
+                          break;
+                  }
+              }
+              return node.val;
+          }
+      }
+      ```
+    
+      
+
