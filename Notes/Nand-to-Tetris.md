@@ -479,7 +479,7 @@ Input其实对应的就是我们的鼠标、键盘。
 
 
 
-# Computer Architecture
+# Computer Architecture（计算机架构）
 
 ## Von Neumann Architechture
 
@@ -541,7 +541,7 @@ RAM or a jump operation into the ROM).
 
 整个周期实现的动态过程模拟。
 
-## Central Processing Unit
+## Central Processing Unit（这里作者直接给你具体构造）
 
 ![028](Nand-to-Tetris/028.png)
 
@@ -555,37 +555,56 @@ RAM or a jump operation into the ROM).
 
 ## Project5
 
+### Memory chip
+
+思路点拨：核心是思考如何利用address来实现Memory不同区块的选择。15位的address,值为多少时是选择RAM16区域，值为多少时是选择Screen和Keyboard. 哪一位很关键呢？
+
 ![image-20210404194020332](Nand-to-Tetris/035 (1).png)
 
-[CircuitVerse - nand2tetrisPart1](https://circuitverse.org/users/23429/projects/73996)
+### [CircuitVerse - nand2tetrisPart1](https://circuitverse.org/users/23429/projects/73996)
 
-第四章的内容讲Machine language的时候提到了instrcution的组成，A的1+15bits,C由3+7+3+3四部分组成。
+写项目时搜索到的一个网站，把基本的逻辑门，chip都给用类似电路软件实例化了。
 
-这一次写project的时候，对于Hack computer的instruction的每一个bit都需要明确知道对应的是哪个部分。不然会很懵逼，我在想做作业的时候，望着一个项目发呆，想却想不通，只好回去查漏补缺。最后的结果是之前CPU视频部分完全没有搞懂，就妄图做作业，无疑是做梦啊。
+### 项目的注意点
 
-对于des部分的3个bits,分别是d1d2d3，这里d1、d2、d3都代表一个bit。
+- 计算机处理时，都是一个bit一个bit处理的，Hack computer的16bits，当然你要想办法拆开来，让每一个Bit放回它该在的地方。
+- 先设计Memory，后CPU最后封装computer
 
-d1——A register, d2——Memory[A], d3——D register。
+### 我的盲点、前面学习不到位的地方
 
-对于jump部分的3个Bits，j1j2j3，这里的j1、j2、j3分别代表一个bit
+- instruction的组成问题
 
-j1——out < 0，j2——out = 0， j3——out > 0。
+  第四章的内容讲Machine language的时候提到了instrcution的组成，A的1+15bits,C由3+7+3+3四部分组成。
 
-有三种情况：
+  这一次写project的时候，对于Hack computer的instruction的每一个bit都需要明确知道对应的是哪个部分。不然会很懵逼，我在想做作业的时候，望着一个项目发呆，想却想不通，只好回去查漏补缺。最后的结果是之前CPU视频部分完全没有搞懂，就妄图做作业，无疑是做梦啊。
 
-000 No jump
+- C指令
 
-111 Jump
+  对于des部分的3个bits,分别是d1d2d3，这里d1、d2、d3都代表一个bit。
 
-Others Conditional jump
+  d1——A register, d2——Memory[A], d3——D register。
 
-另外一个难点是c(control bit)的选择。第一个Mux16的control bit为什么需要绕一下，因为要考虑两种instruction的情况啊。第二个Mux16的control bit 仍然从这两个方向去思考，这里对于C指令还是不熟悉，comp的部分，第一位的a为什么重要，仔细看的话，0的时候不涉及到M，1的时候都涉及到M
+  对于jump部分的3个Bits，j1j2j3，这里的j1、j2、j3分别代表一个bit
 
-PC的实现中比原本写其代码时少用了部分东西。
+  j1——out < 0，j2——out = 0， j3——out > 0。
 
-![image-20210405151511135](Nand-to-Tetris/036.png)
+  有三种情况：
 
-另一个难点就是这个PC了，考虑两种不同指令的情况，ALU后的ng和zr有什么用，怎么用？如何结合instruction？
+  000 No jump
+
+  111 Jump
+
+  Others Conditional jump
+
+- c(control bit)的选择。
+
+  第一个Mux16的control bit为什么需要绕一下，因为要考虑两种instruction的情况啊。第二个Mux16的control bit 仍然从这两个方向去思考，这里对于C指令还是不熟悉，comp的部分，第一位的a为什么重要，仔细看的话，0的时候不涉及到M，1的时候都涉及到M
+
+- PC的实现中比原本写其代码时少用了部分东西。
+
+   ![image-20210405151511135](Nand-to-Tetris/036.png)
+
+  考虑两种不同指令的情况，ALU后的ng和zr有什么用，怎么用？如何结合instruction？
 
 # Assembler
 
@@ -600,3 +619,16 @@ PC的实现中比原本写其代码时少用了部分东西。
 ## Developing a Hack Assembler
 
 ## Programming Option
+
+这个项目做的有点头大，自己用Java语言写的，参考了一些别人的做法。
+
+但对于SymbolTable的实现代码我有一个地方没有弄明白。
+
+SymbolTable的初始化过程就按照书上罗列的
+
+第一次传入的时候，记录伪代码标记的ROM的地址，将其放到一个专门用于存放SymbolAddressTable的哈希表里
+
+第二次传入的时候读取就是一个replace的过程。但是传递两次，思路是将L_COMMAND@后面的Xxx用replace进行替换，替换成新的字符串再按照和A_COMMAND一样的方式进行处理。也就是说前面的东西也要修改。
+
+(Xxx)这个得改，和空格和注释并行的部分
+
