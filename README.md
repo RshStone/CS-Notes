@@ -20,7 +20,7 @@
 
 ## 计算机网络
 
-[CS144Notes](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS144.md)
+[CS144Notes暂时搁置](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS144.md)
 
 ## Java
 
