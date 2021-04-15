@@ -16,9 +16,16 @@
 
 ### [Nand-To-Tetris](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/Nand-to-Tetris.md)
 
+[CS61C](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS61C.md)
+
 ## 计算机网络
 
 [CS144Notes](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS144.md)
 
 ## Java
 
+[Java](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/Java.md)
+
+## Common Tools
+
+[Common-Tools](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/Common-Tools.md)
