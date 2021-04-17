@@ -358,7 +358,11 @@ def backtrack(路径, 选择列表):
       public List<List<String>> solveNQueens(int n) {
           // '.' 表示空，'Q' 表示皇后，初始化空棋盘。
           char[][] board = new char[n][n];
-          Arrays.fill(board, '.');
+          for (int i = 0; i < n; i++) {
+              for (int j = 0; j < n; j++) {
+                  board[i][j] = '.';
+              }
+          }
           //回溯 (路径，选择列表)
           backtrack(board, 0);
           return res;
@@ -368,33 +372,81 @@ def backtrack(路径, 选择列表):
       // 结束条件：row 超过 board 的最后一行// 触发结束条件
       public void backtrack(char[][] board, int row){
           //结束条件
-          if(row == board.length()){
+          if(row == board.length){
               //将char转为List,并将结果添加到res中
-              res.add();
+              res.add(construct(board));
           }
           //做选择
-          for(int col = 0; col < row; col++){
+          for(int col = 0; col < board.length; col++){
               //判断是否有效
-              if(isValid(board)){
-                  board[row][col] == 'Q';
+              if(isValid(board, row, col)){
+                  board[row][col] = 'Q';
                   backtrack(board, row + 1);
-                  board[row][col] == '.';
+                  board[row][col] = '.';
+              }
+        }
+      }
+    public List<String> construct(char[][] board){
+          List<String> path = new ArrayList<>();
+        for (char[] each:board) {
+              path.add(new String(each));
+        }
+          return path;
+    }
+      public boolean isValid(char[][] board, int row, int col){
+        if(row < 0 || row >= board.length || col < 0 || col >= board.length)return false;
+          //第row行
+          for(int i = 0; i < board[0].length; i++){
+              if(board[row][i] == 'Q'){
+                  return false;
               }
           }
+          //第col列
+          for(int i = 0; i < board.length; i++){
+              if(board[i][col] == 'Q'){
+                  return false;
+              }
+          }
+          //board[row][col]的两条对角线
+          //right-up
+          for(int i = row, j = col; i >= 0 && j < board[0].length; i--,j++){
+              if(board[i][j] == 'Q'){
+                  return false;
+              }
+          }
+          //right-down
+          for(int i = row, j = col; i < board.length && j >= 0; i++,j--){
+              if(board[i][j] == 'Q'){
+                  return false;
+              }
+          }
+          //left-up
+          for(int i = row, j = col; i >= 0 && j >= 0; i--,j--){
+              if(board[i][j] == 'Q'){
+                  return false;
+              }
+          }
+          //left-down
+          for(int i = row, j = col; i < board.length && j < board[0].length; i++,j++){
+              if(board[i][j] == 'Q'){
+                  return false;
+              }
+          }
+          return true;
       }
   }
   ```
-
+  
   - leetcode<a name="46">46</a>
-
+  
     框架代码
-
+  
     框架外的思考：
-
+  
     - `List`接口具体用的类
-
+  
     - `res.add()`时，要重新`new` 一个对象（放到常量池中），
-
+  
       不`new`的话，全为空结果，从`cur`这个`reference variable`指向的常量，反映了回溯的特性（回到最初的起点）
 
 ```java
