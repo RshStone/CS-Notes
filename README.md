@@ -20,7 +20,7 @@
 
 ## 计算机网络
 
-[CS144Notes暂时搁置](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS144.md)
+[**CS144Notes暂时搁置**](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS144.md)
 
 **[计算机网络 笔记](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md)**
 
@@ -32,4 +32,4 @@
 
 ## Common Tools
 
-[**Common**-Tools](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/Common-Tools.md)
+[**Common-Tools**](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/Common-Tools.md)
