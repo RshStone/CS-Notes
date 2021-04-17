@@ -16,7 +16,7 @@
 
 ### [Nand-To-Tetris](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/Nand-to-Tetris.md)
 
-[CS61C](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS61C.md)
+[CS61C暂时搁置](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS61C.md)
 
 ## 计算机网络
 
