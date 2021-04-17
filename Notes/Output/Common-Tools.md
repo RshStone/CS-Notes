@@ -21,9 +21,9 @@ Regular expressions are used to perform pattern-matching and "search-and-replace
 
 - Brackets: used to find a range of characters:
 
-  ^n找以n开头的
+  **^n找以n开头的**
 
-  [^n]除了n以外的
+  **[^n]除了n以外的**
 
   | [[abc\]](https://www.w3schools.com/jsref/jsref_regexp_charset.asp) | Find any character between the brackets                     |
 

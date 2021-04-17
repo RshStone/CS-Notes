@@ -45,9 +45,9 @@
 
 
 
-# Tree
+## Tree
 
-## 思考方式
+### 思考方式
 
 树的基本框架的构建，是用BFS还是DFS，BFS怎么用，DFS的话是pre,in,post中的哪一个或者只是要对树进行单纯的遍历。结合树的类型一般的树，二叉树，二叉搜索树等。
 
@@ -55,7 +55,7 @@
 
 难点：想清楚递归，递归终止条件，是否是大问题转化为小问题，每个小问题是否独立。
 
-## 涉及到的题目
+### 涉及到的题目
 
 [leetcode110](#110)平衡二叉树     涉及到高度
 
@@ -73,7 +73,7 @@
 
 [leetcode173](#173)Binary Search Tree Iterator
 
-## 具体的题解
+### 具体的题解
 
 
 
@@ -276,4 +276,126 @@ class Solution {
       ```
     
       
+
+## Backtracking
+
+### 学习参考
+
+[fucking-algorithms](https://github.com/labuladong/fucking-algorithm/blob/master/%E7%AE%97%E6%B3%95%E6%80%9D%E7%BB%B4%E7%B3%BB%E5%88%97/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3%E4%BF%AE%E8%AE%A2%E7%89%88.md)
+
+### 思想
+
+**解决一个回溯问题，实际上就是一个决策树的遍历过程**。你只需要思考 3 个问题：
+
+1、路径：也就是已经做出的选择。
+
+2、选择列表：也就是你当前可以做的选择。
+
+3、结束条件：也就是到达决策树底层，无法再做选择的条件。
+
+代码方面，回溯算法的框架：
+
+```python
+result = []
+def backtrack(路径, 选择列表):
+    if 满足结束条件:
+        result.add(路径)
+        return
+    
+    for 选择 in 选择列表:
+        做选择
+        backtrack(路径, 选择列表)
+        撤销选择
+```
+
+### 	题目列表
+
+[leetcode10](#10)正则表达式匹配	
+
+[leetcode51](#51)N皇后
+
+[leetcode93](#93)复原IP地址
+
+[leetcode46](#46)全排列
+
+[剑指 Offer 12](#剑指 12)矩阵中的路径
+
+[剑指 Offer 13](#剑指 13)机器人的运动范围
+
+### 	具体题解
+
+- leetcode<a name="51">51</a>
+
+  框架练习
+
+  ```java
+  class Solution {
+      private List<List<String>> res = new ArrayList<>();
+      /* 输入棋盘边长 n，返回所有合法的放置 */
+      public List<List<String>> solveNQueens(int n) {
+          // '.' 表示空，'Q' 表示皇后，初始化空棋盘。
+          char[][] board = new char[n][n];
+          Arrays.fill(board, '.');
+          //回溯 (路径，选择列表)
+          backtrack(board, 0);
+          return res;
+      }
+      // 路径：board 中小于 row 的那些行都已经成功放置了皇后
+      // 选择列表：第 row 行的所有列都是放置皇后的选择
+      // 结束条件：row 超过 board 的最后一行// 触发结束条件
+      public void backtrack(char[][] board, int row){
+          //结束条件
+          if(row == board.length()){
+              //将char转为List,并将结果添加到res中
+              res.add();
+          }
+          //做选择
+          for(int col = 0; col < row; col++){
+              //判断是否有效
+              if(isValid(board)){
+                  board[row][col] == 'Q';
+                  backtrack(board, row + 1);
+                  board[row][col] == '.';
+              }
+          }
+      }
+  }
+  ```
+
+  - leetcode<a name="46">46</a>
+
+    框架代码
+
+    框架外的思考：
+
+    - `List`接口具体用的类
+
+    - `res.add()`时，要重新`new` 一个对象（放到常量池中），
+
+      不`new`的话，全为空结果，从`cur`这个`reference variable`指向的常量，反映了回溯的特性（回到最初的起点）
+
+```java
+class Solution {
+    private List<List<Integer>> res = new ArrayList<>();
+    public List<List<Integer>> permute(int[] nums) {
+        List<Integer> cur = new ArrayList<>();
+        backtrack(cur,nums);
+        return res;
+    }
+    public void backtrack(List<Integer> cur, int[] nums){
+        if(cur.size() == nums.length){
+            res.add(new ArrayList<>(cur));
+        }
+        for(int i = 0; i < nums.length; i++){
+            if(!cur.contains(nums[i])){
+                //合法情况
+                cur.add(nums[i]);
+                backtrack(cur, nums);
+                int index = cur.size() - 1;
+                cur.remove(index);
+            }
+        }
+    }
+}
+```
 
