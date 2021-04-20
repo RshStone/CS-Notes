@@ -474,3 +474,77 @@ class Solution {
 }
 ```
 
+- 剑指 Offer<a name="12">12</a>
+
+  
+
+## DP
+
+### 学习参考
+
+- [fucking-alogorithms 系列](https://github.com/labuladong/fucking-algorithm/tree/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97)
+- [算法概论 Sanjoy Dasgupta / Christos Papadimitriou / Umesh Vazirani]((https://book.douban.com/search/Sanjoy Dasgupta))
+
+### 思想
+
+**明确 base case -> 明确「状态」-> 明确「选择」 -> 定义 dp 数组/函数的含义**。
+
+按上面的套路走，最后的结果就可以套这个框架：
+
+```python
+# 初始化 base case
+dp[0][0][...] = base
+# 进行状态转移
+for 状态1 in 状态1的所有取值：
+    for 状态2 in 状态2的所有取值：
+        for ...
+            dp[状态1][状态2][...] = 求最值(选择1，选择2...)
+```
+
+### 题目列表
+
+​	[斐列纳波数列](#斐列纳波数列)
+
+​	[凑零钱](#凑零钱)
+
+​	[leetcode300](#最长递增子序列)
+
+​	[剑指 Offer 14剪绳子](#剪绳子)
+
+​	编辑距离、正则表达式、背包问题、矩阵相乘、最短路径问题、树中的独立积问题
+
+### 具体题解
+
+- <a name = "斐列纳波数列">斐列纳波数列</a>
+
+  最简单+ `dp`思想明确 + `dptable`优化重复的子结构问题
+
+- <a name = "凑零钱">凑零钱</a>
+
+- <a name = "leetcode300">leetcode300最长递增子序列</a>
+
+- <a name = "剪绳子">剪绳子</a>
+
+  如何找到`dp`数组含义：如何确定状态和选择
+
+  对于的正整数 n，当 n≥2 时，可以拆分成至少两个正整数的和。令 kk 是拆分出的第一个正整数，则剩下的部分是 n−k，n−k 可以不继续拆分，或者继续拆分成至少两个正整数的和。由于每个正整数对应的最大乘积取决于比它小的正整数对应的最大乘积，因此可以使用动态规划求解。
+
+  创建数组 `dp`，其中`dp[i] `表示将正整数 ii 拆分成至少两个正整数的和之后，这些正整数的最大乘积。特别地，00 不是正整数，11 是最小的正整数，00 和 11 都不能拆分，因此 `dp`[0]`=dp`[1]=0。
+
+  ```java
+  class Solution {
+      public int integerBreak(int n) {
+          int[] dp = new int[n + 1];
+          for (int i = 2; i <= n; i++) {
+              int curMax = 0;
+              for (int j = 1; j < i; j++) {
+                  curMax = Math.max(curMax, Math.max(j * (i - j), j * dp[i - j]));
+              }
+              dp[i] = curMax;
+          }
+          return dp[n];
+      }
+  }
+  ```
+
+  
