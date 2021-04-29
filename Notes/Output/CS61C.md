@@ -167,7 +167,7 @@ Happy coding!
   sizeof(hello) = 16
   ```
 
-  ![image-20210425143914962](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/image-20210425143914962.png)
+  ![image-20210425143914962](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/001.png)
 
 - Arrays 
 
