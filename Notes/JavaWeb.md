@@ -29,109 +29,109 @@
 
 - 开发代码角度开发流程
 
-  1. 先创建书城需要的数据库和表
+  先创建书城需要的数据库和表
 
-     id、用户名、密码、邮箱
+  id、用户名、密码、邮箱
 
-  2. 编写数据库表对应的 JavaBean 对象
+  编写数据库表对应的 JavaBean 对象
 
-  3. 编写工具类 `JdbcUtils`
+  编写工具类 `JdbcUtils` `（这块代码比较固定，三部分static、getConnection, close）`
 
-     i. 添加价包，有箭头标记的表示可以直接使用，两种添加方式
+  i. 添加价包，有箭头标记的表示可以直接使用，两种添加方式
 
-     1. WEB-INF下创建lib，复制价包,
+  1. WEB-INF下创建lib，复制价包,
 
-        打开`File`下`Project Settings`下的`Library`导入价包到`Module`，
+     打开`File`下`Project Settings`下的`Library`导入价包到`Module`，
 
-        在`Module`下选择你想要添加的具体模块，''依赖''添加`Library`
+     在`Module`下选择你想要添加的具体模块，''依赖''添加`Library`
 
-        选择`Artifacts`中的`Fix`
+     选择`Artifacts`中的`Fix`
 
-        `Apply` `Ok`
+     `Apply` `Ok`
 
-        有标记的价包表示可以使用
+     有标记的价包表示可以使用
 
-     2. jar包那右键`add as library`
+  2. jar包那右键`add as library`
 
-     ii. 读取`jdbc.properties`属性配置文件
+  ii. 读取`jdbc.properties`属性配置文件 
 
-     iii. 从流中加载数据
+  iii. 从流中加载数据
 
-     iv/ 创建数据库连接池
+  iv. 创建数据库连接池
 
-  4. 编写 `BaseDao`
+  编写 `BaseDao`
 
-     导包
+  导包
 
-     `dbutils`下的`queryRunner`类 Insert\Update\Delete 语句
+  `dbutils`下的`queryRunner`类 Insert\Update\Delete 语句
 
-     泛型 <T>T
+  泛型 <T>T
 
-     query时传进去参数 `(Class<T>type, String sql, Object...args)`
+  query时传进去参数 `(Class<T>type, String sql, Object...args)`
 
-     ```java
-     @param type 返回的对象类型
-      * @param sql
-     执行的 sql 语句
-      * @param args sql 对应的参数值
-      * @param <T>
-     返回的类型的泛型
-     ```
+  ```java
+  @param type 返回的对象类型
+   * @param sql
+  执行的 sql 语句
+   * @param args sql 对应的参数值
+   * @param <T>
+  返回的类型的泛型
+  ```
 
-     ```java
-     //利用queryRunner执行的语句
-     queryRunner.query(connection,sql, new BeanListHandler<T>(type),args);
-     //一行 new BeanListHandler<T>(type)
-     //多行 new BeanListHandler<T>(type)
-     //一行一列 new ScalarHandler()
-     
-     ```
+  ```java
+  //利用queryRunner执行的语句
+  queryRunner.query(connection,sql, new BeanListHandler<T>(type),args);
+  //一行 new BeanListHandler<T>(type)
+  //多行 new BeanListHandler<T>(type)
+  //一行一列 new ScalarHandler()
+  
+  ```
 
-  5. 编写 `UserDao` 和测试
+  编写 `UserDao` 和测试
 
-     - 构造器需要一个空的
+  - 构造器需要一个空的
 
-     - `sql`语句注意``符号而不是''
+  - `sql`语句注意``符号而不是''
 
-     - ```java
-       //能直接查看方法的功能，参数，返回值和说明
-       /**
-       * 登录
-       * @param user
-       * @return 如果返回 null，说明登录失败，返回有值，是登录成功
-       */
-       ```
+  - ```java
+    //能直接查看方法的功能，参数，返回值和说明
+    /**
+    * 登录
+    * @param user
+    * @return 如果返回 null，说明登录失败，返回有值，是登录成功
+    */
+    ```
 
-       
+    
 
-     
+  
 
-  6. 编写 `UserService` 和测试
+  编写 `UserService` 和测试
 
-     - `UserService`接口 一个业务一个方法 （登录、注册、查看）
+  - `UserService`接口 一个业务一个方法 （登录、注册、查看）
 
-     - `UserServiceImpl`具体实现类，涉及数据库操作
+  - `UserServiceImpl`具体实现类，涉及数据库操作
 
-     - 快速生成`Test`, (Ctrl + Shift + T)
+  - 快速生成`Test`, (Ctrl + Shift + T)
 
-  7. 编写 `web` 层
+  编写 `web` 层
 
-     1. 实现用户注册的功能
+  1. 实现用户注册的功能
 
-        `RegisterServlet`程序获取参数，检查是否正确
+     `RegisterServlet`程序获取参数，检查是否正确
 
-        ![image-20210419195256837](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210419195256837.png)
+     ![image-20210419195256837](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210419195256837.png)
 
-        - web阶段使用：base+相对
-        - 框架阶段：绝对路径
+     - web阶段使用：base+相对
+     - 框架阶段：绝对路径
 
-     2. 实现用户登录功能
-
-        
-
-        
+  2. 实现用户登录功能
 
 
+## 书城第三阶段
+
+1. 页面`jsp`动态化
+2. 抽取页面中相同内容
 
 ## XML
 
@@ -587,3 +587,120 @@
 - EL表达式输出Bean普通属性，数组属性。List集合属性，map集合属性
 
   i. 
+
+- EL表达式的——运算
+
+  - 关系运算 逻辑运算 算术运算 三元运算
+
+  - `empty`运算: 空 true, 不空 false;
+
+  ​	空的情况: 
+
+  ​			``null值为空，
+
+  ​			空串为空，
+
+  ​			`Object`类型数组，
+
+  ​			长度为零
+
+  ​			`list`集合，元素个数为零
+
+  ​			`map`集合，元素个数为零
+
+  - "."点运算输出—— Bean 对象中某个属性的值，[]中括号运算—— 输出有序集合中某个元素的值
+
+    
+
+- 11个隐含表达式对象
+
+  变量						类型 												作用
+  `pageContext`	`PageContextImpl`			它可以获取 `jsp` 中的九大内置对象
+  `pageScope`		`Map`<String,Object>		它可以获取 `pageContext` 域中的数据
+  `requestScope`	`Map`<String,Object>		它可以获取 `Request` 域中的数据
+  `sessionScope`	`Map`<String,Object>		它可以获取 `Session` 域中的数据
+  `applicationScope`	`Map`<String,Object>	它可以获`ServletContext` 域中的数据
+  `param`			`Map`<String,String>			它可以获取请求参数的值
+  `paramValues`	`Map`<String,String[]>		它也可以获取请求参数的值，获取多个值的时候使用。
+  `header`			`Map`<String,String>		它可以获取请求头的信息
+  `headerValues`		`Map`<String,String[]>	它可以获取请求头的信息，它可以获取多个值的情况
+  `cookie`			`Map`<String,Cookie>			它可以获取当前请求的 `Cookie` 信息
+
+  `initParam`		`Map`<String,String>		它可以获取在 `web.xml` 中配置的<context-param>上下文参数
+
+  1. EL获取四个特定域的属性
+
+## JSTL标签库
+
+- JSP Standard Tag Library 主要是为了替换代码脚本
+
+- 标签库
+
+  ![image-20210421160748462](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210421160748462.png)
+
+  `<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>`
+
+- core核心库标签的使用
+
+  i. <c:set />（使用很少）
+
+  ​	作用：set 标签可以往域中保存数据
+
+  ii. <c:if />
+
+  ​	if 标签用来做 if 判断。
+
+  iii. <c:choose> <c:when> <c:otherwise>标签
+
+  ​	作用：多路判断。`c:when`必须配上 `c:choose`
+
+  iv. <c:forEach />
+
+  ​	作用：遍历输出使用。
+
+  2. 遍历 Object 数组
+
+  3. 遍历 Map 集合
+
+  4. 遍历 List 集合---list 中存放 Student 类，有属性：编号，用户名，密码，年龄，电话信息
+
+## 文件的上传和下载
+
+- 上传步骤
+  1. 要有一个form标签，method= post请求
+  2. `form`标签的`encType`属性值必须为`multipart/form-data值`
+  3. 在`form`标签中使用`input type=file`添加上传的文件
+  4. 编写服务器代码(servlet)接受，处理上传的数据
+
+- `commons-fileupload.jar`常用API声明
+
+  commons-fileupload.jar 和 commons-io.jar 包中，我们常用的类有哪些？
+  `ServletFileUpload` 类，用于解析上传的数据。
+  `FileItem` 类，表示每一个表单项。
+  `boolean ServletFileUpload.isMultipartContent(HttpServletRequest request);`
+  判断当前上传的数据格式是否是多段的格式。
+  `public List<FileItem> parseRequest(HttpServletRequest request)`
+  解析上传的数据
+  `boolean FileItem.isFormField()`
+  判断当前这个表单项，是否是普通的表单项。还是上传的文件类型。
+  true 表示普通类型的表单项
+  false 表示上传的文件类型
+  `String FileItem.getFieldName()`
+  获取表单项的 name 属性值
+  `String FileItem.getString()`
+  获取当前表单项的值。
+  `String FileItem.getName();`
+  获取上传的文件名
+  `void FileItem.write( file );`
+  将上传的文件写到 参数 file 所指向抽硬盘位置 。
+
+- 文件的下载
+
+  ![image-20210422184135042](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210422184135042.png)
+
+  方案一：`URLEncoder` 解决 `IE` 和谷歌浏览器的
+  附件中
+  文名问题。
+
+  方案二：`BASE64` 编解码 解决 火狐浏览器的附件中文名问
+  题

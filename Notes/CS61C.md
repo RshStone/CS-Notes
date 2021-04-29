@@ -1,6 +1,17 @@
 # CS61C:Great Ideas in Computer Architecture
 
+## why I want to learn it and write note
+
+​	In this demo, I want to share with you about my current situation and feelings when I study the course so that you can consider that if you will learn it or if you have the similar ideas with me.
+
+- I have finished Nand2TetrisI on coursera and learn CS according to [Teach yourselfCS-CN](https://github.com/keithnull/TeachYourselfCS-CN/blob/master/TeachYourselfCS-CN.md) .
+- I'm not majoring material science in university and I want to learn the basic about CS which makes me lose myself in.
+- It is not easy for most students to learn the most famous foreign country's CS course by themselves so I want to record my study note concretely as possible as I can.
+- Enjoy study!  
+
 ## how to learn this course for me
+
+How long: 24(h)
 
 From my perspective, I want to get an offer maybe in August. I also want to learn some fundamental courses about the computer science. I'm attracted by its beauty. 
 
@@ -12,9 +23,228 @@ Happy coding!
 
  preparation the basis you should know about this course 2's complement 进制转换 unsigned
 
+- Six Great Ideas In Computer Architecture
+  1. Abstraction
+  2. Technology Trends
+  3. Principle of Locality/Memory Hierarchy
+  4. Parallelism
+  5. Performance Measurement & Improvement
+  6. Dependability via Redundancy
+
+- Website Textbooks Piazza(discussion)
+
+- Course Assignments and Grading
+
+  12 total Labs(partner)  4-Projects
+
+- Successful Behaviors
+
+  - Practice, practice, practice
+  - Find a learning community
+  - Avoid comparison, do your best, and judge yourself on your progress alone.
+
+  - You learn best from your mistakes.
+
+- Number Base Examples
+
+  9472ten = 9000 + 400 + 70 + 2
+
+  General Formula
+
+- 2^10 `Kibi` 2^20 `Mebi` 2^30 `GiBi` 2^40 `Tebi` 2^50 `Pebi` 2^60 `Exbi` 2^70 `Zebi` 2^80 `Yobi`
+
+- Bias Notation
+
+  unsigned value + bias  = 'actual' value
+
 ## lec02 C:Introduction,Pointer
 
+- Compilation 
+
+  - C - compiled language
+
+  - map C programs into machine code
+
+  - Advantages
+
+    Excellent run-time performance
+
+    fair compilation time
+
+  - Disadvantages
+
+    architecture-specific(CPU type and OS)
+
+    repeat until correct all bugs(Slow procedure)
+
+- Typed Variables in C
+
+  `int` 	signed integer 5,-12
+
+  `short`	`int`(short)
+
+  `long int`
+
+  `char`
+
+  `float`
+
+  `double`
+
+- Characters
+
+  i. Encode characters as numbers
+
+  ii. ASCII
+
+  iii. A char takes 1 bit
+
+- Typecasting in C
+
+  i. weakly typed language
+
+  ii. Can typecast anything(be careful)
+
+- Typed Functions in C
+
+- Structs in C
+
+  i. define compound data types
+
+  ii. group of variables, possibly including other structs
+
+  iii. Structs Alignment and Padding in C(enough space and aligns)	 
+
+  ```c
+  //sizeof(struct foo) == 12, 3 unused bytes
+  Struct foo {
+  int a;
+  char b;
+  struct foo *c;
+  }
+  ```
+
+- Unions in C
+
+  i. enough space for the largest element
+
+- operators
+
+  nearly identical
+
+- C Syntax: main
+
+  `int main(int argc, char *argv[])`
+
+  `-argc` argument count contains the number of strings
+
+  `-argv`	argument value is an array
+
+- True or False
+
+  i. No explicit Boolean type	
+
+- Pointers
+
+  - variable that contains an address
+  - `void *` can point to anything(be careful !!!)
+
+  - `int *x,y,z`  ! = -- > `int *x,*y,*z` 
+  - pass by reference
+
 ## lec03 C Arrays,Strings, More Pointers
+
+- Struct Alignment
+
+  ```c
+  struct hello {
+  int a;
+  char b;   // char 填的时候，如果地址非word(4 Bytes)或者half-word,自动填齐
+  short c;
+  char *d;
+  char e; // 最后结果需要是n个Bytes
+  };
+  sizeof(hello) = 16
+  ```
+
+  ![image-20210425143914962](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210425143914962.png)
+
+- Arrays 
+
+  - Pitfall: An array in C does not know its own length, and its bounds are not checked!
+
+    (learn how to debug later!!!)
+
+  - better write pattern
+
+    ```c
+    //If the code is long, it is really easy to change the length of the array.
+    const int ARRAY_SIZE = 10;
+    int ar[ARRAY_SIZE];
+    for(int i=0; i<ARRAY_SIZE; i++)
+    ```
+
+    
+
+  - `ar[i]` is true equals to `*(ar + i)`
+
+    i. An array variable looks like a pointer to the first (0th) element
+
+    ii. To zero an array, the following three ways are equivalent:
+    `1)for(i=0; i<SIZE; i++){ar[i] = 0;}`
+    `2)for(i=0; i<SIZE; i++){*(ar+i) = 0;}
+    3)for(p=ar; p<ar+SIZE; p++){*p = 0;}`
+
+    iii. K&R: “An array's name is not a variable”
+
+    ```c
+    //*p:1, p:40, &p:20
+    //*a:2, a:24, &a:24(meaningless)
+    void foo() {
+    int *p, a[4], x;
+    p = &x;
+    *p = 1; // or p[0]
+    printf("*p:%u, p:%u, &p:%u\n",*p,p,&p);
+    *a = 2; // or a[0]
+    printf("*a:%u, a:%u, &a:%u\n",*a,a,&a);
+    }
+    ```
+
+    iv. Array size gets lost when passed to a function
+
+    ```c
+    int foo(int array[], unsigned int size){
+    	printf("%d\n", sizeof(array));
+    }
+    ```
+
+    v. C String
+
+    ​	`\0` terminator
+
+     `#include <string.h>`: 	
+
+    ​		`int strlen(char *string)` `int strcmp(char *str1, char *str2)` --> the difference between their ASCII
+
+    ​		`char *strcpy(char *dst, char *src)`
+
+  
+
+- More pointers
+
+  - Pointer Arithmetic: pointer ± number
+
+    cautiously, the code is hard to read.
+
+  - Increment and Dereference
+
+    `++*p` `*--p` （右到左）
+
+    `(*p)++` 
+
+  - Pointer `Misc`(杂项)
+
+    传值和传址
 
 ## lec04: C:Memory Management and Usage
 
