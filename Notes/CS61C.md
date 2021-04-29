@@ -167,7 +167,7 @@ Happy coding!
   sizeof(hello) = 16
   ```
 
-  ![image-20210425143914962](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210425143914962.png)
+  ![image-20210425143914962](CS61C/001.png)
 
 - Arrays 
 
