@@ -25,7 +25,7 @@
 
   分层的目的是为了解耦。解耦就是为了降低代码的耦合度。方便项目后期的维护和升级。
 
-  ![image-20210418124703440](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/image-20210418124703440.png)
+  ![image-20210418124703440](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/002.png)
 
 - 开发代码角度开发流程
 
@@ -120,7 +120,7 @@
 
      `RegisterServlet`程序获取参数，检查是否正确
 
-     ![image-20210419195256837](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/image-20210419195256837.png)
+     ![image-20210419195256837](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/003.png)
 
      - web阶段使用：base+相对
      - 框架阶段：绝对路径
@@ -531,7 +531,7 @@
 
    - `servlet` + `jsp` 整个流程
 
-     ![image-20210420193324931](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/image-20210420193324931.png)
+     ![image-20210420193324931](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/004.png)
 
    - `Listener`监听器(三大组件之一) 讲spring时具体介绍
 
@@ -636,7 +636,7 @@
 
 - 标签库
 
-  ![image-20210421160748462](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/image-20210421160748462.png)
+  ![image-20210421160748462](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210421160748462.png)![005](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/005.png)
 
   `<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>`
 
@@ -696,7 +696,7 @@
 
 - 文件的下载
 
-  ![image-20210422184135042](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/image-20210422184135042.png)
+  ![image-20210422184135042](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/006.png)
 
   方案一：`URLEncoder` 解决 `IE` 和谷歌浏览器的
   附件中
