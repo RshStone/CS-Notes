@@ -248,15 +248,133 @@ Happy coding!
 
 ## lec04: C:Memory Management and Usage
 
-stack
+- C Memory Layout
 
-heap
+  stack(LIFO): local variables, grows downward
 
-static data
+  ​	Stack pointer(SP): moves up and down with the procedure
 
-code
+  ​	Misuse Example: return local variable from functions
+
+  heap: space requested via malloc() and used with pointers;
+
+  ​	`sizeof()`
+
+  static data: global and static variables, does not grow or shrink	
+
+  code: loaded when program starts, does not change
+
+- Address
+
+  - Endianness
+
+    Little Endian、Big Endian
+
+  - Allocating Memory(should check NULL)
+
+    `malloc`(): continuous blocks, uninitialized, return pointers
+
+    `calloc`(): `void *calloc(size_t nmemb, size_t size)`
+
+    ​	like malloc(), except it initialized all values of 0 
+
+    `realloc`(): `void *realloc(void *ptr, size_t size)`
+
+     	need more or less memory in an array
+
+  - Releasing Memory
+
+    `free`(p), p is pointer
+
+- Memory Errors
+
+  - Segmentation Fault
+
+     attempts to access memory not allocated to it
+
+  -  Bus Error
+
+    “A fatal failure in the execution of a machine language instruction resulting from the processor detecting an anomalous condition on its bus. Such conditions include invalid address alignment (accessing a multi-byte number at an odd address), accessing a physical address that does not correspond to any device, or some other device-specific hardware error.”
+
+  - Common Memory Problem
+
+    1) Using uninitialized values
+    2) Using memory that you don’t own
+    	–Using NULL or garbage data as a pointer
+    	–De-allocated stack or heap variable
+    	–Out of bounds reference to stack or heap array
+    3) Freeing invalid memory
+    4) Memory leaks
 
 ## leco5: Floating Points（不会）
+
+- Floating Point
+
+  10进制科学计数法牵引到二进制，二进制的点，左半部分和右半部分
+
+  - Single Precision
+
+    32-bit word into 3 fields
+
+    ![image-20210503164145464](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210503164145464.png)
+
+    ​	
+
+    Biased notation: 
+
+    ​	why use it?
+
+     1. compare numbers easily(保证数组非负线性，补码的一个弊端非线性)
+
+        ​	compare order: Sign --> Exponent --> Significand
+    
+    The Exponent Field:
+    
+    ​	1. bias: -127
+    
+     2. encoding: +127 e.g. 2^1 exp = 1 ==> 128 ==> 10000000two
+    
+     3. cases
+    
+        Normalization:
+    
+        ​	Exponent != 0 || != 255
+    
+        Denormalization:
+    
+        ​	all 0
+    
+        Special cases:	
+    
+        ​	11111111(255): 
+    
+        ​				NaN != 0  
+    
+        ​				infinite: all 0 
+  
+- Floating Points: special cases
+
+  ​		![image-20210504162159577](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210504162159577.png)	
+
+- Floating Points Limitations
+
+  ​	Assume x is the result
+
+  ​	Overflow:  abs(x) > 2 ^123
+
+  ​	Underflow: 0 < abs(x) < 2^-149
+
+  - Floating Point Gaps: get larger with larger exponent
+
+  - FP addition is NOT associative
+
+    Small + Big + Small != Small + Small + Big
+
+    不是很理解的地方(+一个后面的小练习)
+
+    ​	![image-20210504164706162](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210504164706162.png)
+
+- 
 
 浮点数具体的每部分和历史
 
