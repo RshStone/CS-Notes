@@ -130,8 +130,48 @@
 
 ## 书城第三阶段
 
-1. 页面`jsp`动态化
-2. 抽取页面中相同内容
+- 页面`jsp`动态化
+
+  1、在 html 页面顶行添加 page 指令。
+  2、修改文件后缀名为：`.jsp`
+  3、使用 IDEA 搜索替换.html 为`.jsp`(快捷键：Ctrl+Shift+R)
+
+- 抽取页面中相同内容
+
+  - 在 `web`下的page下新建一个 `common`然后根据相同信息的类别进行分类(别的地方使用类似格式进行引用
+
+    ```jsp
+    <%@include file="/pages/common/footer.jsp"%>
+    ```
+
+    )
+
+    `head.jsp`: base  css script（直接copy即可）
+
+    ```
+    <%
+        String basePath = request.getScheme()
+                + "://"
+                + request.getServerName()
+                + ":"
+                + request.getServerPort()
+                + request.getContextPath()
+                + "/";
+    %>
+        <base href=<%= basePath%>>
+    ```
+
+    `footer.jsp`
+
+    `login_success_menu.jsp`
+
+    `manager_menu.jsp`
+
+- 登录，注册错误提示，及表单回显
+
+  
+
+
 
 ## XML
 
@@ -311,8 +351,18 @@
       404 表示请求服务器已经收到了，但是你要的数据不存在（请求地址错误）
       500 表示服务器已经收到请求，但是服务器内部错误（代码错误）
 
-    - MIME 类型说明
+      405 
 
+      ```
+      The 405 (Method Not Allowed) status code indicates that the method
+         received in the request-line is known by the origin server but not
+         supported by the target resource.  The origin server MUST generate an
+         Allow header field in a 405 response containing a list of the target
+         resource's currently supported methods
+      ```
+    
+    - MIME 类型说明
+    
       MIME 是 HTTP 协议中数据类型。
       MIME 的英文全称是"Multipurpose Internet Mail Extensions" 多功能 Internet 邮件扩充服务
 
@@ -636,7 +686,7 @@
 
 - 标签库
 
-  ![image-20210421160748462](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210421160748462.png)![005](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/005.png)
+  ![005](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/JavaWeb/005.png)
 
   `<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>`
 
