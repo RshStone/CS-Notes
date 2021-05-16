@@ -1,4 +1,4 @@
-## jQuery
+
 
 ## 书城第一阶段
 
@@ -169,9 +169,289 @@
 
 - 登录，注册错误提示，及表单回显
 
-  
+  1. HTTP Status 500过程错误
 
+  注意file = ""引号里面的空格问题
 
+  ![image-20210508135945655](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210508135945655.png)
+
+  2. 相对路径使用不成功
+
+     使用`jsp`静态包含后使用相对路径不成功
+
+     `index.jsp`在`web`目录下，为什么`book/web/index.jsp`不成功
+
+     `index.jsp`里的
+
+     ```
+     类似这种
+     <a href="../../index.jsp">注销</a>&nbsp;&nbsp;
+     <a href="../../index.jsp">返回</a>
+     ```
+
+     `login_success_menu.jsp`里的`<a href="../order/order.jsp">我的订单</a>`
+
+     查看文件树: tree命令
+
+- 代码优化
+
+  1. `UserServlet`程序
+
+     register, login belong to user module. 合并到`UserServlet`程序中
+
+  2. 用户模块使用反射优化
+
+     除了注册和登录还有其他比如添加用户，修改用户信息，修改密码等等
+
+  3. 抽取`BaseServlet`程序(除了`UserServlet`程序外可能还会有`BookServlet`等模块)
+
+     获取action参数值
+
+     通过反射获取action对应的业务方法
+
+     通过反射调用业务方法
+
+- `BeanUtils`工具类的使用
+
+  (报错最好版本降到和老师的一致)
+
+  可以一次性把所有请求参数传到`JavaBean`对象中
+
+  第三方工具类，需要导包
+
+  Ctrl + Alt + T 可以选择抛异常等内容
+
+  調用過程中調用了`set`方法，`EL`取值調用了`get`方法
+
+  ```java
+  //将1改成2
+  public static void copyParamToBean(HttpServletRequest req, Object bean) //1
+  public static void copyParamToBean(Map value, Object bean) //2 更为优雅
+  //将Map(键值对)内容注入到bean对象中很常见
+  //1有什么问题？
+  //HttpServletRequest 或者是Servlet是Web层所独有的，service业务层，dao层没有，导致程序的耦合度高（设计小细节）
+      
+  ```
+
+  ```java
+  public static Object copyParamToBean(Map value, Object bean)
+  User user = (User) WebUtils.copyParamToBean(req.getParameterMap(), new User());
+  使用汎型
+  public static <T>  T copyParamToBean(Map value, T bean)
+  User user =  WebUtils.copyParamToBean(req.getParameterMap(), new User());  
+  ```
+
+## 书城第四阶段
+
+使用EL表达式	修改表单回显
+
+```jsp
+<%=request.getAttribute("msg")==null?"":request.getAttribute("msg")%>
+换成
+${requestScope.msg}  <%--EL表达式--%>
+```
+
+## 书城第五阶段
+
+- MVC概念
+
+  Model 模型, View视图， Controller控制器
+
+  MVC 最早出现在 JavaEE 三层中的 Web 层，它可以有效的指导 Web 层的代码如何有效分离，单独工作。
+  View 视图：只负责数据和界面的显示，不接受任何与显示数据无关的代码，便于程序员和美工的分工合作——
+  JSP/HTML。
+  Controller 控制器：只负责接收请求，调用业务层的代码处理请求，然后派发页面，是一个“调度者”的角色——Servlet。
+  转到某个页面。或者是重定向到某个页面。
+  Model 模型：将与业务逻辑相关的数据封装为具体的 JavaBean 类，其中不掺杂任何与数据处理相关的代码——
+  JavaBean/domain/entity/pojo。
+  MVC 是一种思想
+  MVC 的理念是将软件代码拆分成为组件，单独开发，组合使用（目的还是为了降低耦合度）。
+
+- 图书模块
+
+  1. 编写图书模块的数据库表
+
+     Generator shortcut Alt + Insert
+
+     
+
+  2. 编写图书模块的JavaBean
+
+     
+
+  3. 编写图书模块的Dao和测试Dao
+
+     
+
+     ```java
+     //updateDao测试结果未解决bug
+     ava.sql.SQLException: Unknown column 'img_path=' in 'field list' Query: update t_book set `name`=?,`author`=?,`price`=?,`sales`=?,`stock`=?,`img_path=`=? where id = ? Parameters: [大家都很搞笑!, Justin, 9999, 1100, 0, static/img/default.jpg, 22]
+     ```
+
+     
+
+  4. 编写图书模块的Service和测试Service
+
+     模块关系。DAO查出基本数据，Service对数据进行操作，再传给Controller
+
+     
+
+  5. 编写图书模块的Web层和页面联调测试
+
+     ![image-20210509164742722](JavaWeb/007.png)
+
+     为什么加manager?
+
+     ```jsp
+         <servlet>
+             <servlet-name>BookServlet</servlet-name>
+             <servlet-class>com.atguigu.web.BookServlet</servlet-class>
+         </servlet>
+         <servlet-mapping>
+             <servlet-name>BookServlet</servlet-name>
+             <url-pattern>/manager/bookServlet</url-pattern>
+             <!--方便权限管理加了manager-->
+         </servlet-mapping>
+     ```
+
+     前台: 普通用户使用 地址: `/client/bookServlet`
+
+     后台：管理员使用 地址：`/manager/bookServlet`
+     
+     - 添加
+     
+       ![image-20210510142016615](JavaWeb/008.png)
+     
+       bug
+     
+       ```java
+       req.getRequestDispatcher("/manager/bookServlet?action=list").forward(req,resp);
+       //按下F5后用户请求会被重复记录
+       使用重定向
+       resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=list");
+       ```
+     
+     - 删除
+     
+       ![image-20210510144605363](JavaWeb/009.png)
+     
+       用户不小心删错了怎么办？——加一个标签提醒框
+     
+       ```javascript
+       <script type="text/javascript">
+       		$(function (){
+       			//给删除的a标签绑定单击事件，用于删除的确认提示操作
+       			$("a.deleteClass").click(function (){
+       				return confirm("你确定要删除【" + $(this).parent().parent().find("td:first").text() + "】?");
+       			});
+       		});
+       	</script>
+       ```
+     
+       
+     
+     - 修改
+     
+       ![010](JavaWeb/010.png)
+     
+       i. 数据回显到表单之中
+     
+       ii. 提交给服务器保存修改
+       
+       找很久的bug,封装bean对象时id没有封装上去，显示为0
+       
+       三个错误，我犯的
+       
+       id = NULL ,`daoImpl`里面get没有设置`selet id`
+       
+       `img_path= ?`写成了`img_path= = ?`
+       
+       ```jsp
+       "/manager/bookServlet?action = list"
+       //引号里的space 需要注意
+       ```
+       
+       找bug时的问题，对于老师项目代码的配置问题，Tomcat(导入Artifact)——Project Structure的每一个部分
+
+- 图书分页
+
+  - 一般不会把数据全部一次性读取而是采用分页的方式，每页大概显示4条
+
+  - 分页的流程
+
+    ![image-20210512144008526](JavaWeb/011.png)
+
+    分页可以是图书分页，用户分页，商家分页等等。所以采用泛型
+
+    写的时候的错误: Number Format Exception
+
+    ​	弹幕给的一种思路：把`queryForPageTotalCount`返回值转为`Long`再转为`String`再转为`Integer`
+
+  - 完善加首页，上页，下页，末页
+
+  - 分页模块跳转到指定页数功能实现
+
+    给按钮榜上单击事件+跳到指定页码
+
+    数据边界检查可以放到`Page.java`里，反复使用
+
+  - 分页模块中，页码1，2，3，4，5的显示
+
+    需求：显示5个连续的页码，而且当前页码在中间。除了当前页码之外，每个页码都可以点击跳到指定页。
+
+    i. 如果总页码小于等于5——页码范围：1-总页码
+
+    ​	e.g. 3页 1, 2, 3
+
+    ii. 总页码大于5的情况。假设一共10页
+
+    ​	situation1: 当前页码为前面3个：1, 2, 3的情况——页码范围：1-5
+
+    ​		【1】,2,3,4,5
+
+    ​		1,【2】,3,4,5
+
+    ​		1,2,【3】,4,5
+
+    ​	situation2: 当前页码为最后3个， 8, 9, 10，页码范围是：总页码减4-总页码
+
+    6,7,【8】,9,10
+
+    6,7,8,【9】,10
+
+    6,7,8,9,【10】
+
+    ​	situation3: 4,5,6,7,页码范围是：当前页码减2-当前页码加2
+
+   5.12运行bug + 5.13解决  
+
+  - 分页对添加、修改、删除的影响
+
+  - 前台分页的初步实现
+
+    ![image-20210513141414473](JavaWeb/012.png)
+
+    敲代码时的bug——`web/index.jsp`中的`jstl`不生效
+
+    ![image-20210513151455736](JavaWeb/013.png)
+
+    原因：没有完全理解`web/index.jsp`和`page//client/index.jsp`的作用。把二者代码写反了
+
+    首页和尾页的Bug，不能显示。  `PageNo` 重新 `set`一下
+
+  - 分页条的抽取
+
+    前台和后台的分页条几乎一样，把它们抽取放到`Page`方法里
+
+  - 价格区间搜索并分页的分析
+
+    思路分析：
+
+    ![image-20210513160905932](JavaWeb/014.png)
+
+    50min写尝试自己写业务，challenging but interesting!!! 虽然没写出来多少
+
+    `client.index.jsp` 需要把它的page地址改一改再加上隐藏域(用户看不到，`view page source`可以看到)
 
 ## XML
 
@@ -754,3 +1034,83 @@
 
   方案二：`BASE64` 编解码 解决 火狐浏览器的附件中文名问
   题
+
+## Cookie
+
+- ​	什么是cookie
+
+  服务器通知客户端保存键值对的一种技术
+
+  客户端有了cookie后，每次请求发送给服务器
+
+  每个cookie大小不能超过4kb
+
+- 如何创建cookie
+
+- 服务器如何获取cookie
+
+  通过一行代码`req.getCookies():Cookie[]`获取
+
+- 修改cookie的值
+
+  方案一：
+
+  先创建一个要修改的同名的Cookie对象
+
+  在构造器同时赋予新的Cookie值
+
+  调用`response.addCookie(Cookie);`
+
+  方案二：
+
+  先查找到需要修改的Cookie对象
+
+  调用`setValue()`方法赋予新的Cookie值
+
+  调用`response.addCookie()`
+
+- Cookie的生命控制
+
+  指的是如何管理Cookie什么时候被销毁
+
+  `setMaxAge()`
+
+  正数，表示在指定的秒数后过期
+  负数，表示浏览器一关，Cookie 就会被删除（默认值是-1）
+  零，表示马上删除 Cookie
+
+- Cookie有效路径Path的设置
+
+  path属性可以有效过滤哪些Cookie可以发送给服务器，哪些不发。path属性是通过请求的地址来进行有效的过滤
+
+- 免用户名登录
+
+  ![image-20210515152927287](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210515152927287.png)
+
+  
+
+## Session会话
+
+- 什么是Session
+
+  是一个接口(`HttpSession`)
+
+  用来维护客户端和服务器之间关联的一种技术
+
+  每个客户端都有自己的Session会话
+
+  Session会话中，我们经常来保存用户登录之后的信息
+
+- 如何创建和获取
+
+  `request.getSession()`第一次是创建，之后是获取
+
+  `isNew();` 判断是不是刚创建出来的 true/false
+
+  每个会话都有一个身份码
+
+  `getId()`得到Session的会话值
+
+- Session域数据的存取
+
+  

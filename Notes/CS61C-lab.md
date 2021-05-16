@@ -108,9 +108,68 @@ practice: tortoise and hare(龟兔赛跑)
   - 疑惑：为什么会有65536种正整数结果
 
 - Exercise 3: Linked Lists
-  - easy
-
+  
+- easy
+  
 - Exercise 4: Memory Management
   - `make vector_test`没成功使用 `gcc -o vector vector.c vector_test.c`测试成功
   - `make vector-memcheck`没成功
   - make理解不到位
+
+## Project1
+
+指针指针傻傻分不清？
+
+思考的统一性！
+
+​	如果你这样思考：画出了一个指针然后这个指针指向的位置区域，那么每一个部分都这样思考
+
+​	指针赋值的话赋值的其实是其中一个指针指向的地址，而不是指针本身。但指向指针的指针存放的是指针的地址。
+
+​	不然的话，就简单理解这个指针原先存的那部分地址，然后改变了，存在那部分地址。
+
+```c
+//把table->data[location]理解为指向NULL或者是已经分配过内存的Bucket
+//理解了其实就是一个头插法  5/10
+//画图理思路很重要但是有时候好像也没必要哈
+	//struct hashBucket* temp = table->data[location];
+	//table->data[location] = newBucket;
+	//newBucket->next = temp;
+  newBucket->next = table->data[location];
+  newBucket->data = data;
+  newBucket->key = key;
+  table->data[location] = newBucket;
+  
+```
+
+```c
+//My code
+//problems: if we want to find data in a bucket. We can't iterate all the buckets
+void insertData(HashTable *table, void *key, void *data) {
+  // -- TODO --
+    unsigned int location = table->hashFunction(key);
+    //judge if table->data[location] is NULL
+    if(table->data[location]){
+      while(table->data[location]){
+        table->data[location] = table->data[location]->next;
+      }
+      table->data[location] = (struct HashBucket*)malloc(sizeof(struct HashBucket));
+      table->data[location]->key = key;
+      table->data[location]->data = data;
+      table->data[location]->next = NULL;      
+    }
+    else{
+      table->data[location] = (struct HashBucket*)malloc(sizeof(struct HashBucket));
+      table->data[location]->key = key;
+      table->data[location]->data = data;
+      table->data[location]->next = NULL;
+```
+
+`stringHash`的数学原理:
+
+参考回答：[Why does Java's hashCode() in String use 31 as a multiplier? - Stack Overflow](https://stackoverflow.com/questions/299304/why-does-javas-hashcode-in-string-use-31-as-a-multiplier)
+
+`A nice property of 31 is that the multiplication can be replaced by a shift and a subtraction for better performance: 31 * i == (i << 5) - i. Modern VMs do this sort of optimization automatically.`
+
+
+

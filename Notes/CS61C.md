@@ -316,7 +316,7 @@ Happy coding!
 
     32-bit word into 3 fields
 
-    ![image-20210503164145464](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210503164145464.png)
+    ![image-20210503164145464](CS61C/002.png)
 
     ​	
 
@@ -354,7 +354,7 @@ Happy coding!
   
 - Floating Points: special cases
 
-  ​		![image-20210504162159577](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210504162159577.png)	
+  ​		![image-20210504162159577](CS61C/003.png)	
 
 - Floating Points Limitations
 
@@ -372,7 +372,7 @@ Happy coding!
 
     不是很理解的地方(+一个后面的小练习)
 
-    ​	![image-20210504164706162](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20210504164706162.png)
+    ​	![image-20210504164706162](CS61C/004.png)
 
 - 
 
