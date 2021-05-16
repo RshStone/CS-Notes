@@ -316,7 +316,7 @@ Happy coding!
 
     32-bit word into 3 fields
 
-    ![image-20210503164145464](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/image-20210503164145464.png)
+    ![image-20210503164145464](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/002.png)
 
     ​	
 
@@ -354,7 +354,7 @@ Happy coding!
   
 - Floating Points: special cases
 
-  ​		![image-20210504162159577](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/image-20210504162159577.png)	
+  ​		![image-20210504162159577](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/003.png)	
 
 - Floating Points Limitations
 
@@ -372,7 +372,7 @@ Happy coding!
 
     不是很理解的地方(+一个后面的小练习)
 
-    ​	![image-20210504164706162](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/image-20210504164706162.png)
+    ​	![image-20210504164706162](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/004.png)
 
 - 
 
