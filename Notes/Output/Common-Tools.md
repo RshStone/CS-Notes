@@ -12,7 +12,7 @@ Regular expressions are used to perform pattern-matching and "search-and-replace
 
   | [g](https://www.w3schools.com/jsref/jsref_regexp_g.asp) | Perform a global match            |
 
-  | ------------------------------------------------------- | --------------------------------- |
+    | ------------------------------------------------------- | --------------------------------- |
 
   | [i](https://www.w3schools.com/jsref/jsref_regexp_i.asp) | Perform case-insensitive matching |
 
@@ -27,7 +27,7 @@ Regular expressions are used to perform pattern-matching and "search-and-replace
 
   | [[abc\]](https://www.w3schools.com/jsref/jsref_regexp_charset.asp) | Find any character between the brackets                     |
 
-  | ------------------------------------------------------------ | ----------------------------------------------------------- |
+    | ------------------------------------------------------------ | ----------------------------------------------------------- |
 
   | [[^abc\]](https://www.w3schools.com/jsref/jsref_regexp_charset_not.asp) | Find any character NOT between the brackets                 |
 
@@ -42,7 +42,7 @@ Regular expressions are used to perform pattern-matching and "search-and-replace
 
   | [.](https://www.w3schools.com/jsref/jsref_regexp_dot.asp)    | Find a single character, except newline or line terminator   |
 
-  | ------------------------------------------------------------ | ------------------------------------------------------------ |
+    | ------------------------------------------------------------ | ------------------------------------------------------------ |
 
   | [\w](https://www.w3schools.com/jsref/jsref_regexp_wordchar.asp) | Find a word character                                        |
 
@@ -83,34 +83,44 @@ Regular expressions are used to perform pattern-matching and "search-and-replace
 
   | Quantifier                                                   | Description                                                  |
 
-  | :----------------------------------------------------------- | :----------------------------------------------------------- |
+    | :----------------------------------------------------------- | :----------------------------------------------------------- |
 
-  | [n+](https://www.w3schools.com/jsref/jsref_regexp_onemore.asp) | Matches any string that contains at least one *n*            |
+  | [n+](https://www.w3schools.com/jsref/jsref_regexp_onemore.asp) | Matches any string that contains at least one *
+  n*            |
 
-  | [n*](https://www.w3schools.com/jsref/jsref_regexp_zeromore.asp) | Matches any string that contains zero or more occurrences of *n* |
+  | [n*](https://www.w3schools.com/jsref/jsref_regexp_zeromore.asp) | Matches any string that contains zero or more occurrences of *
+  n* |
 
-  | [n?](https://www.w3schools.com/jsref/jsref_regexp_zeroone.asp) | Matches any string that contains zero or one occurrences of *n* |
+  | [n?](https://www.w3schools.com/jsref/jsref_regexp_zeroone.asp) | Matches any string that contains zero or one occurrences of *
+  n* |
 
-  | [n{X}](https://www.w3schools.com/jsref/jsref_regexp_nx.asp)  | Matches any string that contains a sequence of *X* *n*'s     |
+  | [n{X}](https://www.w3schools.com/jsref/jsref_regexp_nx.asp)  | Matches any string that contains a sequence of *X* *
+  n*'s     |
 
-  | [n{X,Y}](https://www.w3schools.com/jsref/jsref_regexp_nxy.asp) | Matches any string that contains a sequence of X to Y *n*'s  |
+  | [n{X,Y}](https://www.w3schools.com/jsref/jsref_regexp_nxy.asp) | Matches any string that contains a sequence of X to Y *
+  n*'s  |
 
-  | [n{X,}](https://www.w3schools.com/jsref/jsref_regexp_nxcomma.asp) | Matches any string that contains a sequence of at least X *n*'s |
+  | [n{X,}](https://www.w3schools.com/jsref/jsref_regexp_nxcomma.asp) | Matches any string that contains a sequence of at least X *
+  n*'s |
 
-  | [n$](https://www.w3schools.com/jsref/jsref_regexp_ndollar.asp) | Matches any string with *n* at the end of it                 |
+  | [n$](https://www.w3schools.com/jsref/jsref_regexp_ndollar.asp) | Matches any string with *
+  n* at the end of it                 |
 
-  | [^n](https://www.w3schools.com/jsref/jsref_regexp_ncaret.asp) | Matches any string with *n* at the beginning of it           |
+  | [^n](https://www.w3schools.com/jsref/jsref_regexp_ncaret.asp) | Matches any string with *
+  n* at the beginning of it           |
 
-  | [?=n](https://www.w3schools.com/jsref/jsref_regexp_nfollow.asp) | Matches any string that is followed by a specific string *n* |
+  | [?=n](https://www.w3schools.com/jsref/jsref_regexp_nfollow.asp) | Matches any string that is followed by a specific string *
+  n* |
 
-  | [?!n](https://www.w3schools.com/jsref/jsref_regexp_nfollow_not.asp) | Matches any string that is not followed by a specific string *n*s |
+  | [?!n](https://www.w3schools.com/jsref/jsref_regexp_nfollow_not.asp) | Matches any string that is not followed by a specific string *
+  n*s |
 
 
 - RegExp Object Properties
 
   | Property                                                     | Description                                                  |
 
-  | :----------------------------------------------------------- | :----------------------------------------------------------- |
+    | :----------------------------------------------------------- | :----------------------------------------------------------- |
 
   | [constructor](https://www.w3schools.com/jsref/jsref_regexp_constructor.asp) | Returns the function that created the RegExp object's prototype |
 
@@ -129,7 +139,7 @@ Regular expressions are used to perform pattern-matching and "search-and-replace
 
   | [exec()](https://www.w3schools.com/jsref/jsref_regexp_exec.asp) | Tests for a match in a string. Returns the first match |
 
-  | ------------------------------------------------------------ | ------------------------------------------------------ |
+    | ------------------------------------------------------------ | ------------------------------------------------------ |
 
   | [test()](https://www.w3schools.com/jsref/jsref_regexp_test.asp) | Tests for a match in a string. Returns true or false   |
 

@@ -4,28 +4,33 @@
 
 ## Why I want to learn it
 
-​	一方面是因为自己不仅想学code还想真正接触计算机科学，学习CS的知识。另一方面是因为自己基础薄弱，觉得迟早要学，不如先开始。
+​ 一方面是因为自己不仅想学code还想真正接触计算机科学，学习CS的知识。另一方面是因为自己基础薄弱，觉得迟早要学，不如先开始。
 
-​	我的学习路线还是按照[Teach yourselfCS-CN](https://github.com/keithnull/TeachYourselfCS-CN/blob/master/TeachYourselfCS-CN.md) 来学的。
+​ 我的学习路线还是按照[Teach yourselfCS-CN](https://github.com/keithnull/TeachYourselfCS-CN/blob/master/TeachYourselfCS-CN.md)
+来学的。
 
-## What we will learn 
+## What we will learn
 
-​	这里用中文快速写一遍吧。我们知道操作系统是连接软件和硬件的中间的一层，学习内容可想而知，不仅会涉及到硬件的知识，同时也会涉及到软件的代码，这门*Build a Modern from the first principle*是来自希伯来大学（以色列）的两名教授Noam Nisan Shimon Schocken经过很长时间探索打造的一门课，目的是帮助大家更好地了解计算机组成。这课最终目标能让大家自己打造一个操作系统（语言是类似Java的Jack语言，呃），然后在你设计的操作系统上写Tetris(俄罗斯方块这个游戏)想想还是比较激动的，虽然我现在啥都不会啊。
+​ 这里用中文快速写一遍吧。我们知道操作系统是连接软件和硬件的中间的一层，学习内容可想而知，不仅会涉及到硬件的知识，同时也会涉及到软件的代码，这门*Build a Modern from the first principle*
+是来自希伯来大学（以色列）的两名教授Noam Nisan Shimon
+Schocken经过很长时间探索打造的一门课，目的是帮助大家更好地了解计算机组成。这课最终目标能让大家自己打造一个操作系统（语言是类似Java的Jack语言，呃），然后在你设计的操作系统上写Tetris(俄罗斯方块这个游戏)
+想想还是比较激动的，虽然我现在啥都不会啊。
 
-​	课程分为两大部分，第一部分是硬件篇，从数学逻辑开始，慢慢的过渡到逻辑符号的一些硬件设计然后再设计晶体管，再慢慢上升到CPU,RAM之类的，最后到集成电路（Hack 电脑）。这部分时间大概是7周45h，每天学习2h左右吧。第二部分是软件，时间也是7周，这部分就先放一下，目标时是用高级语言设计虚拟机鸭~。
+​ 课程分为两大部分，第一部分是硬件篇，从数学逻辑开始，慢慢的过渡到逻辑符号的一些硬件设计然后再设计晶体管，再慢慢上升到CPU,RAM之类的，最后到集成电路（Hack
+电脑）。这部分时间大概是7周45h，每天学习2h左右吧。第二部分是软件，时间也是7周，这部分就先放一下，目标时是用高级语言设计虚拟机鸭~。
 
-​	课程适合入门学习，教材阅读可以选择*The Elements of Computing System*
+​ 课程适合入门学习，教材阅读可以选择*The Elements of Computing System*
 
 - ![001](Nand-to-Tetris/001.png)
 
 - ![002](Nand-to-Tetris/002.png)
 
+​ 课程里的一些注意事项的补充：
 
-​	课程里的一些注意事项的补充：
+​ Shimon在课程里将chip和gate理解成一个东西，都是执行逻辑功能的最小物理设备,以下为原书里的摘抄:
 
-​	Shimon在课程里将chip和gate理解成一个东西，都是执行逻辑功能的最小物理设备,以下为原书里的摘抄:
-
-*Today, most gates are implemented as transistors etched in silicon, packaged as chips. In this book we use the words chip and gate interchangeably, tending to use the term gates for simple chips*
+*Today, most gates are implemented as transistors etched in silicon, packaged as chips. In this book we use the words
+chip and gate interchangeably, tending to use the term gates for simple chips*
 
 ## The content
 
@@ -41,31 +46,34 @@
 
 **几个我当时犹豫思考后觉得有趣的地方：**
 
-​	**逻辑表达式：**
+​    **逻辑表达式：**
 
 对于一张带有x,y参数和最后运算结果的Table，我们如何得到它的逻辑表达式呢？方法是通过NOT,AND,OR进行连接，凑value是1的表达式然后用OR进行连接。
 
-值得注意的地方还有逻辑表达式的计算准则，除了类似小学学的交换、结合、分配律之外，还有一个mogan法则(**De** Morgon's **Law**),不过也接触过,就是(x AND y) == NOT(NOT x OR (NOT y))。
+值得注意的地方还有逻辑表达式的计算准则，除了类似小学学的交换、结合、分配律之外，还有一个mogan法则(**De** Morgon's **Law**),不过也接触过,就是(x AND y) == NOT(NOT x OR (NOT y))
+。
 
 这是我在阅读The Element of Computer System时有一个概念没有看懂叫做Canonical Representation中文翻译规范表达。摘了一段进行加强理解.
 
 ![004](Nand-to-Tetris/004.png)
 
-Thus the canonical representation of the Boolean function shown in figure 1.1 is f(x,y,z) = ![005](Nand-to-Tetris/005.png)
+Thus the canonical representation of the Boolean function shown in figure 1.1 is f(x,y,z)
+= ![005](Nand-to-Tetris/005.png)
 
 这里的Canonical representation有点像是最简表达式的韵味了。
 
-### 	Gate Logic:
+### Gate Logic:
 
 *A gate is a physical device that implements a Boolean function.*
 
-*The simplest gates of all are made from tiny switching devices, called transistors, wired in a certain topology designed to effect the overall gate functionality*.
+*The simplest gates of all are made from tiny switching devices, called transistors, wired in a certain topology
+designed to effect the overall gate functionality*.
 
 Gate里的逻辑一般用diagram来表示。
 
 **思考题**：Xor(a,b)的canonical representation是如何表示的？它的diagram怎么画？
 
-​	**NAND:** 
+​    **NAND:**
 
 可以用NOT + AND进行理解。x NAND y = NOT(x AND y)
 
@@ -75,7 +83,7 @@ Gate里的逻辑一般用diagram来表示。
 
 2) (x AND y) = NOT(x NAND y)
 
-​	**Hardware description languages(HDL):**
+​    **Hardware description languages(HDL):**
 
 HDL(hardware description language)其实就是设计硬件的语言。
 
@@ -83,7 +91,7 @@ HDL(hardware description language)其实就是设计硬件的语言。
 
 ![010](Nand-to-Tetris/010.png)
 
-### 	Hardware Simulation:
+### Hardware Simulation:
 
 这里的Hardware Simulation的意思是硬件仿真，其实就是用软件去设计硬件啦，这里最基本的是设计最基本的chips。
 
@@ -91,11 +99,12 @@ HDL(hardware description language)其实就是设计硬件的语言。
 
 ![image-20210228095907442](Nand-to-Tetris/006.png)
 
-基本的概念得知道，现在的硬件设计者不需要再用手去设计硬件产品如芯片啦，设计过程自动化，他们是system architecht,写HDL项目用电脑软件Hardware simulator进行反复的仿真测试chip的正确性(可能会有几个月甚至更久哦~)。那他们干嘛呢？计算速度，能量消耗，成本等是他们去注意的呦~。
+基本的概念得知道，现在的硬件设计者不需要再用手去设计硬件产品如芯片啦，设计过程自动化，他们是system architecht,写HDL项目用电脑软件Hardware simulator进行反复的仿真测试chip的正确性(
+可能会有几个月甚至更久哦~)。那他们干嘛呢？计算速度，能量消耗，成本等是他们去注意的呦~。
 
 ![007](Nand-to-Tetris/007.png)
 
-### 	Mux & DMux:
+### Mux & DMux:
 
 Mux是一种Multiplexor，这里的意思是有多个输入，同时sel对输入会有影响。
 
@@ -105,19 +114,19 @@ Chip name: DMux Inputs: in, sel Outputs: a, b Function: If sel=0 then {a=in, b=0
 
 DMux可以理解为对Mux的一种解码或者解密，具体看书会更清楚。
 
-### 	15 particular gates:
+### 15 particular gates:
 
-​	下面的这张图是15个最长使用的gates，也是作业里要做的内容，注意，作业里的HDL语言是经过简化过的，比起现在商业化用的VHDL等，简单很多。
+​ 下面的这张图是15个最长使用的gates，也是作业里要做的内容，注意，作业里的HDL语言是经过简化过的，比起现在商业化用的VHDL等，简单很多。
 
 ![008](Nand-to-Tetris/008.png)
 
-​	做这个作业最大的收获还是感受一下逻辑设计的过程，思考方式，当然可能会与实际有所不同。
+​ 做这个作业最大的收获还是感受一下逻辑设计的过程，思考方式，当然可能会与实际有所不同。
 
 一些做作业的时候需要注意的地方。
 
 ![image-20210228144103177](Nand-to-Tetris/009.png)
 
-### 	做作业过程中收获的地方:
+### 做作业过程中收获的地方:
 
 总的来讲，有点层层递进的感觉，利用Nand可以构成一切的特性，首先写And,Not,Or，然后再慢慢利用构建的这些简单逻辑去构建多位的，多路的，Mux,DMux等。
 
@@ -125,23 +134,27 @@ DMux可以理解为对Mux的一种解码或者解密，具体看书会更清楚�
 
 ## 为什么学这章的内容及学习目标
 
-围绕着电脑计算展开，现在的我们知道CPU是计算机大量计算的关键部分，而在CPU内最关键处理计算的Chip是一个叫ALU(Arithmetic Logic Unit)中文名叫算术逻辑单元这样的一个东东，它的作用是处理字节运算和逻辑运算。Week2这章的内容目的是设计一个简单的ALU(属于From Nand to Tetris的一个ALU)，这个ALU是专门属于你的，也是From Nand to Tetris这门课想要带给你,它被大量简化，只有加减法的计算功能。所以，难度适中，不用担心学不会的问题，但学习这个过程中带给你的爽感就像你真的设计了一个ALU，乃至未来的PC。
+围绕着电脑计算展开，现在的我们知道CPU是计算机大量计算的关键部分，而在CPU内最关键处理计算的Chip是一个叫ALU(Arithmetic Logic Unit)
+中文名叫算术逻辑单元这样的一个东东，它的作用是处理字节运算和逻辑运算。Week2这章的内容目的是设计一个简单的ALU(属于From Nand to Tetris的一个ALU)，这个ALU是专门属于你的，也是From Nand to
+Tetris这门课想要带给你,它被大量简化，只有加减法的计算功能。所以，难度适中，不用担心学不会的问题，但学习这个过程中带给你的爽感就像你真的设计了一个ALU，乃至未来的PC。
 
 ## 这章的内容以什么形式呈现
 
-既然是计算，最简单的模型莫过于，两个分别为1个bit的信息进行相加计算了。这个模型抽象具体化为In a, b    Out sum,carry
+既然是计算，最简单的模型莫过于，两个分别为1个bit的信息进行相加计算了。这个模型抽象具体化为In a, b Out sum,carry
 
 输出的结果分别为1bit的内容，carry代表的是进位，sum表示二进制相加的most significant的一位。我们将这个模型抽象为一个叫做HalfAdd的Chip。
 
 计算不可能只计算一位吧，我们计算的内容可能是很多位进行相加。那么想想会遇到什么情况呢？当只有1位进行相加的时候，我们发现是HalfAdd的情况，But,wait.如果有很多位呢？我们将多位的情况先从最简单的方式进行思考，也就是两位的情况，会发生什么呢？我们发现如果carry为0的时候，就是HalfAdd的模型，但是当carry等于1的时候，那就相当于是有三个分别为1bit的内容进行加法计算了。
 
-于是，有了FullAdd的模型Chip。In a,b,c Out sum, carry 
+于是，有了FullAdd的模型Chip。In a,b,c Out sum, carry
 
 有了FullAdd，你就可以进行设计多个bits的计算了。这里引入Add16，因为我们这门课最终目标是设计一个简单的16位的Hack computer.
 
 以上都是加法运算，我们从小学就知道人手动计算的时候，我们经常将减法简化成加法进行计算，在这里，我们采用类似的思想，但是计算机的减法如何实现呢？难不成我还需要设计Subtract的Chip吗？
 
-一个很有意思的技巧是我们将多个Bits的数的第一位作为符号位，0表示正数，1表示负数，这样对原先为n个Bits的Chip,它的取值范围为0~2^n-1。再引入符号位的概念后，它的取值范围就变成了-2^(n-1) ~ 2^(n-1)-1这样的一个取值范围。不过呢，这样表示还是有一点问题，举个例子，对于4-bit binary system ,1 + (-2)的结果该怎么表示呢？如果直接按照取负的思想，相加的结果为1011，对应的数为-3，不过我们都知道这个算术计算的结果应该为-1，也就是1001，问题出在了哪里？如何解决这个问题？
+一个很有意思的技巧是我们将多个Bits的数的第一位作为符号位，0表示正数，1表示负数，这样对原先为n个Bits的Chip,它的取值范围为0~2^n-1。再引入符号位的概念后，它的取值范围就变成了-2^(n-1) ~ 2^(n-1)
+-1这样的一个取值范围。不过呢，这样表示还是有一点问题，举个例子，对于4-bit binary system ,1 + (-2)
+的结果该怎么表示呢？如果直接按照取负的思想，相加的结果为1011，对应的数为-3，不过我们都知道这个算术计算的结果应该为-1，也就是1001，问题出在了哪里？如何解决这个问题？
 
 这里引入了一个2's complement method(补码)的一个思想方法，这里的补码可以理解为取负的意思，注意和Bitwise negation区别开来。
 
@@ -175,13 +188,12 @@ no module 用Not16 chip和 Mux16进行选择判断
 
 还是挺有意思的，虽然一个人在图书馆啊~。今天科三过了，hahahaha~.据说，好运会传递的哦，如果你看到的话。
 
-
-
 # Sequential Logic
 
 ## 这章学什么
 
-之前两章节的内容都是直接的逻辑或者算术运算，这类的chips我们把它叫做Combinational chip。但是它们也有局限，没有涉及到状态。什么意思呢，假设给某个chip一个input然后我们知道经过许多ALU的算术逻辑计算后，我们可以得到最终的结果，But，什么时候我们能够得到这个结果，在这个程序运行的1s时这个chip的状态是怎么样的？我们计算得到的value去了哪里？这些我们都不得而知。
+之前两章节的内容都是直接的逻辑或者算术运算，这类的chips我们把它叫做Combinational
+chip。但是它们也有局限，没有涉及到状态。什么意思呢，假设给某个chip一个input然后我们知道经过许多ALU的算术逻辑计算后，我们可以得到最终的结果，But，什么时候我们能够得到这个结果，在这个程序运行的1s时这个chip的状态是怎么样的？我们计算得到的value去了哪里？这些我们都不得而知。
 
 学这章内容的目的就在于考虑到state的情况,能够设计简单的memory来储存这些state,也就对应我们熟知的计算机的RAM等，同时，也让我们设计chip或者考虑问题时能够从一个更广的角度进行相应的思考。
 
@@ -195,15 +207,15 @@ no module 用Not16 chip和 Mux16进行选择判断
 
 从功能的角度来看，out(t) = in(t-1),有意思的地方在于，这个chip将时间t进行关联。
 
-如果你对DFF的实现形式感兴趣的话，我暂时用一句话先解释下，DFF的设计是用两个Nand来实现的,coursera上的perspective具体讲了下，不过我觉得perspective里讲得也还不是很清楚，如果你想了解更多，建议把perspective看完，然后感兴趣的话去自己学习，搜索相关资料，如果你觉得你的资料不错，不妨留言，告诉我你的学习过程，或者帮我完善这部分的学习笔记，让更多的人受益。 
+如果你对DFF的实现形式感兴趣的话，我暂时用一句话先解释下，DFF的设计是用两个Nand来实现的,coursera上的perspective具体讲了下，不过我觉得perspective里讲得也还不是很清楚，如果你想了解更多，建议把perspective看完，然后感兴趣的话去自己学习，搜索相关资料，如果你觉得你的资料不错，不妨留言，告诉我你的学习过程，或者帮我完善这部分的学习笔记，让更多的人受益。
 
 ### Bit(1-bit register)
 
 接下来是设计一个1-bit的register,设计这个register的功能大概是这样的，输入一个load(t)，和时间参数有关,实现两个输出:
 
-​	if(load(t-1)),out(t) = in(t-1)
+​ if(load(t-1)),out(t) = in(t-1)
 
-​	else out(t) = out(t-1)
+​ else out(t) = out(t-1)
 
 如果load为1的情况下，out的结果是上一秒的输入，否则，out不变。
 
@@ -309,19 +321,20 @@ CHIP PC {
     Mux16(a=out2, b=out3, sel=inc, out=out); // get the output
     //这个是我写的代码.....
 
+​ Nand to Tetris
 
-
-​    Nand to Tetris
-
-And the, the saying is that simple-minded people are impressed by sophisticated things, and sophisticated people are impressed by simple things.
+And the, the saying is that simple-minded people are impressed by sophisticated things, and sophisticated people are
+impressed by simple things.
 
 # Machine Language
 
 ## 1.What is the machine language
 
-Machine language is a block of code consists of 0 and 1. It is very difficult for people to read but is kind for computer.
+Machine language is a block of code consists of 0 and 1. It is very difficult for people to read but is kind for
+computer.
 
-To eliminate the difficulty of write code with machine language, there is a mediate language called symbolic language which makes easy to read for human beings. 
+To eliminate the difficulty of write code with machine language, there is a mediate language called symbolic language
+which makes easy to read for human beings.
 
 ## 2.Understand how  hack computer works
 
@@ -329,17 +342,17 @@ The following below is picture that displays briefly how hack computer works or 
 
 ![017](Nand-to-Tetris/017.png)
 
-In particular, note that every
-operation involving a memory location requires two Hack commands: One for selecting the address on
-which we want to operate, and one for specifying the desired operation.
+In particular, note that every operation involving a memory location requires two Hack commands: One for selecting the
+address on which we want to operate, and one for specifying the desired operation.
 
 ## 3.Three registers and two instructions
 
 ### Three registers: A register, D register, M register
 
-#### A register : 
+#### A register :
 
-其实就是个寄存器呗，但为什么有个A呢？主要表明它是用来储存地址滴，地址有啥用呢，用来找东西呗，在我们的Hack computer当中，A寄存器是用来找data memory中具体用哪个寄存器的，现在不完全理解没关系，结合后面的The A-instruction 以及作业代码，相信你能更好的感受到A寄存器的作用。
+其实就是个寄存器呗，但为什么有个A呢？主要表明它是用来储存地址滴，地址有啥用呢，用来找东西呗，在我们的Hack computer当中，A寄存器是用来找data memory中具体用哪个寄存器的，现在不完全理解没关系，结合后面的The
+A-instruction 以及作业代码，相信你能更好的感受到A寄存器的作用。
 
 #### D register：
 
@@ -353,7 +366,8 @@ which we want to operate, and one for specifying the desired operation.
 
 在不具体讲指令前，我想先对这里的2个指令为什么是两个简单介绍一下。
 
-无论是A指令还是C指令在Hack computer里面都是16位语法所构成的，我们知道计算机里的1个bit可以是0也可以是1，有两种选择，你想到了吗？没错，这里就用了1个Bit来表示是A指令还是C指令，最左边如果是0的话，代表是A指令，最左边是1的话，代表是C指令。
+无论是A指令还是C指令在Hack
+computer里面都是16位语法所构成的，我们知道计算机里的1个bit可以是0也可以是1，有两种选择，你想到了吗？没错，这里就用了1个Bit来表示是A指令还是C指令，最左边如果是0的话，代表是A指令，最左边是1的话，代表是C指令。
 
 #### The A-instruction:
 
@@ -371,8 +385,6 @@ data memory中的RAM[value]被选中了
 
 结合操作M寄存器时，可以理解为这是data memory中的RAM[value]被选中了
 
-
-
 #### The C-instruction:
 
 语法：
@@ -384,8 +396,6 @@ dest = comp ; jump     (both dest and jump are optional)
 comp是compute也就是计算的意思
 
 jump是跳出的意思，可以理解为goto的意思，跳到哪了？做什么？需要具体结合应用场景。
-
-
 
 上面()的东东是什么意思哩？说明了什么？潜在来讲，告诉我们，C操作指令可以没有dest, jump但一定有计算的东西。
 
@@ -435,9 +445,9 @@ comp, dest, jump具体有哪些？下图截取部分内容。
 
 #### Pointers
 
-And as far as the machine language is concerned, the array is just a segment in 
+And as far as the machine language is concerned, the array is just a segment in
 
-memory of which we know the base address of this segment and, and 
+memory of which we know the base address of this segment and, and
 
 the length of the array that the programmer has decided to declare.
 
@@ -473,11 +483,7 @@ Input其实对应的就是我们的鼠标、键盘。
 
 另外一个是实现一个键盘输入，屏幕输出的一个功能。
 
- 
-
 资料上罗列了一些格式化设定的东西,这里就不细讲了，
-
-
 
 # Computer Architecture（计算机架构）
 
@@ -487,33 +493,35 @@ Input其实对应的就是我们的鼠标、键盘。
 
 ![031](Nand-to-Tetris/031.png)
 
-- 结构：input, hack box, output. Hack box 里面是计算机的核心组成部分，分别是Memory,CPU, CPU负责计算，有计算逻辑单元ALU,和接受指令的Registers. Memory内存，存data的同时也需要指令，所以有program。
-- 冯诺依曼结构中只有一个memory但要负责两个功能，一个是指令的program,另一个是data，会不会有冲突的时候呢？答案是会的，所以，后面有了一个叫做Harvard Architecture，当然，这里只是一个引子，后面会详细介绍这种结构。
+- 结构：input, hack box, output. Hack box 里面是计算机的核心组成部分，分别是Memory,CPU, CPU负责计算，有计算逻辑单元ALU,和接受指令的Registers.
+  Memory内存，存data的同时也需要指令，所以有program。
+- 冯诺依曼结构中只有一个memory但要负责两个功能，一个是指令的program,另一个是data，会不会有冲突的时候呢？答案是会的，所以，后面有了一个叫做Harvard
+  Architecture，当然，这里只是一个引子，后面会详细介绍这种结构。
 
 ### Information Flows
 
 ![image-20210330145431993](Nand-to-Tetris/027.png)
 
-- Sometimes all these three pieces of the, each one of these pieces of information is actually going to be implemented b	y wires(电线), by a set of wires sometimes called a bus(计算机科学里的总线)
+- Sometimes all these three pieces of the, each one of these pieces of information is actually going to be implemented b
+  y wires(电线), by a set of wires sometimes called a bus(计算机科学里的总线)
 - 这张图展现了计算机黑盒子里是如何开始工作的，三条总线和各部分结构相互作用，相互联系。
 - 这里的Memory有两个作用，存储电脑运行时的指令和存储数据。
 
 ## The Fetch-Execute Cycle（指令周期）
 
-Fetch: Which instruction to fetch next is determined by the jump bits of the current instruction and by the
-ALU output. Taken together, these values determine whether a jump should materialize. If so, the PC is set
-to the value of the A-register; otherwise, the PC is incremented by 1. In the next clock cycle, the
-instruction that the program counter points at emerges from the ROM’s output, and the cycle continues.
+Fetch: Which instruction to fetch next is determined by the jump bits of the current instruction and by the ALU output.
+Taken together, these values determine whether a jump should materialize. If so, the PC is set to the value of the
+A-register; otherwise, the PC is incremented by 1. In the next clock cycle, the instruction that the program counter
+points at emerges from the ROM’s output, and the cycle continues.
 
-Execute: Various bit parts of the current instruction are simultaneously fed to various chips in the
-computer. If it’s an address instruction (most significant bit = 0), the A-register is set to the 15-bit
-constant embedded in the instruction. If it’s a compute instruction (MSB = 1), its underlying a-, c-, d- and
-j-bits are treated as control bits that cause the ALU and the registers to execute the instruction.
+Execute: Various bit parts of the current instruction are simultaneously fed to various chips in the computer. If it’s
+an address instruction (most significant bit = 0), the A-register is set to the 15-bit constant embedded in the
+instruction. If it’s a compute instruction (MSB = 1), its underlying a-, c-, d- and j-bits are treated as control bits
+that cause the ALU and the registers to execute the instruction.
 
-This particular fetch-execute cycle implies that in the Hack platform, elementary operations involving
-memory access usually require two instructions: an address instruction to set the A register to a particular
-address, and a subsequent compute instruction that operates on this address (a read/write operation on the
-RAM or a jump operation into the ROM).
+This particular fetch-execute cycle implies that in the Hack platform, elementary operations involving memory access
+usually require two instructions: an address instruction to set the A register to a particular address, and a subsequent
+compute instruction that operates on this address (a read/write operation on the RAM or a jump operation into the ROM).
 
 冲突时怎么办？改进后的Hardvard architecture。
 
@@ -527,15 +535,13 @@ RAM or a jump operation into the ROM).
 - 从Memory中输出指令到Instruction register，然后再从Instruction register到Control bus中
 - Fetch指的是得到指令，Execute的话是运行指令。
 
-- Program Counter : The contents of the PC are then used as the address for fetching
-  instructions from the instruction memory. Thus, in the process of executing the current instruction, the CPU
-  updates the PC in one of two ways. If the current instruction contains no goto directive, the PC is
-  incremented to point to the next instruction in the program(加1). If the current instruction includes a goto n
-  directive that should be executed, the CPU loads n into the PC（去n那）
-- The computer architecture is wired in such a way that the output of the program counter (PC) chip is
-  connected to the address input of the ROM chip. This way, the ROM chip always emits the word
-  ROM[PC], namely, the contents of the instruction memory location whose address is “pointed at” by the
-  PC. This value is called the current instruction.
+- Program Counter : The contents of the PC are then used as the address for fetching instructions from the instruction
+  memory. Thus, in the process of executing the current instruction, the CPU updates the PC in one of two ways. If the
+  current instruction contains no goto directive, the PC is incremented to point to the next instruction in the program(
+  加1). If the current instruction includes a goto n directive that should be executed, the CPU loads n into the PC（去n那）
+- The computer architecture is wired in such a way that the output of the program counter (PC) chip is connected to the
+  address input of the ROM chip. This way, the ROM chip always emits the word ROM[PC], namely, the contents of the
+  instruction memory location whose address is “pointed at” by the PC. This value is called the current instruction.
 
 有些地方我并没有完全搞懂
 
@@ -576,7 +582,8 @@ RAM or a jump operation into the ROM).
 
   第四章的内容讲Machine language的时候提到了instrcution的组成，A的1+15bits,C由3+7+3+3四部分组成。
 
-  这一次写project的时候，对于Hack computer的instruction的每一个bit都需要明确知道对应的是哪个部分。不然会很懵逼，我在想做作业的时候，望着一个项目发呆，想却想不通，只好回去查漏补缺。最后的结果是之前CPU视频部分完全没有搞懂，就妄图做作业，无疑是做梦啊。
+  这一次写project的时候，对于Hack
+  computer的instruction的每一个bit都需要明确知道对应的是哪个部分。不然会很懵逼，我在想做作业的时候，望着一个项目发呆，想却想不通，只好回去查漏补缺。最后的结果是之前CPU视频部分完全没有搞懂，就妄图做作业，无疑是做梦啊。
 
 - C指令
 
@@ -598,11 +605,12 @@ RAM or a jump operation into the ROM).
 
 - c(control bit)的选择。
 
-  第一个Mux16的control bit为什么需要绕一下，因为要考虑两种instruction的情况啊。第二个Mux16的control bit 仍然从这两个方向去思考，这里对于C指令还是不熟悉，comp的部分，第一位的a为什么重要，仔细看的话，0的时候不涉及到M，1的时候都涉及到M
+  第一个Mux16的control bit为什么需要绕一下，因为要考虑两种instruction的情况啊。第二个Mux16的control bit
+  仍然从这两个方向去思考，这里对于C指令还是不熟悉，comp的部分，第一位的a为什么重要，仔细看的话，0的时候不涉及到M，1的时候都涉及到M
 
 - PC的实现中比原本写其代码时少用了部分东西。
 
-   ![image-20210405151511135](Nand-to-Tetris/036.png)
+  ![image-20210405151511135](Nand-to-Tetris/036.png)
 
   考虑两种不同指令的情况，ALU后的ng和zr有什么用，怎么用？如何结合instruction？
 

@@ -8,7 +8,7 @@
 
 ## 数据结构与算法
 
-#### [leetcode分类整理](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/leetcode.md) 
+#### [leetcode分类整理](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/leetcode.md)
 
 #### [《剑指offer》笔记](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/%E3%80%8A%E5%89%91%E6%8C%87offer%E3%80%8B%E7%AC%94%E8%AE%B0.md)
 
