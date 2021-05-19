@@ -16,73 +16,53 @@
 
 1.Two Sum array + hashtable
 
-| 4 | [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays) hard | Array+BinarySearch
-|
+| 4    | [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays) hard | Array+BinarySearch                  |
 
 | ---- | ------------------------------------------------------------ | ----------------------------------- |
 
-| 1 | [Two Sum](https://leetcode.com/problems/two-sum) easy | Array+HashTable |
+| 1    | [Two Sum](https://leetcode.com/problems/two-sum) easy        | Array+HashTable                     |
 
-| 26 | [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array)easy |
-Array+TwoPointers |
+| 26   | [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array)easy | Array+TwoPointers                   |
 
-| 34
-| [Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array)medium
-| Array+BinarySearch |
+| 34   | [Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array)medium | Array+BinarySearch                  |
 
-| 53 | [Maximum Subarray](https://leetcode.com/problems/maximum-subarray)easy | Array在线处理/DP |
+| 53   | [Maximum Subarray](https://leetcode.com/problems/maximum-subarray)easy | Array在线处理/DP                    |
 
-| 56 | [Merge Intervals](https://leetcode.com/problems/merge-intervals)medium | Array+sort(Arrays.sort()的调用方法) |
+| 56   | [Merge Intervals](https://leetcode.com/problems/merge-intervals)medium | Array+sort(Arrays.sort()的调用方法) |
 
-| 80
-| [Remove Duplicates from Sorted Array II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii)Medium |
-Array+TwoPointers |
+| 80   | [Remove Duplicates from Sorted Array II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii)Medium | Array+TwoPointers                   |
 
-| 88 | [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array)Easy | Array+TwoPointers |
+| 88   | [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array)Easy | Array+TwoPointers                   |
 
-| 121 | [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock)Easy | Array+Dp
-|
+| 121  | [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock)Easy | Array+Dp                            |
 
-| 122 | [Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii)Easy |
-Array+Dp |
+| 122  | [Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii)Easy | Array+Dp                            |
 
-| 289 | [Game of Life](https://leetcode.com/problems/game-of-life)Medium | 纯Array(有难度)                     |
+| 289  | [Game of Life](https://leetcode.com/problems/game-of-life)Medium | 纯Array(有难度)                     |
 
-| 581
-| [Shortest Unsorted Continuous Subarray](https://leetcode.com/problems/shortest-unsorted-continuous-subarray)Medium |
-Array+TwoPointers(感觉这道题不错)   |
+| 581  | [Shortest Unsorted Continuous Subarray](https://leetcode.com/problems/shortest-unsorted-continuous-subarray)Medium | Array+TwoPointers(感觉这道题不错)   |
 
-| 674
-| [Longest Continuous Increasing Subsequence](https://leetcode.com/problems/longest-continuous-increasing-subsequence)Easy
-| Array+sliding window Or dp |
+| 674  | [Longest Continuous Increasing Subsequence](https://leetcode.com/problems/longest-continuous-increasing-subsequence)Easy | Array+sliding window Or dp          |
 
-| 941 | [Valid Mountain Array](https://leetcode.com/problems/valid-mountain-array)Easy | Array |
+| 941  | [Valid Mountain Array](https://leetcode.com/problems/valid-mountain-array)Easy | Array                               |
 
-| 977 | [Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array) | Array+Sort(要你自己写)
-|
+| 977  | [Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array) | Array+Sort(要你自己写)              |
 
-| 1010
-| [Pairs of Songs With Total Durations Divisible by 60](https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60)Medium
-| Array |
+| 1010 | [Pairs of Songs With Total Durations Divisible by 60](https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60)Medium | Array                               |
 
-| 1437
-| [Check If All 1's Are at Least Length K Places Away](https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away)easy
-| Array |
+
+| 1437 | [Check If All 1's Are at Least Length K Places Away](https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away)easy | Array                 |
 
 | ---- | ------------------------------------------------------------ | --------------------- |
 
-| 1539 | [Kth Missing Positive Number](https://leetcode.com/problems/kth-missing-positive-number)Easy | Array+Hash Table
-|
+| 1539 | [Kth Missing Positive Number](https://leetcode.com/problems/kth-missing-positive-number)Easy | Array+Hash Table      |
 
-| 1640
-| [Check Array Formation Through Concatenation](https://leetcode.com/problems/check-array-formation-through-concatenation)Easy
-| Array Hash Table Sort |
+| 1640 | [Check Array Formation Through Concatenation](https://leetcode.com/problems/check-array-formation-through-concatenation)Easy | Array Hash Table Sort |
 
-| 1758
-| [Minimum Changes To Make Alternating Binary String](https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string)Easy
-| Array Greedy |
+| 1758 | [Minimum Changes To Make Alternating Binary String](https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string)Easy | Array Greedy          |
 
-| | | |
+|      |                                                              |                       |
+
 
 40min；回忆了几道题和列出了所做过的题的标签
 
@@ -133,15 +113,16 @@ API `addFirst` `addLast`
 
 API调用 一般`Queue` `FIFO` 注意 `PriorityQueue` 和 `LIFO` `Queue` --> `Stack` --> Java `Deque`
 
-| | Throws exception | Returns special value |
+|         | Throws exception          | Returns special value   |
 
 | ------- | ------------------------- | ----------------------- |
 
-| Insert | [`add(e)`](#add(E))       | [`offer(e)`](#offer(E)) |
+| Insert  | [`add(e)`](#add(E))       | [`offer(e)`](#offer(E)) |
 
-| Remove | [`remove()`](#remove())   | [`poll()`](#poll())     |
+| Remove  | [`remove()`](#remove())   | [`poll()`](#poll())     |
 
 | Examine | [`element()`](#element()) | [`peek()`](#peek())     |
+
 
 分别的要求
 
