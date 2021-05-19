@@ -1,3 +1,7 @@
+## 资源汇总
+
+### GDB card: [CS 61C](https://cs61c.org/resources/pdf?file=gdb5-refcard.pdf)
+
 ## lab0
 
 ​ 课程基本注意事项（自学者没有homework账号）
@@ -14,7 +18,7 @@
 
 - `-o`, which is used to specify the name of the executable file that `gcc` creates
 
-`$ gcc -o program program.c $ ./program`
+` <img src="https://www.zhihu.com/equation?tex=%20gcc%20-o%20program%20program.c%20" alt=" gcc -o program program.c " class="ee_img tr_noresize" eeimg="1">  ./program`
 
 - `-g` flag , which stores information in the executable program for `gdb` to make sense of it.
 
@@ -64,56 +68,77 @@ int h = (*ptaddr).x;
 
 practice: tortoise and hare(龟兔赛跑)
 
-​ 对于一个`Node` *hard，`hare.next`指的是下一个节点而不是`(*hare).next`
+​ 对于一个Node * hard
 
 ```c
     (*(*hare).next).next EQUALS hare->next->next 但是第二种更简单
 ```
 
+在两种环境下测试结果不一样：（问题，教案上明显说的是第二种情况）
+
+第一种：
+
+![image-20210517093015905](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C-lab/001.png)
+
+删掉no_segfault_ex后的结果重新测试
+
+![image-20210517093638634](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C-lab/003.png)
+
+![004](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C-lab/004.png)
+
+devC++结果:
+
+![image-20210517092920320](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C-lab/002.png)
+
+删掉后结果和devc++测试结果一致，说明大体是这样。
+
+为什么有错误但成功运行了呢？我个人猜测是gcc编译器在背后里帮我们把sizeof(a)的问题处理掉了，具体怎么处理。我不知道。但是这里我们发现用valgrind检测会查到memory的错误，这也是它厉害的一个地方了。
+
 ## lab2
 
-- ​ Exercise 0: `Makefiles`(不太会，稍微看了下)
+### Exercise 0: `Makefiles`(不太会，稍微看了下)
 
-  `Makefile` Tutorial : [Makefile Tutorial By Example](https://makefiletutorial.com/#why-do-makefiles-exist-)
+`Makefile` Tutorial : [Makefile Tutorial By Example](https://makefiletutorial.com/#why-do-makefiles-exist-)
 
-    1. Which target is part of a rule that deletes all the compiled programs?
-    2. Which target is part of a rule that makes all the compiled programs?
-    3. Which compiler is currently being used?
-    4. What C standard are we currently using?
-    5. How would we reference a variable FOO in a makefile?
-    6. What operating system does the term “Darwin” represent?
-    7. What line creates the lfsr program from its object files? (Give its line number.)
+1. Which target is part of a rule that deletes all the compiled programs?
+2. Which target is part of a rule that makes all the compiled programs?
+3. Which compiler is currently being used?
+4. What C standard are we currently using?
+5. How would we reference a variable FOO in a makefile?
+6. What operating system does the term “Darwin” represent?
+7. What line creates the lfsr program from its object files? (Give its line number.)
 
-- Exercise 1: Bit Operations
+### Exercise 1: Bit Operations
 
-    - 貌似在某个bit 取`v`时，其实也可以采用 `0|v`方式
+- 貌似在某个bit 取`v`时，其实也可以采用 `0|v`方式
 
-    - 对 `xor`的理解
+- 对 `xor`的理解
 
-      ```c
-      //多用于多bit数字的场景。以单bit运算为基本出发点，固定其中一位为0，发现最后的结果就是另外一个数字等价位上的值；同理，固定其中一位为1，结果为另一个数字等价位值的取反。
-      if(bitStatus == 1)*x &= ~(1 << n);
-      else if(bitStatus == 0){
-          *x |= (1 << n);
-      }
-      ```
+  ```c
+  //多用于多bit数字的场景。以单bit运算为基本出发点，固定其中一位为0，发现最后的结果就是另外一个数字等价位上的值；同理，固定其中一位为1，结果为另一个数字等价位值的取反。
+  if(bitStatus == 1)*x &= ~(1 << n);
+  else if(bitStatus == 0){
+      *x |= (1 << n);
+  }
+  ```
 
-- Exercise 2: Linear Feedback Shift Register
+### Exercise 2: Linear Feedback Shift Register
 
-    - 对于大端法和小端法，最高位所在位置不同，这里的最高位是最左边（大端法最高位在低地址，这里是大端法）
+- 对于大端法和小端法，最高位所在位置不同，这里的最高位是最左边（大端法最高位在低地址，这里是大端法）
 
-    - 位运算的对象是数字而非指针，如果要得到某一位，只需要把第n位移到最低位和1取&即可
+- 位运算的对象是数字而非指针，如果要得到某一位，只需要把第n位移到最低位和1取&即可
 
-    - 疑惑：为什么会有65536种正整数结果
+- 疑惑：为什么会有65536种正整数结果
 
-- Exercise 3: Linked Lists
+### Exercise 3: Linked Lists
 
-- easy
+​ Java写过很多次，感觉比较esay!
 
-- Exercise 4: Memory Management
-    - `make vector_test`没成功使用 `gcc -o vector vector.c vector_test.c`测试成功
-    - `make vector-memcheck`没成功
-    - make理解不到位
+### Exercise 4: Memory Management
+
+- `make vector_test`没成功使用 `gcc -o vector vector.c vector_test.c`测试成功
+- `make vector-memcheck`没成功
+- make理解不到位
 
 ## Project1
 
