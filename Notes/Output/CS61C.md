@@ -309,7 +309,7 @@ preparation the basis you should know about this course 2's complement 进制转
         3) Freeing invalid memory
         4) Memory leaks
 
-## leco5: Floating Points（不会）
+## leco5: Floating Points
 
 - Floating Point
 
