@@ -92,12 +92,18 @@
     - `sql`语句注意``符号而不是''
 
     - ```java
-    //能直接查看方法的功能，参数，返回值和说明
-    /**
+      //能直接查看方法的功能，参数，返回值和说明
+      /**
+      ```
+    ```
     * 登录
     * @param user
     * @return 如果返回 null，说明登录失败，返回有值，是登录成功
-    */
+      */
+    ```
+  
+    ```
+  
     ```
 
 编写 `UserService` 和测试
@@ -363,7 +369,7 @@ ${requestScope.msg}  <%--EL表达式--%>
 
       写的时候的错误: Number Format Exception
 
-      ​ 弹幕给的一种思路：把`queryForPageTotalCount`返回值转为`Long`再转为`String`再转为`Integer`
+       弹幕给的一种思路：把`queryForPageTotalCount`返回值转为`Long`再转为`String`再转为`Integer`
 
     - 完善加首页，上页，下页，末页
 
@@ -379,19 +385,19 @@ ${requestScope.msg}  <%--EL表达式--%>
 
       i. 如果总页码小于等于5——页码范围：1-总页码
 
-      ​ e.g. 3页 1, 2, 3
+       e.g. 3页 1, 2, 3
 
       ii. 总页码大于5的情况。假设一共10页
 
-      ​ situation1: 当前页码为前面3个：1, 2, 3的情况——页码范围：1-5
+       situation1: 当前页码为前面3个：1, 2, 3的情况——页码范围：1-5
 
-      ​ 【1】,2,3,4,5
+       【1】,2,3,4,5
 
-      ​ 1,【2】,3,4,5
+       1,【2】,3,4,5
 
-      ​ 1,2,【3】,4,5
+       1,2,【3】,4,5
 
-      ​ situation2: 当前页码为最后3个， 8, 9, 10，页码范围是：总页码减4-总页码
+       situation2: 当前页码为最后3个， 8, 9, 10，页码范围是：总页码减4-总页码
 
       6,7,【8】,9,10
 
@@ -399,7 +405,7 @@ ${requestScope.msg}  <%--EL表达式--%>
 
       6,7,8,9,【10】
 
-      ​ situation3: 4,5,6,7,页码范围是：当前页码减2-当前页码加2
+       situation3: 4,5,6,7,页码范围是：当前页码减2-当前页码加2
 
   5.12运行bug + 5.13解决
 
@@ -430,6 +436,32 @@ ${requestScope.msg}  <%--EL表达式--%>
       50min写尝试自己写业务，challenging but interesting!!! 虽然没写出来多少
 
       `client.index.jsp` 需要把它的page地址改一改再加上隐藏域(用户看不到，`view page source`可以看到)
+
+## 书城第六阶段
+
+​	显示登录、注销、表单重复提交、验证码底层原理、谷歌验证码的使用、谷歌验证码加入书城、验证码的切换
+
+​	购物车模块分析、功能方法和测试
+
+​	订单模块的分析
+
+​	结账功能的实现
+
+## 书城第七阶段
+
+​	使用Filter过滤器实现后台的权限管理
+
+​	`ThreadLocal`使用介绍，使用它确保所有操作用一个`Connection`实现事务管理
+
+​	使用Filter统一给所有Service方法加上try-catch管理事务
+
+​	使用Tomcat统一管理异常，展示友好的错误页面
+
+## 书城第八阶段
+
+​	使用AJAX请求验证用户名是否可用
+
+​	修改添加商品到购物车的方法
 
 ## XML
 
@@ -549,29 +581,29 @@ ${requestScope.msg}  <%--EL表达式--%>
 
           请求行：
 
-          ​ 请求方式：GET
+           请求方式：GET
 
-          ​ 资源路径
+           资源路径
 
-          ​ 协议版本号 HTTP/1.1
+           协议版本号 HTTP/1.1
 
           请求头：
 
-          ​ key: value
+           key: value
 
         - POST请求：
 
           请求行：
 
-          ​ 请求方式：POST
+           请求方式：POST
 
-          ​ 资源路径
+           资源路径
 
-          ​ 协议版本号 HTTP/1.1
+           协议版本号 HTTP/1.1
 
           请求头：
 
-          ​ key: value
+           key: value
 
           ​    **空行**
 
@@ -814,7 +846,7 @@ ${requestScope.msg}  <%--EL表达式--%>
       }
       ```
 
-      ​
+      
 
       使用步骤：
 
@@ -849,15 +881,15 @@ ${requestScope.msg}  <%--EL表达式--%>
 
     - `empty`运算: 空 true, 不空 false;
 
-  ​ 空的情况:
+   空的情况:
 
   ​            ``null值为空，
 
-  ​ 空串为空，
+   空串为空，
 
   ​            `Object`类型数组，
 
-  ​ 长度为零
+   长度为零
 
   ​            `list`集合，元素个数为零
 
@@ -898,19 +930,19 @@ ${requestScope.msg}  <%--EL表达式--%>
 
   i. <c:set />（使用很少）
 
-  ​ 作用：set 标签可以往域中保存数据
+   作用：set 标签可以往域中保存数据
 
   ii. <c:if />
 
-  ​ if 标签用来做 if 判断。
+   if 标签用来做 if 判断。
 
   iii. <c:choose> <c:when> <c:otherwise>标签
 
-  ​ 作用：多路判断。`c:when`必须配上 `c:choose`
+   作用：多路判断。`c:when`必须配上 `c:choose`
 
   iv. <c:forEach />
 
-  ​ 作用：遍历输出使用。
+   作用：遍历输出使用。
 
     2. 遍历 Object 数组
 
@@ -956,7 +988,7 @@ ${requestScope.msg}  <%--EL表达式--%>
 
 ## Cookie
 
-- ​ 什么是cookie
+-  什么是cookie
 
   服务器通知客户端保存键值对的一种技术
 
@@ -1028,4 +1060,34 @@ ${requestScope.msg}  <%--EL表达式--%>
 
 - Session域数据的存取
 
+- Session生命周期控制
+
   
+  
+  
+
+## Filter过滤器
+
+## JSON
+
+定义和访问
+
+在JavaScript中两种常用的转换方法
+
+JavaBean和json的相互转换
+
+JSON-list集合和json的相互转换
+
+JSON-Map集合和json的相互转行
+
+## AJAX
+
+什么是AJAX请求
+
+原生JavaScript的AJAX请求示例
+
+请求特点说明
+
+ajax方法
+
+## i18n国际化
