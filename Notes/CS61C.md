@@ -2,7 +2,7 @@
 
 ## why I want to learn it and write note
 
-​ In this demo, I want to share with you about my current situation and feelings when I study the course so that you can
+ In this demo, I want to share with you about my current situation and feelings when I study the course so that you can
 consider that if you will learn it or if you have the similar ideas with me.
 
 - I have finished Nand2TetrisI on coursera and learn CS according
@@ -254,9 +254,9 @@ preparation the basis you should know about this course 2's complement 进制转
 
   stack(LIFO): local variables, grows downward
 
-  ​ Stack pointer(SP): moves up and down with the procedure
+   Stack pointer(SP): moves up and down with the procedure
 
-  ​ Misuse Example: return local variable from functions
+   Misuse Example: return local variable from functions
 
   heap: space requested via malloc() and used with pointers;
 
@@ -278,7 +278,7 @@ preparation the basis you should know about this course 2's complement 进制转
 
       `calloc`(): `void *calloc(size_t nmemb, size_t size)`
 
-      ​ like malloc(), except it initialized all values of 0
+       like malloc(), except it initialized all values of 0
 
       `realloc`(): `void *realloc(void *ptr, size_t size)`
 
@@ -321,19 +321,19 @@ preparation the basis you should know about this course 2's complement 进制转
 
       ![image-20210503164145464](CS61C/002.png)
 
-      ​
+      
 
       Biased notation:
 
-      ​ why use it?
+       why use it?
 
         1. compare numbers easily(保证数组非负线性，补码的一个弊端非线性)
 
-           ​ compare order: Sign --> Exponent --> Significand
+            compare order: Sign --> Exponent --> Significand
 
       The Exponent Field:
 
-      ​ 1. bias: -127
+       1. bias: -127
 
         2. encoding: +127 e.g. 2^1 exp = 1 ==> 128 ==> 10000000two
 
@@ -341,19 +341,19 @@ preparation the basis you should know about this course 2's complement 进制转
 
            Normalization:
 
-           ​ Exponent != 0 || != 255
+            Exponent != 0 || != 255
 
            Denormalization:
 
-           ​ all 0
+            all 0
 
            Special cases:
 
-           ​ 11111111(255):
+            11111111(255):
 
-           ​ NaN != 0
+            NaN != 0
 
-           ​ infinite: all 0
+            infinite: all 0
 
 - Floating Points: special cases
 
@@ -361,11 +361,11 @@ preparation the basis you should know about this course 2's complement 进制转
 
 - Floating Points Limitations
 
-  ​ Assume x is the result
+   Assume x is the result
 
-  ​ Overflow:  abs(x) > 2 ^123
+   Overflow:  abs(x) > 2 ^123
 
-  ​ Underflow: 0 < abs(x) < 2^-149
+   Underflow: 0 < abs(x) < 2^-149
 
     - Floating Point Gaps: get larger with larger exponent
 

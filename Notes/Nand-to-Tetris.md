@@ -4,30 +4,30 @@
 
 ## Why I want to learn it
 
-​ 一方面是因为自己不仅想学code还想真正接触计算机科学，学习CS的知识。另一方面是因为自己基础薄弱，觉得迟早要学，不如先开始。
+ 一方面是因为自己不仅想学code还想真正接触计算机科学，学习CS的知识。另一方面是因为自己基础薄弱，觉得迟早要学，不如先开始。
 
-​ 我的学习路线还是按照[Teach yourselfCS-CN](https://github.com/keithnull/TeachYourselfCS-CN/blob/master/TeachYourselfCS-CN.md)
+ 我的学习路线还是按照[Teach yourselfCS-CN](https://github.com/keithnull/TeachYourselfCS-CN/blob/master/TeachYourselfCS-CN.md)
 来学的。
 
 ## What we will learn
 
-​ 这里用中文快速写一遍吧。我们知道操作系统是连接软件和硬件的中间的一层，学习内容可想而知，不仅会涉及到硬件的知识，同时也会涉及到软件的代码，这门*Build a Modern from the first principle*
+ 这里用中文快速写一遍吧。我们知道操作系统是连接软件和硬件的中间的一层，学习内容可想而知，不仅会涉及到硬件的知识，同时也会涉及到软件的代码，这门*Build a Modern from the first principle*
 是来自希伯来大学（以色列）的两名教授Noam Nisan Shimon
 Schocken经过很长时间探索打造的一门课，目的是帮助大家更好地了解计算机组成。这课最终目标能让大家自己打造一个操作系统（语言是类似Java的Jack语言，呃），然后在你设计的操作系统上写Tetris(俄罗斯方块这个游戏)
 想想还是比较激动的，虽然我现在啥都不会啊。
 
-​ 课程分为两大部分，第一部分是硬件篇，从数学逻辑开始，慢慢的过渡到逻辑符号的一些硬件设计然后再设计晶体管，再慢慢上升到CPU,RAM之类的，最后到集成电路（Hack
+ 课程分为两大部分，第一部分是硬件篇，从数学逻辑开始，慢慢的过渡到逻辑符号的一些硬件设计然后再设计晶体管，再慢慢上升到CPU,RAM之类的，最后到集成电路（Hack
 电脑）。这部分时间大概是7周45h，每天学习2h左右吧。第二部分是软件，时间也是7周，这部分就先放一下，目标时是用高级语言设计虚拟机鸭~。
 
-​ 课程适合入门学习，教材阅读可以选择*The Elements of Computing System*
+ 课程适合入门学习，教材阅读可以选择*The Elements of Computing System*
 
 - ![001](Nand-to-Tetris/001.png)
 
 - ![002](Nand-to-Tetris/002.png)
 
-​ 课程里的一些注意事项的补充：
+ 课程里的一些注意事项的补充：
 
-​ Shimon在课程里将chip和gate理解成一个东西，都是执行逻辑功能的最小物理设备,以下为原书里的摘抄:
+ Shimon在课程里将chip和gate理解成一个东西，都是执行逻辑功能的最小物理设备,以下为原书里的摘抄:
 
 *Today, most gates are implemented as transistors etched in silicon, packaged as chips. In this book we use the words
 chip and gate interchangeably, tending to use the term gates for simple chips*
@@ -116,11 +116,11 @@ DMux可以理解为对Mux的一种解码或者解密，具体看书会更清楚�
 
 ### 15 particular gates:
 
-​ 下面的这张图是15个最长使用的gates，也是作业里要做的内容，注意，作业里的HDL语言是经过简化过的，比起现在商业化用的VHDL等，简单很多。
+ 下面的这张图是15个最长使用的gates，也是作业里要做的内容，注意，作业里的HDL语言是经过简化过的，比起现在商业化用的VHDL等，简单很多。
 
 ![008](Nand-to-Tetris/008.png)
 
-​ 做这个作业最大的收获还是感受一下逻辑设计的过程，思考方式，当然可能会与实际有所不同。
+ 做这个作业最大的收获还是感受一下逻辑设计的过程，思考方式，当然可能会与实际有所不同。
 
 一些做作业的时候需要注意的地方。
 
@@ -213,9 +213,9 @@ chip。但是它们也有局限，没有涉及到状态。什么意思呢，假�
 
 接下来是设计一个1-bit的register,设计这个register的功能大概是这样的，输入一个load(t)，和时间参数有关,实现两个输出:
 
-​ if(load(t-1)),out(t) = in(t-1)
+ if(load(t-1)),out(t) = in(t-1)
 
-​ else out(t) = out(t-1)
+ else out(t) = out(t-1)
 
 如果load为1的情况下，out的结果是上一秒的输入，否则，out不变。
 
@@ -321,7 +321,7 @@ CHIP PC {
     Mux16(a=out2, b=out3, sel=inc, out=out); // get the output
     //这个是我写的代码.....
 
-​ Nand to Tetris
+ Nand to Tetris
 
 And the, the saying is that simple-minded people are impressed by sophisticated things, and sophisticated people are
 impressed by simple things.
