@@ -9,6 +9,24 @@ Java后端是我现阶段学习的一个主要的方向。
 
 - 如何打好基础，教材阅读Java 核心基础 I,II。辅助github开源项目JavaGuide面试指南。
 
+## 对Java学习路线图的思考
+
+Java8新特性
+
+Java并发编程
+
+JVM虚拟机
+
+Git
+
+Docker
+
+Maven
+
+Spring
+
+SpringBoot2
+
 ## 尚硅谷宋康红主讲Java零基础小白七节必修课
 
 - 如果要深入学习计算机科学，C，C++是绕不开的，配上国外经典课程
@@ -18,7 +36,7 @@ Java后端是我现阶段学习的一个主要的方向。
 
   (e.g. 国内:T-C/C++, A/Java, ByteDance/都有，但新兴的go语言
 
-  ​ 国外：Google Python、R语言等)
+   国外：Google Python、R语言等)
 
 - 互联网架构技术迭代
 
