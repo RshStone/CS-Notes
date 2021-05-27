@@ -4,11 +4,11 @@
 
 ## lab0
 
-​ 课程基本注意事项（自学者没有homework账号）
+ 课程基本注意事项（自学者没有homework账号）
 
-​ git 一些基本命令(我写在了自己的笔记里)
+ git 一些基本命令(我写在了自己的笔记里)
 
-​ 至少学会一种`text editor` Vim/Emacs/Nano
+ 至少学会一种`text editor` Vim/Emacs/Nano
 
 ## lab1
 
@@ -42,7 +42,7 @@
 
 ### Exercise 3: Debugging w/ YOU
 
-​ 注意`gcc`版本问题使用`redirection`需要`gcc` 8.0 以上版本
+ 注意`gcc`版本问题使用`redirection`需要`gcc` 8.0 以上版本
 
 ​    `./a.out < fileName.txt`
 
@@ -62,13 +62,13 @@ int h = ptaddr->x;
 int h = (*ptaddr).x;
 ```
 
-​ bohrbugs:  they manifest reliably under a well-defined, but possibly unknown, set of conditions(编译器能检测到)
+ bohrbugs:  they manifest reliably under a well-defined, but possibly unknown, set of conditions(编译器能检测到)
 
-​ heisenbugs: often due to mis-managed memory(检测不到)
+ heisenbugs: often due to mis-managed memory(检测不到)
 
 practice: tortoise and hare(龟兔赛跑)
 
-​ 对于一个Node * hard
+ 对于一个Node * hard
 
 ```c
     (*(*hare).next).next EQUALS hare->next->next 但是第二种更简单
@@ -110,6 +110,10 @@ devC++结果:
 
 ### Exercise 1: Bit Operations
 
+- base knowledge
+
+  bitwise operations such as and (&), or (|), xor (^), not (~), left shifts («), and right shifts (»)
+
 - 貌似在某个bit 取`v`时，其实也可以采用 `0|v`方式
 
 - 对 `xor`的理解
@@ -132,7 +136,7 @@ devC++结果:
 
 ### Exercise 3: Linked Lists
 
-​ Java写过很多次，感觉比较esay!
+ Java写过很多次，感觉比较esay!
 
 ### Exercise 4: Memory Management
 
@@ -146,11 +150,11 @@ devC++结果:
 
 思考的统一性！
 
-​ 如果你这样思考：画出了一个指针然后这个指针指向的位置区域，那么每一个部分都这样思考
+ 如果你这样思考：画出了一个指针然后这个指针指向的位置区域，那么每一个部分都这样思考
 
-​ 指针赋值的话赋值的其实是其中一个指针指向的地址，而不是指针本身。但指向指针的指针存放的是指针的地址。
+ 指针赋值的话赋值的其实是其中一个指针指向的地址，而不是指针本身。但指向指针的指针存放的是指针的地址。
 
-​ 不然的话，就简单理解这个指针原先存的那部分地址，然后改变了，存在那部分地址。
+ 不然的话，就简单理解这个指针原先存的那部分地址，然后改变了，存在那部分地址。
 
 ```c
 //把table->data[location]理解为指向NULL或者是已经分配过内存的Bucket
@@ -195,5 +199,230 @@ void insertData(HashTable *table, void *key, void *data) {
 
 `A nice property of 31 is that the multiplication can be replaced by a shift and a subtraction for better performance: 31 * i == (i << 5) - i. Modern VMs do this sort of optimization automatically.`
 
+```C
+//str1是分配了某定长的字符串，在这个字符串中的某个位置给他设定成'\0'，比如，str1[2] = '\0',那么整个字符串就变成了'\0'，而不是str1字符串的第二个位置是'\0'
 
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main(void)
+{	
+	char * str1 = "hello,world";
+	printf("%s",str1);
+	str1[2] = '\0';
+	printf("%s\n", str1);
+	str1[2] = 'l';
+	printf("%s\n",str1);
+}
+
+```
+
+```c
+//版本1的processInput()函数
+void processInput() {
+  // -- TODO --
+  int size = 60;
+  int i = 0;
+  char *c ;
+  //str1 word 
+  char *str1 =(char *)malloc(size) ;
+    //str2 entirely lowercase
+  char *str2 =(char *)malloc(size) ;
+  //str3 all but the first letter lowercase
+  char *str3 =(char *)malloc(size) ;
+  while ((c = fgetc(stdin) )!= EOF)
+  {
+    if(isalpha(c)){
+      //read c into str1
+      str1[i] = c;
+      i++;
+      //read all characters of the word
+    while (isalpha(c = fgetc(stdin)) )
+    {
+      str1[i] = c;
+      i++;
+    }
+    //convert str1 to 3 types
+    int j = 0;
+    char a = str1[j];
+    if (islower(a))
+    {
+      str2[j] = a;
+      str3[j] = toupper(a);
+    }
+    else{
+      str2[j] = tolower(a);
+      str3[j] = a;
+    }
+    j++;
+    for (; j < size; j++)
+    {
+      str2[j] = tolower(str1[j]);
+      str3[j] = tolower(str1[j]);
+    }
+    //find if 3 types are in dictionary
+    if(findData(dictionary, str1) != NULL || findData(dictionary, str2) != NULL || findData(dictionary, str3) != NULL){
+            fprintf(stdout, str1);
+    }
+    else{
+      fprintf(stdout, str1 + " [sic]");
+    }
+    //the last char c should be print to standard output
+    fprintf(stdout,c);
+    i = 0;
+    }
+    else{
+      fprintf(stdout,c);
+    }
+  }
+  free(str1);
+  free(str2);
+  free(str3);
+}
+
+```
+
+```C
+//第二个版本
+void processInput() {
+  // -- TODO --
+  int size = 60;
+  int i = 0;
+  int c ;
+  //str1 word 
+  char *str1 =(char *)malloc(size) ;
+    //str2 entirely lowercase
+  char *str2 =(char *)malloc(size) ;
+  //str3 all but the first letter lowercase
+  char *str3 =(char *)malloc(size) ;
+  while ((c = fgetc(stdin) )!= EOF)
+  {
+    if(isalpha(c)){
+      //read c into str1
+      str1[i] = (char)c;
+      i++;
+      //read all characters of the word
+    while (isalpha(c = fgetc(stdin)) )
+    {
+      str1[i] = (char)c;
+      i++;
+    }
+    //convert str1 to 3 types
+    int j = 0;
+    char a = str1[j];
+    if (islower(a))
+    {
+      str2[j] = a;
+      str3[j] = toupper(a);
+    }
+    else{
+      str2[j] = tolower(a);
+      str3[j] = a;
+    }
+    j++;
+    for (; j < size; j++)
+    {
+      str2[j] = tolower(str1[j]);
+      str3[j] = tolower(str1[j]);
+    }
+    //find if 3 types are in dictionary
+    if(findData(dictionary, str1) != NULL || findData(dictionary, str2) != NULL || findData(dictionary, str3) != NULL){
+            fprintf(stdout, "%s", str1);
+    }
+    else{
+      fprintf(stdout, "%s [sic]",str1);
+    }
+    //the last char c should be print to standard output
+    fprintf(stdout,"%c",c);
+    i = 0;
+    }
+    else{
+      fprintf(stdout,"%c",c);
+    }
+  }
+  free(str1);
+  free(str2);
+  free(str3);
+}
+
+```
+
+```c
+//最终AC版本
+void processInput()
+{
+  // -- TODO --
+  int size = 60;
+  int i = 0;
+  int c;
+  //str1 word
+  char *str1 = (char *)malloc(size);
+  //str2 entirely lowercase
+  char *str2 = (char *)malloc(size);
+  //str3 all but the first letter lowercase
+  char *str3 = (char *)malloc(size);
+  while ((c = fgetc(stdin)) != EOF)
+  {
+    if (isalpha(c))
+    {
+      //read c into str1
+      str1[i] = (char)c;
+      i++;
+      //read all characters of the word
+      while (isalpha(c = fgetc(stdin)))
+      {
+        str1[i] = (char)c;
+        i++;
+      }
+      //convert str1 to 3 types
+      int j = 0;
+      char a = str1[j];
+      if (islower(a))
+      {
+        str2[j] = a;
+        str3[j] = toupper(a);
+      }
+      else
+      {
+        str2[j] = tolower(a);
+        str3[j] = a;
+      }
+      j++;
+      for (; j < size; j++)
+      {
+        str2[j] = tolower(str1[j]);
+        str3[j] = tolower(str1[j]);
+      }
+      //find if 3 types are in dictionary
+      if (findData(dictionary, str1) != NULL || findData(dictionary, str2) != NULL || findData(dictionary, str3) != NULL)
+      {
+        fprintf(stdout, "%s", str1);
+      }
+      else
+      {
+        fprintf(stdout, "%s [sic]", str1);
+      }
+      memset(str1,0,strlen(str1));
+      memset(str2,0,strlen(str2));
+      memset(str3,0,strlen(str3));
+      //the last char c should be print to standard output
+      if(c != EOF){
+        fprintf(stdout, "%c", c);
+      }
+
+      i = 0;
+    }
+    else
+    {
+      fprintf(stdout, "%c", c);
+    }
+  }
+  free(str1);
+  free(str2);
+  free(str3);
+}
+
+```
 
