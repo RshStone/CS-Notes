@@ -18,15 +18,15 @@
 
 ### [Nand-To-Tetris 1-6节](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/Nand-to-Tetris.md)
 
-[OSTEP-Notes]()
+### [OSTEP-Notes](https://github.com/RshStone/CS-Notes/blob/master/Notes/OS.md)）
 
-### [CS61C——目前到lec7-projec1-不定期更新](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS61C.md)
+### [CS61C——目前到lec7-projec1-暂时搁置](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS61C.md)
 
 ## 计算机网络
 
 ### [CS144Notes——C++基础薄弱——暂时搁置](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS144.md)
 
-### [计算机网络 笔记](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md)
+### [计算机网络 -自顶向下-笔记](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md)
 
 ## Java
 
