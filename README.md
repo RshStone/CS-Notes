@@ -18,7 +18,9 @@
 
 ### [Nand-To-Tetris 1-6节](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/Nand-to-Tetris.md)
 
-### [CS61C——目前到lec5-projec1-不定期更新](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS61C.md)
+[OSTEP-Notes]()
+
+### [CS61C——目前到lec7-projec1-不定期更新](https://github.com/RshStone/CS-Notes/blob/master/Notes/Output/CS61C.md)
 
 ## 计算机网络
 

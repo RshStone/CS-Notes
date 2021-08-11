@@ -264,6 +264,8 @@ ${requestScope.msg}  <%--EL表达式--%>
 
     1. 编写图书模块的数据库表
 
+       Constructor 构造器
+       
        Generator shortcut Alt + Insert
 
 

@@ -2,6 +2,10 @@
 
 ### GDB card: [CS 61C](https://cs61c.org/resources/pdf?file=gdb5-refcard.pdf)
 
+[homework2015](https://inst.eecs.berkeley.edu//~cs61c/sp15/ )
+
+[GitHub - ijpq/MyCS61C: this repo contains self-learning in UCB-CS61C of our group and it's appreciate that anyone would like to join me.](https://github.com/ijpq/MyCS61C)
+
 ## lab0
 
  课程基本注意事项（自学者没有homework账号）
@@ -425,4 +429,24 @@ void processInput()
 }
 
 ```
+
+## lab3
+
+学习参考:
+
+​	[RISC-V Assembly for Beginners. If you are new to assembly programming… | by Erik Engheim | The Startup | Medium](https://medium.com/swlh/risc-v-assembly-for-beginners-387c6cd02c49)
+
+​	Computer Organization and Design RISC-V edition 
+
+### Exercise 1: Familiarizing yourself with Venus
+
+简单熟悉下 venus的一些操作
+
+### Exercise 2: Translating from C to RISC-V
+
+​	同上
+
+### Exercise 3: Factorial
+
+折腾了很久，看似很简单。
 
