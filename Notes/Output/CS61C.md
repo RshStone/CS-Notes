@@ -385,11 +385,122 @@ preparation the basis you should know about this course 2's complement 进制转
 
 ## lec06:Introduction to Machine Language: RISC-V architecture(！！！重点来啦)
 
+学习资料：
+
+​	[RISC-V Assembly for Beginners. If you are new to assembly programming… | by Erik Engheim | The Startup | Medium](https://medium.com/swlh/risc-v-assembly-for-beginners-387c6cd02c49)（很好的一篇for beginner的文章）
+
+​	CS61C课程
+
 Assembly Language Program(e.g. RISCV)
 
 比Hack computer(macro assembler的简化)更硬核，现代应用的东东。
 
-## leco7:More RISC-V, RISC-V Functions(更看不懂了)
+- CISC
+
+  Complex Instructions Set Computing
+
+  实例(x86系列)
+
+- RISC-V
+
+  Reduced Instructions Set Computing
+
+  Litter-Endian
+
+  特点
+
+  - 简单  ARM架构（基于RISC-V设计思想）设计在手机上
+
+  - 甚至让x86体系向RISC-V靠近
+
+  - 处理速度快
+
+    ![image-20210605120138181](CS61C/005 (1).png)
+
+- RISC-V架构只是对Registers进行操作
+
+- 为什么又sub但没有subi，我们知道subi可以用addi加负数的方式进行表现，但是为什么还要又sub呢？
+
+  一种思考是，add和sub是对两个寄存器中的数进行操作，不知道正还是负
+
+  另一种思考是，RISC-V简洁到不要subi了但是CISC-V还是有（猜测）。
+
+- 计算机组成架构图
+
+  ![006](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/006.png)
+
+- 手册RISC-V Reference Data  (google 搜索green card)
+
+- Data transfer
+
+  `memop reg, off(bAddr)`
+
+  values can start off in memory
+
+  ​	don't understand it clearly
+
+  ![image-20210605141212921](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/CS61C/007.png)
+
+  .data static segment or data segment
+
+  .text text segment
+
+     la load address
+
+  **Sign Extension**  don't understand it completely(结合CSAPP看懂了)
+
+  Assembler Directives
+
+  https://github.com/ThaumicMekanism/venus/wiki/Assembler-Directives
+
+- Control flow instructions
+
+  `beq` branch equal
+  
+  `bnq` branch not equal
+  
+  `j` jump
+  
+  `blt` branch less than
+  
+  `bge` branch greater than or equal
+  
+  Program Counter stores the address of the current code which will be executed
+  
+- Shift Instructions(csapp看懂了，再看不会，复习用的例子)
+
+  ```
+  
+  # sample calls to shift instructions
+  addi
+  t0,x0 ,-256 # t0=0xFFFFFF00
+  slli
+  s0,t0,3 # s0=0xFFFFF800
+  srli
+  s1,t0,8 # s1=0x00FFFFFF
+  srai
+  s2,t0,8 # s2=0xFFFFFFFF
+  addi t1,x0 ,-22 # t1=0xFFFFFFEA
+  # low 5: 0b01010
+  sll s3,t0,t1 # s3=0xFFFC0000
+  # same as slli s3,t0,10   为什么等于10移位
+  ```
+  
+  
+  
+- la t3, n
+
+  
+  
+- 
+
+  
+
+## leco7:More RISC-V, RISC-V Functions
+
+6.11看懂
+
+lab写的吃力 汇编代码
 
 ## lec08:RISC-V Instruction Formats
 
