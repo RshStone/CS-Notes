@@ -993,6 +993,8 @@ public List<List<Integer>> threeSum(int[] nums) {
 
 思想需要慢慢体会。
 
+## Binary Search
+
 
 
 # 周赛
@@ -1009,4 +1011,24 @@ public List<List<Integer>> threeSum(int[] nums) {
   ```
 
   将String 转化为 char array 最后 再将char array 转化成String
+
+## **Weekly Contest 255**
+
+Find Greatest Common Divisor of Array:
+
+```c++
+//找公因数代码，我没写出来，很妙    
+private int getGCD(int a, int b){
+        if(b % a == 0) return a;
+        else return getGCD(b % a, a);
+}
+```
+
+Find Unique Binary String
+
+我的思路：位运算，玄学找规律，但找错了，仔细想很容易找出反例。
+
+(Code能力，怎么暴力枚举出来)
+
+
 
