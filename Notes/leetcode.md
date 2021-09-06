@@ -1014,6 +1014,8 @@ public List<List<Integer>> threeSum(int[] nums) {
 
 ## **Weekly Contest 255**
 
+只A了一道题
+
 Find Greatest Common Divisor of Array:
 
 ```c++
@@ -1032,3 +1034,28 @@ Find Unique Binary String
 
 
 
+## Weekly Contest 256
+
+14min A了一道题，后面打死没做出来，第二题设想了很多种方式，也中途学习了`QuickSelect`,奈何败在了`String`类型数组长度条件上,Java语言去刷题还是
+
+深感到不同语言刷题的不同优势与劣势，这题就体现出来了，`QuickSelect`C++里容易写出，Java比较难；
+
+**Minimum Difference Between Highest and Lowest of K Scores**
+
+AC, 其实涉及到slide-windows的一些知识，是一道很好的启蒙滑动窗口题目
+
+对我的启发，`HashSet`如何使用滑动窗口
+
+**Find the Kth Largest Integer in the Array**
+
+Java里的 `Sort`和lambda表达式结合，自己做的还是不够，是一块提升的地方
+
+题解文章: [[C++/Java/Python\] 3 solutions: MinHeap, MaxHeap, QuickSelect - Clean & Concise - LeetCode Discuss](https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/discuss/1431847/C%2B%2BJavaPython-3-solutions%3A-MinHeap-MaxHeap-QuickSelect-Clean-and-Concise)
+
+PriorityQueue本来是小根堆，之后要作为大根堆，使用Comparator<>进行实现，return 的结果是o2 - o1, 解释是说这个是用大根堆进行实现。没有完全理解。
+
+相关文章，PriorityQueue三种重写形式
+
+[Java~三种重写compare方法的PriorityQueue、TopK问题的解决思想附练习题（查找最小的K对数字与最后一块石头重量） | 码农家园 (codenong.com)](https://www.codenong.com/cs105879723/)
+
+Java语言中的Steam特性也是待完善的一个地方。

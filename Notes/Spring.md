@@ -849,76 +849,445 @@ public void setName(String name) {
 
 - Hypermedia as the Engine of Application State (**HATEOAS**)
 
-## Spring Boot
+## Spring Boot（官方文档）
+
+[GitHub - spring-projects/spring-boot: Spring Boot](https://github.com/spring-projects/spring-boot)
 
 1. Introducing Spring Boot
 
-   -  Spring Boot helps you to create stand-alone, production-grade Spring-based applications that you can run.
+   -  create stand-alone, production-grade Spring-based applications .
 
-     **Primary goals：**
+2. Developing Your First Spring Boot Application
 
-       Provide a radically faster and widely accessible getting-started experience for all Spring development.
-
-       Be opinionated out of the box but get out of the way quickly as requirements start to diverge from the defaults.
-
-       Provide a range of non-functional features that are common to large classes of projects (such as embedded servers, security, metrics, health checks, and externalized configuration).
-
-       Absolutely no code generation and no requirement for XML configuration.
-
-2. System Requirements
-
-   Spring Boot 2.5.1-SNAPSHOT requires [Java 8](https://www.java.com/) and is compatible up to and including Java 16. [Spring Framework 5.3.7](https://docs.spring.io/spring-framework/docs/5.3.7/reference/html/) or above is also required.
-
-   | Build Tool | Version               |
-   | :--------- | :-------------------- |
-   | Maven      | 3.5+                  |
-   | Gradle     | 6.8.x, 6.9.x, and 7.x |
-
-   supports the following embedded servlet containers：
-
-   | Name         | Servlet Version |
-   | :----------- | :-------------- |
-   | Tomcat 9.0   | 4.0             |
-   | Jetty 9.4    | 3.1             |
-   | Jetty 10.0   | 4.0             |
-   | Undertow 2.0 | 4.0             |
-
-3. Installing Spring Boot
-
-   - need [Java SDK v1.8](https://www.java.com/) or higher
-   - You can use Spring Boot in the same way as any standard Java library. To do so, include the appropriate `spring-boot-*.jar` files on your classpath. 
-
-   - Spring Boot is compatible with Apache Maven 3.3 or above. 
-
-4. Developing Your First Spring Boot Application
-
-   `@RestController`:  *stereotype* annotation. It provides hints for people reading the code and for Spring that the class plays a specific role. In this case, our class is a web `@Controller`, so Spring considers it when handling incoming web requests.
+   `@RestController`:  *stereotype* （刻板印象）annotation. 告诉你或者别的程序员our class is a web `@Controller`, so Spring considers it when handling incoming web requests.
 
    
 
-   `@RequestMapping`:  provides “routing” information. It tells Spring that any HTTP request with the `/` path should be mapped to the `home` method. The `@RestController` annotation tells Spring to render the resulting string directly back to the caller.
+   `@RequestMapping`:  provides “routing” information; The `@RestController("/")` annotation tells Spring ( any HTTP request with the `/` path) to render the resulting string(annotation下面的方法) directly back to the caller.
 
    
 
-   `@EnableAutoConfiguration`. This annotation tells Spring Boot to “guess” how you want to configure Spring, based on the jar dependencies that you have added. Since `spring-boot-starter-web` added Tomcat and Spring MVC, the auto-configuration assumes that you are developing a web application and sets up Spring accordingly.
+   `@EnableAutoConfiguration`. tells Spring Boot to “guess” how you want to configure Spring, based on the jar dependencies that you have added. 
+
+   (e.g.)Since `spring-boot-starter-web` added Tomcat and Spring MVC, the auto-configuration assumes that you are developing a web application and sets up Spring accordingly.
 
    - 要在`pom.xml`下执行 `mvn spring-boot:run`
 
    - 执行`mvn spring-boot:run` `出现cannot find symbol   symbol: class "RestController"`错误。解决办法：在`Intellij`里导入项目，然后根据自动提示，`import`所需的类，IDEA里成功运行，换到命令行，运行成功。
 
      
+     
+     **main** method: SpringApplication.run(MyApplication.class, args);
 
    ### Creating an Executable Jar
 
-   To create an executable jar, we need to add the `spring-boot-maven-plugin` to our `pom.xml`. To do so, insert the following lines just below the `dependencies` section:
+   To create an executable jar, we need to add the `spring-boot-maven-plugin` to our `pom.xml`. 
 
-   If you want to peek inside, you can use `jar tvf`, as follows:
+   ```xml
+   <build>
+       <plugins>
+           <plugin>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-maven-plugin</artifactId>
+           </plugin>
+       </plugins>
+   </build>
+   ```
+
+   peek inside, "jar tvf"
 
    `$ jar tvf target/myproject-0.0.1-SNAPSHOT.jar`
 
    `java -jar target/myproject-0.0.1-SNAPSHOT.jar`
 
-5. 进阶学习
+3. 进阶学习
+
+   task-oriented type of developer: jump over to [spring.io](https://spring.io/) and check out some of the [getting started](https://spring.io/guides/) guides that solve specific “How do I do that with Spring?” problems. We also have Spring Boot-specific “[How-to](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto)” reference documentation
+
+   Otherwise, the next logical step is to read *[using.html](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using)*.  impatient,  jump ahead and read about *[Spring Boot features](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features)*.
+
+4. Developing with Spring Boot
+
+   - site: [Developing with Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using)
+
+   - Builder Systems, dependency management: 
+
+     ​	**Maven**:	
+
+     - Reference ([HTML](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/reference/htmlsingle/) and [PDF](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/reference/pdf/spring-boot-maven-plugin-reference.pdf))
+
+     - [API](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/api/)
+
+     - ###      Gradle
+
+       - Reference ([HTML](https://docs.spring.io/spring-boot/docs/2.5.4/gradle-plugin/reference/htmlsingle/) and [PDF](https://docs.spring.io/spring-boot/docs/2.5.4/gradle-plugin/reference/pdf/spring-boot-gradle-plugin-reference.pdf))
+
+       - [API](https://docs.spring.io/spring-boot/docs/2.5.4/gradle-plugin/api/)
+
+         **Ant**:Apache Ant+Ivy
+
+   - Starters
+
+     Starters are a set of convenient dependency descriptors that you can include in your application. 
+
+     one-stop shop for all the Spring and relative technologies.(e.g. Spring and JPA to access the database, `spring-boot-starter-data-jpa`)
+
+     starters: application starters, production starters, technical starters
+
+     More details about the starters([Developing with Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using))
+
+   - Structuring your code
+
+     A class which does not have a `package` declaration is "default package". But, it is not recommended. It will cause problems when use the `@ComponentScan`, `@ConfigurationPropertiesScan`, `@EntityScan`.
+
+     `@SpringBootApplication` annotation locates your main application class in a root package above other classes.
+
+     
+
+   - Configuration Classes
+
+     primary source be a single `@Configuration` class
+
+     Spring配置： `SpringApplication` with XML
+
+     The `@Import` annotation can be used to import additional configuration classes.
+
+     `@ComponentScan`：pick up all Spring components
+
+     **must** (如果一定要使用)use XML based configuration：start with a `@Configuration` class
+
+     use an `@ImportResource` annotation to load XML configuration files
+
+   - Auto-configuration
+
+     automatically configure your Spring application based on the jar dependencies
+
+     opt-in to auto-configuration: adding the `@EnableAutoConfiguration` or `@SpringBootApplication` annotations to one of your `@Configuration` classes
+
+     - ### Gradually Replacing Auto-configuration: define your own configuration,  `--debug` switch to see the current configuration 
+
+     - ### Disabling Specific Auto-configuration Classes
+
+       ```java
+       @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class }) public class MyApplication { }
+       ```
+
+       
+
+   - Spring Beans and Dependency Injection
+
+     - Sprign Beans: 简单来讲就是被Ioc(Inversion of control)所管理的对象,具体需要通过案例理解：[What is a Spring Bean? | Baeldung](https://www.baeldung.com/spring-bean)
+
+     -  Recommend using constructor injection to wire up dependencies and `@ComponentScan` to find beans.
+
+       ​	constructor injection: [Constructor Dependency Injection in Spring | Baeldung](https://www.baeldung.com/constructor-injection-in-spring)
+
+     - If you use the recommended way: add `@ComponentScan` without any arguments or use the `@SpringBootApplication` annotation which implicitly includes it. 
+
+       application components (`@Component`, `@Service`, `@Repository`, `@Controller` etc.) are automatically registered as Spring Beans
+
+       (e.g. `@Service` Bean that uses constructor injection to obtain a required `RiskAssessor` bean:
+
+       ​	
+
+       ```java
+       @Service
+       public class MyAccountService implements AccountService {
+       
+           private final RiskAssessor riskAssessor;
+       
+           public MyAccountService(RiskAssessor riskAssessor) {
+               this.riskAssessor = riskAssessor;
+           }
+       
+           // ...
+       
+       }
+       ```
+
+       
+
+       ```java
+       @Service
+       public class MyAccountService implements AccountService {
+       
+           private final RiskAssessor riskAssessor;
+       
+           private final PrintStream out;
+       
+           @Autowired  //use to mark which one you want Spring to use with @Autowired
+           public MyAccountService(RiskAssessor riskAssessor) {
+               this.riskAssessor = riskAssessor;
+               this.out = System.out;
+           }
+       
+           public MyAccountService(RiskAssessor riskAssessor, PrintStream out) {
+               this.riskAssessor = riskAssessor;
+               this.out = out;
+           }
+       
+           // ...
+       
+       }
+       ```
+
+       
+
+       )
+
+     - Using the @SpringBootApplication Annotation
+
+       `@SpringBootApplication` annotation enable three features: @SpringBootConfiguration, @ComponentScan, @EnableAutoConfiguration
+
+       
+
+       
+
+     - Running Your Application
+
+       - IDE
+
+       - as a Packaged Application
+
+       - Using the Maven Plugin
+
+       - Using the Gradle Plugin
+
+       - Hot Swapping: 
+
+         ​	Hot swapping is the term given to **the process of replacing a key component of a computer system while it's still running**
+
+         
+
+     - Developer Tools
+
+       make the application development experience a little more pleasant
+
+       To include devtools support, add the module dependency to your build
+
+       Maven:
+
+       ```xml
+       <dependencies>
+           <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-devtools</artifactId>
+               <optional>true</optional>
+           </dependency>
+       </dependencies>
+       ```
+
+       Gradle:
+
+       ```groovy
+       dependencies {
+           developmentOnly("org.springframework.boot:spring-boot-devtools")
+       }
+       ```
+
+        	
+
+     - Developer Tools
+
+       1. Spring Boot use caches to improve performance
+
+          ​	it can be counter-productive during development, preventing you from seeing the changes you just made in your application. For this reason, spring-boot-devtools disables the caching options by default
+
+          ​	For a complete list of the properties that are applied by the devtools:
+
+          ​		[DevToolsPropertyDefaultsPostProcessor](https://github.com/spring-projects/spring-boot/tree/v2.5.4/spring-boot-project/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/env/DevToolsPropertyDefaultsPostProcessor.java).
+
+       2. Property Defaults
+
+          - Automatic Restart
+          - LiveReload
+          - Global Settings
+          - Remote Applications
+
+       3. 
+
+       4. 
+
+   
+
+   - Spring Boot Features
+
+     dives into the details of Spring Boot;the key features that you may want to use and customize.
+
+     [Spring Boot Features](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.spring-application)
+
+     - Spring Application
+
+       The `SpringApplication` class provides a convenient way to bootstrap a Spring application that is started from a `main()` method
+
+       
+
+     - 1
+     - 2
+
+   - Spring Boot Actuator: Production-ready Features
+
+5. 
+
+   
+
+## **SpringBoot一些博客阅读**
+
+[GitHub - ityouknow/spring-boot-examples: about learning Spring Boot via examples. Spring Boot 教程、技术栈示例代码，快速简单上手教程。](https://github.com/ityouknow/spring-boot-examples)
+
+[Spring Boot 2(一)：【重磅】Spring Boot 2.0权威发布 - 纯洁的微笑博客 (ityouknow.com)](http://www.ityouknow.com/springboot/2018/03/01/spring-boot-2.0.html)
+
+微笑看得博客：池建强
+
+SpringBoot2
+
+响应式编程：使用 Spring WebFlux/WebFlux.fn提供响应式 Web 编程支持， Webflux 是一个全新的非堵塞的函数式 Reactive Web 框架，可以用来构建异步的、非堵塞的、事件驱动的服务，在伸缩性方面表现非常好，此功能来源于Spring5.0。
+
+Spring Boot2.0也提供对响应式编程的自动化配置，如：Reactive Spring Data、Reactive Spring Security 等
+
+
+
+## **SpringBoot(黑马6h入门Java微服务架构)**
+
+1. 入门第一个应用程序
+
+   Spring Initializr快速构建
+
+   maven pom.xml文件解析，自动构建整个应用
+
+   main
+
+   resources 里面有一个 application.properties(我按照Spring官方文档上写的没有resources)
+
+   test
+
+   
+
+2. 起步依赖原理
+
+   starter 视频里称之为坐标
+
+   可以追到其最上面的父依赖
+
+   技术版本选择做的很好，拿来即用，如果自己配，容易出问题
+
+3. 配置文件分类
+
+   xml
+
+   properties: 格式： server.port=8080
+
+   yaml/yml
+
+   优先级: application.properties > yml > yaml
+
+   yaml优点：层次分明，计算机读取容易
+
+   **语法**
+
+   对象
+
+   ​	server:
+
+   ​		port: 8080(有一个空格, 大小写敏感)
+
+   对象行内写法：
+
+   ​	server: {port: 8080}
+
+   数组：
+
+   ​	address:
+
+   ​		- beijing         （注意空格，不能用Tab,各个系统缩进不同）
+
+   ​		- shanghai
+
+   数组内行
+
+   纯量
+
+   **读取配置内容**
+
+   ​	1 @Value   "${}"
+
+   ​	2 Environment  @Autowired env.getProperty("")
+
+   ​	3 @ConfigurationProperties  @Component  @ConfigurationProperties(prefix = "")
+
+4. profile(完成不同环境下，配置动态切换功能的)
+
+   程序被安装到不同环境（开发，测试，生产），服务器端口，数据库地址等配置不同。
+   
+   1)profile配置方式
+   
+   ​	多profile文件方式:
+   
+   ​		application.properties:
+   
+   ​		application-dev.properties
+   
+   ​		application-pro.properties
+   
+   ​		application-test.properties
+   
+   ​		如何激活：在application.properties中写 spring.profiles.active=
+   
+   ​	yml多文档方式:
+   
+   ​		server: 
+   
+   ​			port: 8081
+   
+   ​		spring:
+   
+   ​			profiles: dev
+   
+   
+   
+   ​		server:
+   
+   ​			port: 8082
+   
+   ​		spring:
+   
+   ​			profiles: test
+   
+   2)profile激活方式
+   
+   ​	配置文件
+   
+   ​	虚拟机参数:
+   
+   ​		VM options:
+   
+   ​		-Dspring.profiles.active=test
+   
+   ​	命令行参数:
+   
+   ​		maven工具打包成jar包，运行， 最后面加入 --spring.profiles.active=pro
+   
+   ​		Program arguments:
+   
+   ​		--spring.profiles.active=pro
+   
+      优点： 不用改原有配置文件
+   
+   
+   
+5. SpringBoot配置-项目内部配置文件加载顺序
+
+   内部配置加载顺序：
+
+   ![image-20210902153217578](Spring/004.png)
+
+   
+
+   外部配置加载顺序：
+
+6. 
+
+   
 
 ## Spring尚硅谷
 

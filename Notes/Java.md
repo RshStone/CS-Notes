@@ -168,4 +168,25 @@ Java职业晋升路线图
 
   狼性文化，但有背景原因。撑起华为,中美两个大国的博弈，弱势的一方很多代价是由人来承受的。996如果不可避免，如果从996系统中脱身，实现自己的理想。
 
-###  
+## Lambda编程
+
+在刷leetcode的时候，很明显感到自己对lambda语法了解甚少，这成为Java语言学习中的一个阻碍，也不利于后序对Stream的一个深入学习。
+
+参考资料：
+
+[Lambda Expressions (The Java™ Tutorials > Learning the Java Language > Classes and Objects) (oracle.com)](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html#use-case)
+
+[深入浅出理解JAVA 8 Lambda表达式 Stream_just xiaoqiang-CSDN博客](https://blog.csdn.net/crpxnmmafq/article/details/72510314)
+
+[深入理解Java 8 Lambda（语言篇——lambda，方法引用，目标类型和默认方法） | lucida](http://lucida.me/blog/java-8-lambdas-insideout-language-features/)
+
+现状：
+
+被警告去学习
+
+如果你不知道什么是函数式编程，或者不了解 `map`，`filter`，`reduce` 这些常用的高阶函数，那么你不适合阅读本文，请先学习函数式编程基础（比如 [这本书](http://www.amazon.com/How-Design-Programs-Introduction-Programming/dp/0262062186/)）。
+
+回忆了一些视频和之前学习的内容，之前学习最多只是涉略到了匿名内部类，lambda表达式的使用，是怎么写的，但具体为什么这样做，这样做除了少写代码之外的好处，对框架学习有什么联系等等，这些都暂时没有答案。
+
+不过几个模型得去写，comparable接口，接口作为传递参数等等。常见的传递到Arrays类中的sort方法。
+

@@ -40,6 +40,8 @@
 
 ​		implication的定义:  p -> q is true if p is F or q is true        我不知道这个是这里的定义是定义的还是一个公理
 
+[如何理解数学里的「若 A 不真，则 A→B 总是真的」这种蕴含关系？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/345295530)
+
 ​		推下去，我们能得到Truth Table
 
 ​	最后引申了 Axioms公理, 公理就是那些被人们所接受的命题，在已知条件下，我们默认其为真。(e.g. a = b, b = c, -> a = c)
