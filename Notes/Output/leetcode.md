@@ -1042,6 +1042,8 @@ public List<List<Integer>> threeSum(int[] nums) {
 
 ## **Weekly Contest 255**
 
+只A了一道题
+
 Find Greatest Common Divisor of Array:
 
 ```c++
@@ -1060,3 +1062,47 @@ Find Unique Binary String
 
 
 
+## Weekly Contest 256
+
+14min A了一道题，后面打死没做出来，第二题设想了很多种方式，也中途学习了`QuickSelect`,奈何败在了`String`类型数组长度条件上,Java语言去刷题还是
+
+深感到不同语言刷题的不同优势与劣势，这题就体现出来了，`QuickSelect`C++里容易写出，Java比较难；
+
+**Minimum Difference Between Highest and Lowest of K Scores**
+
+AC, 其实涉及到slide-windows的一些知识，是一道很好的启蒙滑动窗口题目
+
+对我的启发，`HashSet`如何使用滑动窗口
+
+**Find the Kth Largest Integer in the Array**
+
+Java里的 `Sort`和lambda表达式结合，自己做的还是不够，是一块提升的地方
+
+题解文章: [[C++/Java/Python\] 3 solutions: MinHeap, MaxHeap, QuickSelect - Clean & Concise - LeetCode Discuss](https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/discuss/1431847/C%2B%2BJavaPython-3-solutions%3A-MinHeap-MaxHeap-QuickSelect-Clean-and-Concise)
+
+PriorityQueue本来是小根堆，之后要作为大根堆，使用Comparator<>进行实现，return 的结果是o2 - o1, 解释是说这个是用大根堆进行实现。没有完全理解。
+
+相关文章，PriorityQueue三种重写形式
+
+[Java~三种重写compare方法的PriorityQueue、TopK问题的解决思想附练习题（查找最小的K对数字与最后一块石头重量） | 码农家园 (codenong.com)](https://www.codenong.com/cs105879723/)
+
+Java语言中的Steam特性也是待完善的一个地方。
+
+## Weekly Contest 259
+
+3min只AC了一道题
+
+2012. Sum of Beauty in the Array   我知道暴力解必然会出现问题，不过我花了近1h才写出正确思维的暴力解法，这个过程是锻炼思维的过程。  优化解法
+      - 2, 对 <img src="https://www.zhihu.com/equation?tex=%5Cforall" alt="\forall" class="ee_img tr_noresize" eeimg="1">  i, j, k  <img src="https://www.zhihu.com/equation?tex=%5Cin" alt="\in" class="ee_img tr_noresize" eeimg="1">  Z; for all  0 <= j < i < k <= `nums.length - 1`, `nums[j] < nums[i] < nums[k]`
+      - 1, `nums[i - 1] < nums[i] < nums[i + 1]`, and the previous condition is not satisfied
+      - `0`, if none of the previous conditions holds.
+
+![image-20211002112937258](https://raw.githubusercontent.com/RshStone/CS-Notes/master/Notes/leetcode/001.png)
+
+条件的处理，如何优化时间复杂度，将加2的情况进行优化。对 <img src="https://www.zhihu.com/equation?tex=%5Cforall" alt="\forall" class="ee_img tr_noresize" eeimg="1">  i  <img src="https://www.zhihu.com/equation?tex=%5Cin" alt="\in" class="ee_img tr_noresize" eeimg="1">  Z,  左边的最大值 < `nums[i]` < 右边的最小值 
+
+## **Weekly Contest 261**
+
+\2027. Minimum Moves to Convert String  当时思路卡了一下，想到几种情况，很多个X, "XXOXXXOXX"这种情况该如何处理等等，绕进了一个误区，卡了很久
+
+\2028. Find Missing Observations  两题44min AC  思路卡顿，条件处理，前几名大佬思路都很清新，甚至有相似之处。 比如对处理返回数组，在满足第一个条件情况下，先把数组中每个元素默认设置为1，之后再做加法处理。
