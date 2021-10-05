@@ -1,4 +1,41 @@
+
+
+学习资料：
+
+​	深入理解Java虚拟机(周志明)
+
+相关知识串联：
+
+​	数组的删除优化处理。
+
+起步学习:
+
+​	编译JDK12，首先去阅读file:///D:/Downloads/jdk12-06222165c35f/doc/building.html
+
+​	Instructions for the Impatient: Mercurial and Cygwin(for Windows)
+
+​		之后涉及到了尝试软件Cygwin, 这个软件的作用。
+
+​			摘自博客: https://www.worldhello.net/gotgit/01-meet-git/050-install-on-windows-cygwin.html
+
+​			*Cygwin是一款伟大的软件，通过一个小小的DLL（cygwin1.dll）建立Linux和Windows系统调用及API之间的转换，实现了Linux下绝大多数软件到Windows的迁移。Cygwin通过cygwin1.dll所建立的中间层和诸如VMWare、VirtualBox等虚拟机软件完全不同，不会对系统资源进行独占。像VMWare等虚拟机，只要启动一个虚拟机（操作系统），即使不在其中执行任何命令，同样会占用大量的系统资源：内存、CPU时间等等。*
+
+*Cygwin还提供了一个强大易用的包管理工具（setup.exe），实现了几千个开源软件包在Cygwin下便捷的安装和升级，Git就是Cygwin下支持的几千个开源软件中的一员。*
+
+*我对Cygwin有着深厚的感情，Cygwin让我在Windows平台能用Linux的方式更有效率的做事，使用Linux风格的控制台替换Windows黑乎乎的、冰冷的、由**cmd.exe**提供的命令行。Cygwin帮助我逐渐摆脱对Windows的依赖，当我完全转换到Linux平台时，没有感到一丝的障碍。*
+
+​		同时也尝试了Mercurial这款软件
+
+​		尝试build openJDK12 
+
+​	    结果和几个月前的内容一样，只是几个月前我没弄明白，为什么这样。没有详细记录
+
+​	参考博客：[Build OpenJDK 12 On Fedora 29 | Dariawan](https://www.dariawan.com/tutorials/java/build-openjdk-12-fedora-29/)
+
+This is because [jtreg](https://openjdk.java.net/jtreg/) framework is not 'installed' in your machine. But this is completely out of this article scope. So, for today... Enjoy your custom build OpenJDK!
+
 ```
+
 Creating buildtools/jdk.vm.compiler.serviceprovider.processor.jar
 Creating support/modules_libs/java.base/jrt-fs.jar
 make[3]: warning:  Clock skew detected.  Your build may be incomplete.
@@ -77,3 +114,6 @@ make[1]: *** [/mnt/d/Downloads/jdk12-06222165c35f/make/Init.gmk:310: main] Error
 make: *** [/mnt/d/Downloads/jdk12-06222165c35f/make/Init.gmk:186: images] Error 2
 ```
 
+
+
+​	
