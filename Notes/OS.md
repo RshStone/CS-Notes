@@ -715,7 +715,7 @@ hardware and OS required; OS use a bit of hardware
 
   ​	reason: It is a procedure call but inside of it is trap instruction.
 
-  ​	(e.g. 执行write() | read() 时候 其实会调用C library 中的 procedure calls，于是system call就像是 procedure call了;
+  ​	(e.g. 许多语言中，例如C中的的write() | read() 其实就是procedure call，只不过里面有trap instruction, 同时也有系统内自带的system call,解释了为啥在某些情况下system call就像是 procedure call了;
 
   ​	具体过程：
 
@@ -742,6 +742,14 @@ hardware and OS required; OS use a bit of hardware
   ​		现代的hardware 提供让program执行一些system call: accessing the file system, creating and destroying processes, communicating with other processes, and allocating more memory（POSIX standard）
 
   ​		trap instruction能让processor mode变成kernel mode
+
+  ​		**The difference of interrupt && trap:**
+
+  ​		简单来说，trap的情况下，IP仍然执行，一般发生情况为（除以0，访问无效内存等等）
+
+  ​		interrupt: 一般是硬件的情况异常情况
+
+  ​	具体讨论:[x86 - What is the difference between Trap and Interrupt? - Stack Overflow](https://stackoverflow.com/questions/3149175/what-is-the-difference-between-trap-and-interrupt#)
 
   ​		return from trap --> user mode
 

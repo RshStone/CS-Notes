@@ -1059,3 +1059,22 @@ PriorityQueue本来是小根堆，之后要作为大根堆，使用Comparator<>�
 [Java~三种重写compare方法的PriorityQueue、TopK问题的解决思想附练习题（查找最小的K对数字与最后一块石头重量） | 码农家园 (codenong.com)](https://www.codenong.com/cs105879723/)
 
 Java语言中的Steam特性也是待完善的一个地方。
+
+## Weekly Contest 259
+
+3min只AC了一道题
+
+2012. Sum of Beauty in the Array   我知道暴力解必然会出现问题，不过我花了近1h才写出正确思维的暴力解法，这个过程是锻炼思维的过程。  优化解法
+      - 2, 对$\forall$ i, j, k $\in$ Z; for all  0 <= j < i < k <= `nums.length - 1`, `nums[j] < nums[i] < nums[k]`
+      - 1, `nums[i - 1] < nums[i] < nums[i + 1]`, and the previous condition is not satisfied
+      - `0`, if none of the previous conditions holds.
+
+![image-20211002112937258](leetcode/001.png)
+
+条件的处理，如何优化时间复杂度，将加2的情况进行优化。对$\forall$ i $\in$ Z,  左边的最大值 < `nums[i]` < 右边的最小值 
+
+## **Weekly Contest 261**
+
+\2027. Minimum Moves to Convert String  当时思路卡了一下，想到几种情况，很多个X, "XXOXXXOXX"这种情况该如何处理等等，绕进了一个误区，卡了很久
+
+\2028. Find Missing Observations  两题44min AC  思路卡顿，条件处理，前几名大佬思路都很清新，甚至有相似之处。 比如对处理返回数组，在满足第一个条件情况下，先把数组中每个元素默认设置为1，之后再做加法处理。

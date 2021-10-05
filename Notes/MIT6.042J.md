@@ -12,6 +12,8 @@
 
 ¬ ，∀，∃,∈, ⇒
 
+Σ capital sigma
+
 ### **资源网站：**
 
 视频：
@@ -112,8 +114,46 @@
 
 Truth Table 就可以了。Truth Table更加直观，但是枚举后，也知道结果了。
 
-## Lec02:
+## Lec02:Induction(反证法，归纳)
 
-​	
+ indirect proof, a proof by contradictin
+
+Pythagoras 古希腊的第一位数学家
+
+希腊神话
+
+Aperiron  bad gods infinity
+
+Peros      good gods  finity
+
+How to read in English
+
+- n^3-n n cubed minus n
+- ∀n∈n for all nature n 
+
+Some examples in this lecture
+
+-  irrational √2 = a/b(fraction in the lowest terms)	
+- 90,92 90 > 92 proof  transform the ractangles comparision  2+, surprisingly, 90 > 92. Think about why is it
+
+How to proof by an induction
+
+**template**
+
+Predicate
+
+Base Case
+
+Introductive step
+
+Assume
+
+Examine
+
+- 3|n^3-n
+- 1+2+...+n   
+- A false proof, All horses are the same color.    the false point: the base case.      Dot,dot,dot is conveninet but there is some bug.
+
+
 
 ​		
