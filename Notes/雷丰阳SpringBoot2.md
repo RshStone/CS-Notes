@@ -10,7 +10,7 @@
 
 ## SpringBoot2视频
 
-### P1
+### P1课程介绍
 
 SpringBoot2: 
 
@@ -19,6 +19,8 @@ SpringBoot2:
 第二季：SpringBoot2响应式编程:基础开发用响应式来替代，基础，Webflux开发web应用，少量资源——大并发，极高吞吐量的应用;持久化访问;响应式安全开发;响应式原理(Reactor, Netty)
 
 语雀平台
+
+### 官方笔记参考网站
 
 [SpringBoot2核心技术与响应式编程 · 语雀 (yuque.com)](https://www.yuque.com/atguigu/springboot)
 
@@ -102,6 +104,108 @@ SpringBoot2:
 ### P25web场景，源码分析，静态资源管理
 
 
+
+### P26请求处理Rest映射及源码分析
+
+- 什么是请求处理？  `@xxxMapping`注解
+
+- Rest风格（使用HTTP GET, POST, DELETE, PUT请求方式动词来表示对资源操作）
+
+  ![image-20211013175736319](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20211013175736319.png)
+
+  问题 `PUT`, `DELETE`默认`GET`
+
+  `@RequestMapping(value= , method = RequestMethod.XXX)` == `@XxxMapping("")`  注意大小写
+
+- 查看 `WebMvcAutoConfiguration`
+
+  ![image-20211013181358048](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20211013181358048.png)
+
+Rest风格
+
+**P27请求处理怎么改变默认的method**
+
+- 在 `config`目录下写 `WebConfig`。 写 `HiddenHttpMethodFilter`方法  自定义规则
+
+### P28请求处理-源码分析-请求映射原理
+
+所有的请求都回到 `DispatchServlet`
+
+要研究（SPRIGNBOOT SpringMVC）请求处理最终都会到 `doDispatch`  官方笔记有图
+
+自动调用 `HandlerMapping`
+
+### P29请求处理常用参数注解使用
+
+详细见视频和文档的使用，大致是接受请求，处理请求，打印请求，输出请求。
+
+只要我们在括号参数里加上`@相应类型`注解, `SpringMVC`自动将参数确定好值
+
+### P30请求处理-@RequestAttribute
+
+页面转发的时候获取 `request`域属性
+
+一个跳到另一个
+
+### P31-@MatrixVariable与UrlPathHelper
+
+补看，讲的针不错。需要结合文档，视频，慢慢领会。
+
+### P32、请求处理-【源码分析】-各种类型参数解析原理
+
+看源码 结合官方笔记
+
+打断点，执行程度。不打断点，不执行程序，光靠Ctrl + Click 不能像断点debug模式下的那样一层层地深入。
+
+从 `DispatchServlet`开始 `debug`来看每一个的过程
+
+HandlerMapping中找到处理请求的Handler
+
+HandlerAdapter适配器(四种 RequestMappingHandler, HandlerFunction, HttpRequestHandler, SimpleControllerHandler) 适配器处理方法
+
+执行目标方法 
+
+执行目标方法关键设置参数解析器(26个，Argument Resolver) (含判断参数支不支持解析，所以决定了放进去的参数)
+
+
+
+### P33、请求处理-【源码分析】-Servlet API参数解析原理
+
+
+
+### P34、请求处理-【源码分析】-Model、Map原理
+
+
+
+
+
+### P35、请求处理-【源码分析】-自定义参数绑定原理
+
+### P36、请求处理-【源码分析】-自定义Converter原理
+
+### P37、响应处理-【源码分析】-ReturnValueHandler原理
+
+### P38、响应处理-【源码分析】-HTTPMessageConverter原理
+
+
+
+### P39、响应处理-【源码分析】-内容协商原理
+
+
+
+### P40、响应处理-【源码分析】-基于请求参数的内容协商原理
+
+### P44
+
+模板解析经过请求处理最终由模板引擎来解析
+
+直接访问只能访问静态文件夹
+
+处理了一个请求，请求名叫 */main.html* *最终跳到main*页面
+
+
+
+### P45
 
 
 
@@ -1276,3 +1380,143 @@ public class Application {
 **`CommandLineRunner**:
 
 There is also a `CommandLineRunner` method marked as a `@Bean`, and this runs on start up. It retrieves all the beans that were created by your application or that were automatically added by Spring Boot. It sorts them and prints them out.
+
+```java
+package com.example.springboot;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+public class HelloControllerTest {
+
+	@Autowired
+	private MockMvc mvc;
+
+	@Test
+	public void getHello() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().string(equalTo("Greetings from Spring Boot!")));
+	}
+}
+```
+
+没看懂：
+
+`MockMvc` send HTTP requests into the `DispatcherServlet` and make assertions about the result. Note the use of `@AutoConfigureMockMvc` and `@SpringBootTest` to inject a `MockMvc` instance. Having used `@SpringBootTest`, we are asking for the whole application context to be created. 
+
+An **alternative** would be to ask Spring Boot to create only the web layers of the context by using `@WebMvcTest`. In either case, Spring Boot automatically tries to locate the main application class of your application, but you can override it or narrow it down if you want to build something different.
+
+As well as mocking the HTTP request cycle, **a simple full-stack integration test**.
+
+```java
+package com.example.springboot;
+
+import org.junit.jupiter.api.Test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.ResponseEntity;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class HelloControllerIT {
+
+	@Autowired
+	private TestRestTemplate template;
+
+    @Test
+    public void getHello() throws Exception {
+        ResponseEntity<String> response = template.getForEntity("/", String.class);
+        assertThat(response.getBody()).isEqualTo("Greetings from Spring Boot!");
+    }
+}
+```
+
+#### 小插曲
+
+参考的教程：
+
+[Graphite (graphiteapp.org)](https://graphiteapp.org/quick-start-guides/synthesize.html)
+
+折腾`actuator`，`有一个graphite`,本想简单尝试一下，然后发现网络环境不行，尝试vb虚拟机和wsl2，结果网络问题，尝试改wsl2的网络环境。没有成功，网络环境如下。
+
+https://jiayaoo3o.github.io/2020/06/23/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1WSL2%E7%9A%84%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/
+
+```
+ping: https://gems.hashicorp.com/: Name or service not known
+```
+
+**Windows Powershell:**
+
+执行命令`vagrant plugin install vagrant-vbguest`
+
+```
+Vagrant failed to load a configured plugin source. This can be caused
+by a variety of issues including: transient connectivity issues, proxy
+filtering rejecting access to a configured plugin source, or a configured
+plugin source not responding correctly. Please review the error message
+below to help resolve the issue:
+
+  Errno::ETIMEDOUT: Failed to open TCP connection to gems.hashicorp.com:443 (A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. - connect(2) for "gems.hashicorp.com" port 443) (https://gems.hashicorp.com/specs.4.8.gz)
+
+Source: https://gems.hashicorp.com/
+```
+
+**Wsl2:**
+
+```
+Vagrant failed to load a configured plugin source. This can be caused
+by a variety of issues including: transient connectivity issues, proxy
+filtering rejecting access to a configured plugin source, or a configured
+plugin source not responding correctly. Please review the error message
+below to help resolve the issue:
+
+  no such name (https://gems.hashicorp.com/specs.4.8.gz)
+
+Source: https://gems.hashicorp.com/
+```
+
+**VB:**
+
+换了阿里源
+
+```
+bash: vagrant: command not found
+[root@localhost synthesize-master]# yum -y install vagrant
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirrors.ustc.edu.cn
+ * extras: mirrors.ustc.edu.cn
+ * updates: mirrors.aliyun.com
+No package vagrant available.
+Error: Nothing to do
+=======================================================================
+Loaded plugins: fastestmirror
+Cannot open: https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_x86_64.rpm. Skipping.
+Error: Nothing to do
+
+```
+
+#### 一些教训：
+
+`ping` 不带`https`的试一试
+
+```
+ping: https://gems.hashicorp.com/: Name or service not known --> ping gems.hashicorp.com
+```
+
