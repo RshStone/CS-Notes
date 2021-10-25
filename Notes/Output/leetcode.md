@@ -1,5 +1,18 @@
 # leetcode
 
+## 一些刷题的小tips
+
+面对 `[["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]]`形式的数组，在 `debug`的时候如何快速的调整形式附和编译器的形式呢？
+
+设想一下数据量很大的情况，如果将 `[]` 一个一个手动更改 `{}` 这巨大的重复劳动让人真的很难受。
+
+几种解决思路：
+
+1. sublime text editor  批量修改的功能
+2. c11新特性 赋值很方便
+3. 手动将 `[]` 改成 `{}`
+4. Vscode plugins  `vscode除了不能生孩子啥都可以`  `vscode有插件可以直接刷力扣`
+
 # Goals
 
 主要目的是为了给自己快速复习和查漏补缺进行食用。
@@ -149,6 +162,8 @@ class Solution {
 ## Tree
 
 ### 思考方式
+
+几个思考问题？  基本的遍历方式，递归实现，迭代 ， Morris Traversal， 颜色标记法。
 
 树的基本框架的构建，是用BFS还是DFS，BFS怎么用，DFS的话是pre,in,post中的哪一个或者只是要对树进行单纯的遍历。结合树的类型一般的树，二叉树，二叉搜索树等。
 
@@ -1023,7 +1038,27 @@ public List<List<Integer>> threeSum(int[] nums) {
 
 ## Binary Search
 
+## Trie (prefix tree)
 
+### 学习参考
+
+​	[Implement Trie (Prefix Tree) - LeetCode](https://leetcode.com/problems/implement-trie-prefix-tree/solution/)
+
+[35 | Trie树：如何实现搜索引擎的搜索关键词提示功能？ (geekbang.org)](https://time.geekbang.org/column/article/72414)
+
+
+
+
+
+### 具体题目
+
+​	\208. Implement Trie (Prefix Tree)
+
+### 与其他数据结构的对比
+
+​	Balanced Tree 
+
+​	Hash Tables
 
 # 周赛
 
@@ -1106,3 +1141,79 @@ Java语言中的Steam特性也是待完善的一个地方。
 \2027. Minimum Moves to Convert String  当时思路卡了一下，想到几种情况，很多个X, "XXOXXXOXX"这种情况该如何处理等等，绕进了一个误区，卡了很久
 
 \2028. Find Missing Observations  两题44min AC  思路卡顿，条件处理，前几名大佬思路都很清新，甚至有相似之处。 比如对处理返回数组，在满足第一个条件情况下，先把数组中每个元素默认设置为1，之后再做加法处理。
+
+## Weekly Contest 262
+
+\5894. Two Out of Three 处理一个数组同时出现两个数字的情况，没有很好思路。卡了一会  easy题写了40行代码; 为了减少空间的使用量，使用了数字优化技巧。  做熟练了后直接无脑上三个set或者arrays；当然我的优化思路也值得肯定。 不过当时代码写着写着就忽视了一个条件。
+
+\2033. Minimum Operations to Make a Uni-Value Grid   1.5h  难点在于如何选择那个合适的数，经过无数次尝试提交后，我选择用平均值上下浮动的策略来尝试寻求到合适的ave值；然后再做最后的处理。 不幸运的是，失败了。不过，这次周赛总体感觉还是很爽的。我还思考了下impossible的情况，奇数偶数的分类，事实证明，是越走越远了。 后来我发现数据离散后，平均数和中位数区别越来越明显，就应该寻找中位数。--> Sort    即使一个个测试对了，只要有心，测试用例就能让你的代码通不过。  教训！！！！
+
+前几名的code.  炒鸡佩服。 使用Sort方法可以得到最中间的，也就是中位数而不是平均数。
+
+```java
+class Solution {
+    public int minOperations(int[][] grid, int x) {
+        int n = grid.length , m = grid[0].length;
+        int[] a = new int[n*m];
+        for(int i = 0;i < n;i++){
+            for(int j = 0;j < m;j++){
+                a[i*m+j] = grid[i][j];
+            }
+        }
+        Arrays.sort(a);
+        int ans = 0;
+        for(int i = 0;i < n*m;i++){
+            if((a[i] - a[n*m/2]) % x != 0)return -1;
+            ans += Math.abs(a[i] - a[n*m/2]) / x;
+        }
+        return ans;
+    }
+}
+```
+
+##  Weekly Contest 264
+
+\2047. Number of Valid Words in a Sentence  测试用例很恶心 不过正则写很妙，可以学正则的引入题。
+
+写的过程中少思考的情况"a-."
+
+一些语法bug， Java 语言的运算符优先级 ==  > & > && > || 
+
+```java
+if(end == '!' || end == '.' || end == ',' && (n - 2) >= 0 && s.charAt(n - 2) == '-')   直接中间短路
+if((end == '!' || end == '.' || end == ',') && (n - 2) >= 0 && s.charAt(n - 2) == '-')
+测试用例"pencil-sharpener."
+    
+//regex
+s.matches("[a-z]*([a-z]-[a-z])?[a-z]*[!.,]?"
+```
+
+\2048. Next Greater Numerically Balanced Number
+
+一些语法问题
+
+解题思路：利用完美数字的特点，直接暴力穷举，这需要熟练，里面有大佬在4min内暴力穷举了110种情况，WDF
+
+启发思路：思考边界值，根据测试用例，能不能直接得出最大的那个数字是什么。
+
+正常点思路，`HashMap`的优化，对于数字类型的题目，完全可以用一个`int[10]`这样的数组进行存储。思考的判断条件
+
+```java
+HashMap getOrDefault
+hp.put(cur.charAt(i) - '0', hp.getOrDefault(cur.charAt(i) - '0', 0) + 1);
+要是太多有点乱，可以把 int c = cur.charAt(i) 带进去检查
+    
+HashMap 的遍历实现
+for(Integer each: hp.keySet()){
+	if(!each.equals(hp.get(each))){
+	flag = false;
+	break;
+ 	}
+}
+    
+HashMap 对KeySet进行排序
+    
+List<Character> chars = new ArrayList<Character>(h.keySet());
+Collections.sort(chars, (a,b) -> (h.get(b) - h.get(a)));
+```
+
