@@ -1,5 +1,13 @@
 # leetcode
 
+## Resources
+
+参考复习的前人仓库： 
+
+[GitHub - ustcyyw/yyw_algorithm: 💻我的leetcode算法题解，详细的java版本。包括分类题解/周赛题解/剑指OFFER题解](https://github.com/ustcyyw/yyw_algorithm)
+
+[CS-Notes/leetcode题目简评.md at master · huangrt01/CS-Notes · GitHub](https://github.com/huangrt01/CS-Notes/blob/master/Notes/Output/leetcode题目简评.md)
+
 ## 一些刷题的小tips
 
 面对 `[["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]]`形式的数组，在 `debug`的时候如何快速的调整形式附和编译器的形式呢？
@@ -1182,10 +1190,33 @@ for(Integer each: hp.keySet()){
 	break;
  	}
 }
-    
+//这里的Integer 不能改成 auto cpp里可以 需要注意
+
 HashMap 对KeySet进行排序
     
 List<Character> chars = new ArrayList<Character>(h.keySet());
 Collections.sort(chars, (a,b) -> (h.get(b) - h.get(a)));
 ```
+
+详细在这篇文章里:
+
+https://www.geeksforgeeks.org/how-to-iterate-hashmap-in-java/
+
+ps: 没有完全读懂，需要再读，结合一些Java高级特性。
+
+## Weekly Contest 265
+
+58min AC了两题, 第二题使用IDEA进行debug测试。 排名 6400/11000。 看了我排名附近的人，不免也有刷了四五百道题目，没A出来的。自己并不是孤独的。这个心路历程。也有参加和我差不多场次的朋友。一起加油吧~
+
+\2057. Smallest Index With Equal Value easy 3min
+
+2058. Find the Minimum and Maximum Number of Nodes Between Critical Points
+
+[My Submissions](https://leetcode.com/contest/weekly-contest-265/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/submissions/)[Back to Contest](https://leetcode.com/contest/weekly-contest-265/)
+
+这题真的很可惜，很好的一道快速测试代码能力的题目。不过最后花了55min。思路其实都差不多，有几个地方没有思考到位导致后面修修补补产生了很多困难甚至需要debug。参考了世界rank前2的`uwi`。他3min写出来了。思路很简单清爽。2个`ArrayList`。
+
+写的过程中语法有点不熟练。也犯了一点错误，比如"()","=="等问题。 关键性API， `ArrayList`访问其元素，需要使用 `get`方法。
+
+思路思考得不完全，`min`, `max`的怎么取。 `min`思考正确，但 `max`的思考过程中产生了错误。
 

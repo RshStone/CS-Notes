@@ -6,7 +6,146 @@
 
 [GitHub - ijpq/MyCS61C: this repo contains self-learning in UCB-CS61C of our group and it's appreciate that anyone would like to join me.](https://github.com/ijpq/MyCS61C)
 
-## lab0
+## Discussions
+
+### discs0
+
+aims: a conceptual check
+
+1.1 true (not exactly) 1.2  false 1.3 false 1.4 true
+
+2 (a) 1. 0b10010011 0x93 0d147; 2. 63 0b0111111 0x3F the later the same method, so skip it
+
+2 (b) 1. 0b1101001110101101 skip the same way
+
+2 (c) 2^16 = 64 Ki the same skip
+
+2 (d) 2 Ki = 2^11  skip the same
+
+3 (a) two's 127 -128  (**don't understand the homework when I was doing them)**
+
+3(b) biased not know exactly   
+
+3(c) 3
+
+3(d) 256 unsigned  **No such integer? 1to256 instead of 0 to 255**
+
+3(e)(拍照纸上)
+
+​	Thought: we assume that x `abcdefgh` with 8 bits. a,b,c,d,e,f,g,h all represent 0 or 1.
+
+​	![image-20211104152838766](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20211104152838766.png)
+
+​			
+
+3(f)
+
+​	why the three radices shine? 
+
+ 	base 10: maybe that's because people have 10 fingers
+
+​	 base 2: It's better for computer. But why it's better for computers, I don't know.
+
+​	 base 16: one digit of base16 can symbol 4 digits of 2. But why base 8 is not used. I don't know neither.
+
+**Extracts from the solution:**
+
+**Binary signals are less likely to be garbled than higher radix signals, as there is more “distance” (voltage or current) between valid signals. Additionally, binary signals are quite convenient to design circuits, as we’ll see later in the course.**
+
+4(a) 2 overflow reference: Two's Complement Overflow Rules
+
+4(b) 1.8bits 2.7bits 3. ? an: 7bits 64 numbers 4. 2^43 < 12* 2^40 <  2^44
+
+### discs1
+
+**1**
+
+ 1.1 false 1.2  pointer: (google a pointer is a variable whose value is the address) 这里和Java里的`reference variable` 进行一个简单的区分，Java严格没有指针，参考文章[对比C/C++，浅析Java里的指针和引用_晚秋星辰-CSDN博客](https://blog.csdn.net/dengpeng0419/article/details/47452027)
+
+In fact, an array variable is the first address of the array. 
+
+1.3 `invalid argument.` (the result of compile) `warning: passing argument 1 of ‘free’ makes pointer from integer without a cast [-Wint-conversion]`
+
+1.4  don't know
+
+**2**
+
+ 2.1 `pp` evaluates to the address of `p` `0xF9320904` 
+
+​		`*pp` evaluates to the address of `0x2A` `0xF93209AC`
+
+​		`**pp` evaluates to `0x2A`.
+
+2.2 (a) If the size of arr is 0 and then return 0. Otherwise it will returns the sum of the array `arr`.
+
+​	  (b) `sum` variable calculates the number of `0` value in the array, and the value to reture is the minus sum.
+
+​	  (c) 
+
+```c
+//bitwise operator x = y, y = x;
+x = x ˆ y;
+y = x ˆ y;
+x = x ˆ y;
+//the procedure of prove is interesting
+```
+
+​	(d) write the XNOR in C
+
+```c
+int baz(int x, int y){
+    int a = ~x & ~y;
+    int b = x & y;
+    return a & b;   //Xor a | b
+}
+```
+
+**3**
+
+**3.1**
+
+(a) 
+
+```c
+void swap(int *x, int *y){
+	int tep = *x;
+    *x = *y;
+    *y = tep;
+}
+```
+
+(b)
+
+```c
+int mystrlen(char* str){
+    int count = 0;
+    while(*str){
+        str += 1;
+        count++;
+    }
+    return count;
+}
+```
+
+**3.2**
+
+(a) `sizeof()` --> the number of Bytes. It should be `sizeof(summands)/sizeof(summands[0])`
+
+​		Or use `size_t n` as the parameter of the methods.
+
+(b)  `error: lvalue required as increment operand`  `(*(string + i))++;` why don't know 优先级顺序是同级关系(c, 结合方向右到左) (cpp 中 ++ 优先)
+
+(c) 
+
+
+
+### discs2
+
+
+
+## labos
+
+### lab0
 
  课程基本注意事项（自学者没有homework账号）
 
@@ -14,9 +153,9 @@
 
  至少学会一种`text editor` Vim/Emacs/Nano
 
-## lab1
+### lab1
 
-### Exercise 2: Catch those bugs! && Exercise 1: See what you can C
+#### Exercise 2: Catch those bugs! && Exercise 1: See what you can C
 
 - `-c`,GCC会编译并汇编该代码
 
@@ -44,13 +183,13 @@
     8. show a list of all variables and their values
     9. quit
 
-### Exercise 3: Debugging w/ YOU
+#### Exercise 3: Debugging w/ YOU
 
  注意`gcc`版本问题使用`redirection`需要`gcc` 8.0 以上版本
 
 ​    `./a.out < fileName.txt`
 
-### Exercise 4: Valgrind’ing away
+#### Exercise 4: Valgrind’ing away
 
 盲点知识：
 
@@ -98,9 +237,9 @@ devC++结果:
 
 为什么有错误但成功运行了呢？我个人猜测是gcc编译器在背后里帮我们把sizeof(a)的问题处理掉了，具体怎么处理。我不知道。但是这里我们发现用valgrind检测会查到memory的错误，这也是它厉害的一个地方了。
 
-## lab2
+#### lab2
 
-### Exercise 0: `Makefiles`(不太会，稍微看了下)
+#### Exercise 0: `Makefiles`(不太会，稍微看了下)
 
 `Makefile` Tutorial : [Makefile Tutorial By Example](https://makefiletutorial.com/#why-do-makefiles-exist-)
 
@@ -112,7 +251,7 @@ devC++结果:
 6. What operating system does the term “Darwin” represent?
 7. What line creates the lfsr program from its object files? (Give its line number.)
 
-### Exercise 1: Bit Operations
+#### Exercise 1: Bit Operations
 
 - base knowledge
 
@@ -130,7 +269,7 @@ devC++结果:
   }
   ```
 
-### Exercise 2: Linear Feedback Shift Register
+#### Exercise 2: Linear Feedback Shift Register
 
 - 对于大端法和小端法，最高位所在位置不同，这里的最高位是最左边（大端法最高位在低地址，这里是大端法）
 
@@ -138,17 +277,39 @@ devC++结果:
 
 - 疑惑：为什么会有65536种正整数结果
 
-### Exercise 3: Linked Lists
+#### Exercise 3: Linked Lists
 
  Java写过很多次，感觉比较esay!
 
-### Exercise 4: Memory Management
+#### Exercise 4: Memory Management
 
 - `make vector_test`没成功使用 `gcc -o vector vector.c vector_test.c`测试成功
 - `make vector-memcheck`没成功
 - make理解不到位
 
-## Project1
+### lab3
+
+学习参考:
+
+​	[RISC-V Assembly for Beginners. If you are new to assembly programming… | by Erik Engheim | The Startup | Medium](https://medium.com/swlh/risc-v-assembly-for-beginners-387c6cd02c49)
+
+​	Computer Organization and Design RISC-V edition 
+
+#### Exercise 1: Familiarizing yourself with Venus
+
+简单熟悉下 venus的一些操作
+
+#### Exercise 2: Translating from C to RISC-V
+
+​	同上
+
+#### Exercise 3: Factorial
+
+折腾了很久，看似很简单。
+
+## Project
+
+### Project1
 
 指针指针傻傻分不清？
 
@@ -430,23 +591,5 @@ void processInput()
 
 ```
 
-## lab3
 
-学习参考:
-
-​	[RISC-V Assembly for Beginners. If you are new to assembly programming… | by Erik Engheim | The Startup | Medium](https://medium.com/swlh/risc-v-assembly-for-beginners-387c6cd02c49)
-
-​	Computer Organization and Design RISC-V edition 
-
-### Exercise 1: Familiarizing yourself with Venus
-
-简单熟悉下 venus的一些操作
-
-### Exercise 2: Translating from C to RISC-V
-
-​	同上
-
-### Exercise 3: Factorial
-
-折腾了很久，看似很简单。
 

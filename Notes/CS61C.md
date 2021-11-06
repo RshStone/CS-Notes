@@ -24,6 +24,26 @@ CSAPP and do some labs.
 
 Happy coding!
 
+## Resources
+
+Books:
+
+**P&H**: The first edition of Patterson and Hennessy's *Computer Organization and Design RISC-V Edition* book ("P&H"), ISBN 0128122757.
+
+**K&R**: *The C Programming Language, Second Edition* by Kernighan and Ritchie. We will reference its sections in the reading assignments. Other C programming books are also suitable if you are already comfortable with them, but our lectures will be based on K&R.
+
+**WSC**: *The Datacenter as a Computer: An Introduction to the Design of Warehouse-Scale Machines*, which is freely available online [here](https://inst.eecs.berkeley.edu/~cs61c/resources/WSCBarrosoHolzle.pdf).
+
+**资源**
+
+ **(课件、作业、lab、project 都发布在这里)**
+
+[官网](https://inst.eecs.berkeley.edu/~cs61c/su20/)
+
+[lab 和 project 的 starter](http://link.zhihu.com/?target=https%3A//github.com/61c-teach)
+
+[B 站中英文字幕视频](http://link.zhihu.com/?target=https%3A//www.bilibili.com/video/BV1fC4y147iZ) 
+
 ## lec01 Course Intro, Number Representation
 
 preparation the basis you should know about this course 2's complement 进制转换 unsigned
@@ -61,6 +81,22 @@ preparation the basis you should know about this course 2's complement 进制转
 - Bias Notation
 
   unsigned value + bias = 'actual' value
+  
+  A notation that represents the most negative value by 00 … 000two and the most positive value by 11 … 11two, with 0 typically having the value 10 … 00two, thereby biasing the number such that the number plus the bias has a non-negative representation.(摘自 P&H P194 没弄明白 )
+  
+  维基百科 移码示例：
+  
+  -120D = -01111000B（真值）
+  
+  [原码](https://zh.wikipedia.org/wiki/原码)：11111000
+  
+  [反码](https://zh.wikipedia.org/wiki/反码)：10000111
+  
+  补码：10001000
+  
+  **移码**：00001000
+  
+  这样的移码也可以叫做偏移值为128的移码，也是标准移码，即10000000B+（-1111000B）=10000000B+（10001000B）=00001000B。这样移码就可以表示为原数的补码加上偏移值。在[IEEE 754](https://zh.wikipedia.org/wiki/IEEE_754)浮点数表示中移码是非标准的，它的偏移值为2k-1，也就是说对于[单精度浮点数](https://zh.wikipedia.org/wiki/单精确浮点数)的偏移值为127。
 
 ## lec02 C:Introduction,Pointer
 
