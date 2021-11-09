@@ -8,7 +8,7 @@
 
 ## Discussions
 
-### discs0
+### discs1
 
 aims: a conceptual check
 
@@ -36,7 +36,7 @@ aims: a conceptual check
 
 ​	![image-20211104152838766](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20211104152838766.png)
 
-​			
+​			![image-20211107145548846](CS61C-lab/005.png)
 
 3(f)
 
@@ -56,7 +56,7 @@ aims: a conceptual check
 
 4(b) 1.8bits 2.7bits 3. ? an: 7bits 64 numbers 4. 2^43 < 12* 2^40 <  2^44
 
-### discs1
+### discs2
 
 **1**
 
@@ -135,11 +135,191 @@ int mystrlen(char* str){
 
 (b)  `error: lvalue required as increment operand`  `(*(string + i))++;` why don't know 优先级顺序是同级关系(c, 结合方向右到左) (cpp 中 ++ 优先)
 
-(c) 
+(c) no error
 
+(d) `char *srcptr, replaceptr;`  --> `char *srcptr, *replaceptr;`
 
+**4.**
 
-### discs2
+4.1
+
+(a) Static variables   static area
+
+ (b) Local variables  stack
+
+(c) Global variables  static
+
+(d) Constants   `Code, static, stack`
+
+(e) Machine Instructions  code
+
+(f) Result of malloc heap
+
+(g) String Literals ps: char* s = "string" : static memory char[7] s = "string"  stack.
+
+4.2
+
+(a) `int* arr = (int*)malloc(k * sizeof(int))`
+
+(b) `char *str = (char*)malloc(sizeof(char) * (p + 1))` 
+
+(c)  `int *mat = (int *)calloc(sizeof(n * m), 0)`
+
+```c
+//这种写法值得思考
+mat = (int **) calloc(n, sizeof(int *)); 
+for (int i = 0; i < n; i++) 
+	 mat[i] = (int *) calloc(m, sizeof(int));
+```
+
+4.3
+
+`warning: the `gets' function is dangerous and should not be used. `
+
+`char* important_stuff = (char*) malloc(11 * sizeof(char));` （分配在heap）
+
+`char* buffer[64];`  （分配在stack, 超过63位会出问题）
+
+4.4
+
+![006](CS61C-lab/006.png)
+
+reason: [When to pass a pointer to pointer as argument to functions in C++? - Stack Overflow](https://stackoverflow.com/questions/22345628/when-to-pass-a-pointer-to-pointer-as-argument-to-functions-in-c)
+
+```cpp
+void SomeFun1(int *);
+void SomeFun2(int **);
+int i;
+int *ptr = &i;
+
+//when you want value of ptr should remain unchanged, but you want to change only value of i, use,
+SomeFun1(int *)
+
+//when you want value of ptr should change. i.e, it should point to some other memory other than i, use,
+SomeFun2(int **);
+```
+
+个人写的测试用例
+
+```c
+/*Two test cases to help you understand why pass pointer to pointer as functional parameter. 
+In this discussion, it will help you understand 4.4 better!
+https://onlinegdb.com/MP7d9n_xD
+https://onlinegdb.com/RAdxfiHrr
+*/
+
+//ps: 打印 ls的地址其实是ls指针指向变量的地址  &ls其实是ls指针所占用内存位置的地址
+//C语言传值的特性， int x 作为函数参数，在函数内自动复制了一个变量，变量的值等于 x
+//     int *p 作为函数参数, 在函数内自动复制了一个指针, 指针所指向的变量是p指针所指向的内容 不能对指针本身进行修改，但可以对指针所指向的变量的值修改， 参考小甲鱼视频 https://www.bilibili.com/video/BV17s411N78s?p=45
+
+//思路：C语言传值特性，传指针会发生什么，传指向指针的指针会发生什么
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct ll_node {
+    int first;
+    struct ll_node* rest;
+};
+
+void prepend(struct ll_node* lst, int value);
+
+int main()
+{
+    struct ll_node* ls = (struct ll_node*)malloc(sizeof(struct ll_node));
+    ls->first = 1;
+    ls->rest = NULL;
+    printf("Inmain: %d\n", ls->first);
+    
+    printf("===========\n");
+    printf("outsidePrependAddress:%p\n", &ls);
+    prepend(ls, 5);
+    printf("ls->first: %d\n", ls->first);
+    printf("ls->rest: %s\n", ls->rest);
+    return 0;
+}
+void prepend(struct ll_node* lst, int value) {
+    printf("InPrependAddress: %p\n", &lst);
+	struct ll_node* item = (struct ll_node*)malloc(sizeof(struct ll_node));
+	item->first = value;
+	printf("item->rest-before: %p\n", item->rest);
+	item->rest = lst;
+	printf("item->rest-after: %p\n", item->rest);
+	lst = item;
+	printf("prepend======\n");
+	printf("first: %d\n", lst->first);
+	printf("second: %d\n", lst->rest->first);
+}
+```
+
+4.5
+
+```c
+void free_ll(struct ll_node** lst){
+    while(*lst != NULL){
+    	struct ll_node *next = (*lst)->rest;        
+    	free(*lst);
+        *lst = next;
+    }
+}
+
+```
+
+### discs3
+
+## Policies
+
+[CS 61C (berkeley.edu)](https://inst.eecs.berkeley.edu/~cs61c/su20/policies)
+
+### TextBooks: 
+
+​	P&H, K&R,笔记里记了
+
+### Exams:
+
+CS61C lab0 && dis3   6.29  40days to complete it!!! 
+
+（按进度40天内做）
+
+Midterm 1: 7/9 9-11AM. Covers up to and including the 7/6 lecture on CALL.
+Midterm 2: 7/29 9-11AM. Covers up to and including the 7/23 lecture on VM.
+Final: 8/13 9AM-12PM
+
+### “Clobber” Policy:
+
+​	成绩换算，跳过
+
+### Office Hours:
+
+   伯克利同学答疑求助用的，
+
+​	对于自学者：
+
+​		students should have done the following *on the hive machines*:
+
+- Run valgrind and fixed all memory leaks/warnings
+- Written a test that isolates/demonstrates their issue (NOT a staff-provided test)
+- Stepped through the test with (c)gdb to find the line number the issue occurs on
+
+### Discussion Forum:
+
+Piazza 进不去 需要UCB账号
+
+### Computer Labs
+
+(测试进不去)
+
+You can connect remotely to the lab computers using the following addresses:
+
+- [330 Soda (“The Hive” – Linux)](https://inst.eecs.berkeley.edu/cgi-bin/clients.cgi?choice=330soda)
+
+If the Hive machine you have chosen is running too slow, try another one. You can find a list of the available Hive machines and their current workloads here:
+
+- [Hivemind](https://hivemind.eecs.berkeley.edu/)
+
+### Grading:
+
+成绩参考表
 
 
 
@@ -152,6 +332,16 @@ int mystrlen(char* str){
  git 一些基本命令(我写在了自己的笔记里)
 
  至少学会一种`text editor` Vim/Emacs/Nano
+
+#### **Jargon**
+
+- TA/GSI/uGSI: Teaching Assistant (sometimes called Graduate/Undergraduate Student Instructor).
+- AI: Academic Intern, also part of course staff. You’ll see them in checkoff, OH, and Piazza.
+  - In this course, AI generally stands for this, and not “artificial intelligence”.
+- OH: Office Hours, where you can meet course staff in (virtual) meetings and ask 61C-related questions. Or occasionally, if it’s not busy, non-61C-related things.
+- Hive/”Hive machines”/”the Hive”: a group of instructional servers. More details later in the lab.
+
+
 
 ### lab1
 

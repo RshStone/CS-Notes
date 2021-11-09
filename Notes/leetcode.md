@@ -37,7 +37,7 @@
 
 计算机科学的初衷。丰富的学习资源，先进的开源理念，让教育资源尽可能平等。
 
-我这样的普通人也可以沉浸其中，自得其乐。
+我这样的普通人也可以沉浸其中，自得其乐。Has
 
 当然，经济上很重要，一份还算不错的收获，对个人来说就是这样子啊。
 
@@ -155,6 +155,8 @@ class Solution {
 方案的时间复杂度和空间复杂度是怎么样的。
 
 难点：想清楚递归，递归终止条件，是否是大问题转化为小问题，每个小问题是否独立。
+
+（非递归语言的实现，cpp,Java,go等等）
 
 ### 涉及到的题目
 
@@ -451,7 +453,7 @@ int preorder[];
 
 代码方面，回溯算法的框架：
 
-
+（**框架只是一个思考过程，不需要完全依赖，很多时候不一样的思路过程也涉及到了框架里代码的思想，换句话来说，框架是一种思考问题的方式，目的是帮助你更好理解问题**）
 
 ```python
 result = []
@@ -475,6 +477,8 @@ def backtrack(路径, 选择列表):
 [leetcode93](#93)复原IP地址
 
 [leetcode46](#46)全排列
+
+[leetcode78Subsets - LeetCode](https://leetcode.com/problems/subsets/)
 
 [剑指 Offer 12](#剑指 12)矩阵中的路径
 
@@ -652,7 +656,11 @@ for 状态1 in 状态1的所有取值：
 
 ​    [leetcode 72编辑距离](#编辑距离)
 
-​	
+​	[Unique Binary Search Trees II - LeetCode](https://leetcode.com/problems/unique-binary-search-trees-ii/)  
+
+​	[Unique Binary Search Trees - LeetCode](https://leetcode.com/problems/unique-binary-search-trees/)   (Divide-and-conquer.  F(i) = G(i-1) * G(n-i) 卡兰特数 G(n) = G(0) * G(n-1) + G(1) * G(n-2) + … + G(n-1) * G(0) )
+
+
 
  正则表达式、背包问题、矩阵相乘、最短路径问题、树中的独立积问题
 
@@ -1026,10 +1034,6 @@ public List<List<Integer>> threeSum(int[] nums) {
 
 [35 | Trie树：如何实现搜索引擎的搜索关键词提示功能？ (geekbang.org)](https://time.geekbang.org/column/article/72414)
 
-
-
-
-
 ### 具体题目
 
 ​	\208. Implement Trie (Prefix Tree)
@@ -1107,10 +1111,11 @@ Java语言中的Steam特性也是待完善的一个地方。
 
 3min只AC了一道题
 
-2012. Sum of Beauty in the Array   我知道暴力解必然会出现问题，不过我花了近1h才写出正确思维的暴力解法，这个过程是锻炼思维的过程。  优化解法
-      - 2, 对$\forall$ i, j, k $\in$ Z; for all  0 <= j < i < k <= `nums.length - 1`, `nums[j] < nums[i] < nums[k]`
-      - 1, `nums[i - 1] < nums[i] < nums[i + 1]`, and the previous condition is not satisfied
-      - `0`, if none of the previous conditions holds.
+**2012** Sum of Beauty in the Array   我知道暴力解必然会出现问题，不过我花了近1h才写出正确思维的暴力解法，这个过程是锻炼思维的过程。  优化解法
+
+- 2, 对$\forall$ i, j, k $\in$ Z; for all  0 <= j < i < k <= `nums.length - 1`, `nums[j] < nums[i] < nums[k]`
+- 1, `nums[i - 1] < nums[i] < nums[i + 1]`, and the previous condition is not satisfied
+- `0`, if none of the previous conditions holds.
 
 ![image-20211002112937258](leetcode/001.png)
 
@@ -1118,15 +1123,15 @@ Java语言中的Steam特性也是待完善的一个地方。
 
 ## **Weekly Contest 261**
 
-\2027. Minimum Moves to Convert String  当时思路卡了一下，想到几种情况，很多个X, "XXOXXXOXX"这种情况该如何处理等等，绕进了一个误区，卡了很久
+**2027** Minimum Moves to Convert String  当时思路卡了一下，想到几种情况，很多个X, "XXOXXXOXX"这种情况该如何处理等等，绕进了一个误区，卡了很久
 
-\2028. Find Missing Observations  两题44min AC  思路卡顿，条件处理，前几名大佬思路都很清新，甚至有相似之处。 比如对处理返回数组，在满足第一个条件情况下，先把数组中每个元素默认设置为1，之后再做加法处理。
+**2028**  Find Missing Observations  两题44min AC  思路卡顿，条件处理，前几名大佬思路都很清新，甚至有相似之处。 比如对处理返回数组，在满足第一个条件情况下，先把数组中每个元素默认设置为1，之后再做加法处理。
 
 ## Weekly Contest 262
 
-\5894. Two Out of Three 处理一个数组同时出现两个数字的情况，没有很好思路。卡了一会  easy题写了40行代码; 为了减少空间的使用量，使用了数字优化技巧。  做熟练了后直接无脑上三个set或者arrays；当然我的优化思路也值得肯定。 不过当时代码写着写着就忽视了一个条件。
+**2032** Two Out of Three 处理一个数组同时出现两个数字的情况，没有很好思路。卡了一会  easy题写了40行代码; 为了减少空间的使用量，使用了数字优化技巧。  做熟练了后直接无脑上三个set或者arrays；当然我的优化思路也值得肯定。 不过当时代码写着写着就忽视了一个条件。
 
-\2033. Minimum Operations to Make a Uni-Value Grid   1.5h  难点在于如何选择那个合适的数，经过无数次尝试提交后，我选择用平均值上下浮动的策略来尝试寻求到合适的ave值；然后再做最后的处理。 不幸运的是，失败了。不过，这次周赛总体感觉还是很爽的。我还思考了下impossible的情况，奇数偶数的分类，事实证明，是越走越远了。 后来我发现数据离散后，平均数和中位数区别越来越明显，就应该寻找中位数。--> Sort    即使一个个测试对了，只要有心，测试用例就能让你的代码通不过。  教训！！！！
+ **2033** Minimum Operations to Make a Uni-Value Grid   1.5h  难点在于如何选择那个合适的数，经过无数次尝试提交后，我选择用平均值上下浮动的策略来尝试寻求到合适的ave值；然后再做最后的处理。 不幸运的是，失败了。不过，这次周赛总体感觉还是很爽的。我还思考了下impossible的情况，奇数偶数的分类，事实证明，是越走越远了。 后来我发现数据离散后，平均数和中位数区别越来越明显，就应该寻找中位数。--> Sort    即使一个个测试对了，只要有心，测试用例就能让你的代码通不过。  教训！！！！
 
 前几名的code.  炒鸡佩服。 使用Sort方法可以得到最中间的，也就是中位数而不是平均数。
 
@@ -1153,7 +1158,7 @@ class Solution {
 
 ##  Weekly Contest 264
 
-\2047. Number of Valid Words in a Sentence  测试用例很恶心 不过正则写很妙，可以学正则的引入题。
+**2047** Number of Valid Words in a Sentence  测试用例很恶心 不过正则写很妙，可以学正则的引入题。
 
 写的过程中少思考的情况"a-."
 
@@ -1168,7 +1173,7 @@ if((end == '!' || end == '.' || end == ',') && (n - 2) >= 0 && s.charAt(n - 2) =
 s.matches("[a-z]*([a-z]-[a-z])?[a-z]*[!.,]?"
 ```
 
-\2048. Next Greater Numerically Balanced Number
+**2048** Next Greater Numerically Balanced Number
 
 一些语法问题
 
@@ -1183,7 +1188,8 @@ HashMap getOrDefault
 hp.put(cur.charAt(i) - '0', hp.getOrDefault(cur.charAt(i) - '0', 0) + 1);
 要是太多有点乱，可以把 int c = cur.charAt(i) 带进去检查
     
-HashMap 的遍历实现
+HashMap 的遍历实现（10种）
+    https://stackoverflow.com/questions/46898/how-do-i-efficiently-iterate-over-each-entry-in-a-java-map
 for(Integer each: hp.keySet()){
 	if(!each.equals(hp.get(each))){
 	flag = false;
@@ -1198,9 +1204,17 @@ List<Character> chars = new ArrayList<Character>(h.keySet());
 Collections.sort(chars, (a,b) -> (h.get(b) - h.get(a)));
 ```
 
-详细在这篇文章里:
+详细在这篇文章里:(`HashMap`遍历访问)
 
 https://www.geeksforgeeks.org/how-to-iterate-hashmap-in-java/
+
+[dictionary - How do I efficiently iterate over each entry in a Java Map? - Stack Overflow](https://stackoverflow.com/questions/46898/how-do-i-efficiently-iterate-over-each-entry-in-a-java-map)
+
+`Addition`: the test cases github:
+
+ [Vedenin (Slava Vedenin) (github.com)](https://github.com/Vedenin?tab=overview&from=2018-12-01&to=2018-12-31)
+
+[useful-java-links/IterateThroughHashMapTest.java at master · Vedenin/useful-java-links (github.com)](https://github.com/Vedenin/useful-java-links/blob/master/helloworlds/5.0-other-examples/src/main/java/other_examples/IterateThroughHashMapTest.java)
 
 ps: 没有完全读懂，需要再读，结合一些Java高级特性。
 
@@ -1208,9 +1222,9 @@ ps: 没有完全读懂，需要再读，结合一些Java高级特性。
 
 58min AC了两题, 第二题使用IDEA进行debug测试。 排名 6400/11000。 看了我排名附近的人，不免也有刷了四五百道题目，没A出来的。自己并不是孤独的。这个心路历程。也有参加和我差不多场次的朋友。一起加油吧~
 
-\2057. Smallest Index With Equal Value easy 3min
+**2057** Smallest Index With Equal Value easy 3min
 
-2058. Find the Minimum and Maximum Number of Nodes Between Critical Points
+**2058** Find the Minimum and Maximum Number of Nodes Between Critical Points
 
 [My Submissions](https://leetcode.com/contest/weekly-contest-265/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/submissions/)[Back to Contest](https://leetcode.com/contest/weekly-contest-265/)
 
@@ -1219,4 +1233,39 @@ ps: 没有完全读懂，需要再读，结合一些Java高级特性。
 写的过程中语法有点不熟练。也犯了一点错误，比如"()","=="等问题。 关键性API， `ArrayList`访问其元素，需要使用 `get`方法。
 
 思路思考得不完全，`min`, `max`的怎么取。 `min`思考正确，但 `max`的思考过程中产生了错误。
+
+## Weekly Contest 266
+
+ **2062** Count Vowel Substrings of a String 1:02 AC了一题
+
+[Brute Force || Java || add uwi Solution - LeetCode Discuss](https://leetcode.com/problems/count-vowel-substrings-of-a-string/discuss/1563799/Brute-Force-oror-Java-oror-Spend-many-Time)
+
+`"aeiou".indexOf(s.charAt(i))` 不需要硬生生的正则表达了
+
+`word.substring(i, i + 1).matches("[aeiou]")`
+
+题解，不多说, 练习 `sliding window` 和 熟悉Java 语言的语法
+
+**2063** Vowels of All Substrings  28min 理解错了题目 写了dp公式最后发现题目理解错了。。。自嗨了
+
+dp DP数组含义，以及状态转移方程思考
+
+(核心关系式子， dp数组的本质)
+
+[[想要点赞\] 基础的动态规划问题，O(n)一次遍历，空间O(1) - 所有子字符串中的元音 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/vowels-of-all-substrings/solution/xiang-yao-dian-zan-ji-chu-de-dong-tai-gu-jhkv/)
+
+[Simple java single pass DP O(n) - LeetCode Discuss](https://leetcode.com/problems/vowels-of-all-substrings/discuss/1564107/Simple-java-single-pass-DP-O(n))
+
+Just the math!!!!
+
+```
+遍历 =word，若 =word[i] 是元音，我们考察它能出现在多少个子字符串中。
+
+设 =word 的长度为 nn。子字符串 word[l..r] 若要包含 word[i]，则必须满足
+
+0≤l≤i
+i≤r≤n−1
+这样的 l 有 i+1 个，r 有 n-i 个，因此有 (i+1)(n-i)(i+1)(n−i) 个子字符串，所以word[i] 在所有子字符串中一共出现了 (i+1)(n-i) 次。
+```
+
 
