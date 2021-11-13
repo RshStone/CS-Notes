@@ -381,11 +381,23 @@ Almost everything here you need to be a Berkeley student.
 
 ##### 折腾wsl Git 的连接google问题：
 
+**why we do this**:
+
+想clone repo to wsl2 中 
+
 参考以下网站： https://zhuanlan.zhihu.com/p/161107756
 
 https://zhuanlan.zhihu.com/p/414627975
 
 https://www.jianshu.com/p/af6a02f98d5a
+
+**Windows机子**：
+
+`curl google.com`:
+
+`windows powershell`里成功了
+
+`command prompt`里失败了 `curl: (7) Failed to connect to google.com port 80: Timed out`
 
 **result: 未成功**
 
