@@ -1268,4 +1268,73 @@ i≤r≤n−1
 这样的 l 有 i+1 个，r 有 n-i 个，因此有 (i+1)(n-i)(i+1)(n−i) 个子字符串，所以word[i] 在所有子字符串中一共出现了 (i+1)(n-i) 次。
 ```
 
+## Weekly Contest 267
 
+**2073** Time Needed to Buy Tickets 这一道16minAC，时间花在了读懂题目上面大概7min, 靠着例子才勉强读懂的。 我后来感觉是一道Math题，但比赛很紧张，没仔细去思考。 ————》 题解里 `One Pass`的思路很妙，发现了很简单，很精妙
+
+**2074** Reverse Nodes in Even Length Groups
+
+做题感受，被这道题卡的心态难受，怀疑自己是不是适合学算法，最后慢慢思考，因为逻辑没形成闭环，调整后做下一题了。 花的时间45min左右。 联想到了使用 `reversed List`用来辅助解题，但是思路不清晰，最后放弃。 结果— 画了简单的思路图
+
+用 `Stack`这种数据结构做很妙
+
+这题应该算是链表的很好的一题了，很考验扎实的代码功力和能力。
+
+我的思路下一些实现code 
+
+```java
+    public ListNode reverseEvenLengthGroups(ListNode head) {
+        if(head == null)return null;
+        ListNode cur = head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = cur;
+        int groupLen = 1;
+        ListNode slow = dummy;
+        while(cur != null){
+            ListNode fast = cur;
+            int i = 0;
+            for(;i < groupLen && fast!= null; i++){
+                fast = fast.next;
+            }
+            if(i % 2 == 0){
+                ListNode newHead = reverseList(slow, fast);
+                slow.next = newHead;
+                while(slow.next != null){slow = slow.next;}
+                slow.next =fast;
+                cur = fast;
+            }
+            else{
+                cur = fast;
+                while(slow.next != cur){
+                    slow = slow.next;
+                }
+            }
+            groupLen++;
+        }
+        return head;
+    }
+    public ListNode reverseList(ListNode slow ,ListNode fast){
+        ListNode end = slow;
+        while(end.next != fast){
+            end = end.next;
+        }
+        end.next = null;
+        ListNode pre = null;
+        ListNode start = slow.next;
+        while(start != null) {
+            ListNode next = start.next;
+            start.next = pre;
+            pre = start;
+            start = next;
+        }
+        return pre;
+    }
+```
+
+**2075** Decode the Slanted Ciphertext 
+
+这道题目大概花了半小时写出思路，但卡在了最后的测试用例"a" 1上面，因为肉眼debug没能debug出来。有点可惜
+
+`"abcdefghijklmnopqrstuvwxyz".indexOf(encodedText.substring(index, index + 1)) >= 0`应该是`>=0`而不是">0"确实逻辑检查没问题，最后检查用IDEA查出来的
+
+不过感觉还是有所提升的了
