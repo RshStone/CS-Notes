@@ -452,6 +452,30 @@ alias unproxy='
 
 ![008](CS61C-lab/008.png)
 
+##### How to read the man page
+
+**videos**: https://www.youtube.com/watch?v=RzAkjX_9B7E
+
+man -man 
+
+h H -help
+
+e, ^E j ^N CR forward one line
+
+k -bakcward
+
+f -page down
+
+**article**: https://www.cs.mcgill.ca/~guide/help/man.html
+
+**man(1)**: https://man7.org/linux/man-pages/man1/man.1.html
+
+###### Finding Commands:
+
+`apropos`: search the manual page names and descriptions(very useful!)
+
+PS：这个lab主要是一些man page的一些使用，同时辅助了git,因为没有Hive，所以就完成前man page部分喽，git的这个合并分支的可以自行体会下。
+
 
 
 ### lab1
