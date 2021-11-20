@@ -42,7 +42,15 @@ Books:
 
 [lab 和 project 的 starter](http://link.zhihu.com/?target=https%3A//github.com/61c-teach)
 
-[B 站中英文字幕视频](http://link.zhihu.com/?target=https%3A//www.bilibili.com/video/BV1fC4y147iZ) 
+[Videos](https://www.bilibili.com/video/BV1jy4y1E7AY?p=22)
+
+推荐CS61C Fall2020的Video，老师讲的特别激情。
+
+学CS61C过程中搜索到的神奇的东东:
+
+构架底层级别的0.3-0.5选手。https://testerhome.com/articles/29582
+
+里面也有一些自学经历内容，关于UCB CS61C的
 
 ## lec01 Course Intro, Number Representation
 
@@ -349,13 +357,17 @@ preparation the basis you should know about this course 2's complement 进制转
 
 - Floating Point
 
-  10进制科学计数法牵引到二进制，二进制的点，左半部分和右半部分
+  10进制科学计数法(Scientific Notation)迁移到二进制，二进制的点，左半部分和右半部分
+
+  New proper nouns: significand, binary point(floating point), radix(base), exponent
 
     - Single Precision
 
       32-bit word into 3 fields
 
       ![image-20210503164145464](CS61C/002.png)
+
+      ![008](CS61C/008.png)
 
       
 
@@ -388,12 +400,68 @@ preparation the basis you should know about this course 2's complement 进制转
             11111111(255):
 
             NaN != 0
-
+      
             infinite: all 0
+           
+           
 
 - Floating Points: special cases
 
+  可参考文章结合阅读思考： https://zhuanlan.zhihu.com/p/343049681
+
+  `0 00000001 00000000000000000000000` & `0 00000000 11111111111111111111111` 的理解
+
+  *非规格数**实际指数**的计算方法(实际指数 = 1 - bias), 和规格数**实际指数**的计算方法(实际指数  = 指数位的值 - bias)**不同*** (gradual underflow)
+
+  *① 为什么规定非规格数的尾数前隐藏的整数部分是 **0.**  而规格数尾数前隐藏的整数部分是**1.*** 
+
+  *② 为什么非规格数的真实指数的计算公式是 **1 - bias**, 而规格数的真实指数的计算公式是 **指数部分的值 - bias** 了*
+
+  
+
+  结合1:norm number,  2:denorm(subnorm) number, 3: infinity and NaN
+
   ​        ![image-20210504162159577](CS61C/003.png)
+
+  - In scientific notation: 32bits of 0 and the result is not zero.
+
+    (e.x. 0x00000000 is 1.0*2^(-127) != 0)
+
+    2^(-127)  2 to negative 127
+
+  - Representing ± ∞
+
+    Infinity is a number. (eg. x/0 > y) it is right. x/0 = infinity. inginity is greater than y.
+
+  - Representing NaN
+
+    0/0, sqrt(-4), ∞ - ∞
+
+    Useful for debugging. (VS 上出现过NaN 想一想有多少种可能性出现NaN, 2^23，大概800万种)
+
+    (exponent:255 significand:non-zero NaN **why and details you don't need to know now** (maybe later ))
+
+  - Norm numbers and denorm numbers
+
+    **norm:** 
+
+    ​	exponent:1-254 signficand: anything
+
+    **denorm**:
+
+    ​	exponent: 0 sigificand:non-zero (No leading 1)
+
+    ​	Think: smallest denorm, largest denorm, smallest orm and teir gap. 
+
+  **不懂得地方**:
+
+  Exponent: 0, Significand:0 这种情况下偏码计算的值是0吗？
+
+  Denorm Norm
+
+  fl. pt. #
+
+  fl. pt 不明白什么意思
 
 - Floating Points Limitations
 
@@ -413,13 +481,13 @@ preparation the basis you should know about this course 2's complement 进制转
 
       ​    ![image-20210504164706162](CS61C/004.png)
 
--
+
 
 浮点数具体的每部分和历史
 
 当然内容很丰富
 
-## lec06:Introduction to Machine Language: RISC-V architecture(！！！重点来啦)
+## lec06:Introduction to Machine Language: RISC-V architecture(重点来啦)
 
 学习资料：
 

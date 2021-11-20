@@ -269,6 +269,93 @@ void free_ll(struct ll_node** lst){
 
 ### discs3
 
+calm down Just rise yourself
+
+Some words are strong are what I am doing wrong.
+
+**1 Pre-Check**
+
+1.1 False
+
+1.2 True 
+
+1.3 False
+
+**2 Floating Point**
+
+2.1: 2 
+
+**2.2**: 2^128(wrong)  the largest finite positive value: (1 + (1 + 2^-23))*2^127
+
+2.3: 2^(-149)
+
+**2.4**: 2^(-127) (wrong)  --> 2^(-127) normalized value is that the exponent is 1 and significand is 0.
+
+2.5: 
+
+•0x00000000: 0  
+•8.25:  0x410400000
+•0x00000F00: (2^-15 + 2^-14 + 2^-13 + 2^-12)*2^(-126) 【Latex学习】
+•**39.5625**: 0x53C00010 (not right)  --> 0x421E4000
+
+​	How to do: 
+
+​		39 = 32 + 4 + 2 + 1 = 2^5 + 2^2 + 2^1 + 2^0
+
+​		0.5625 = 0.5 + 0.0625 = 2^-1 + 2^ -4
+
+​		二进制表示100111.1001 （PS：`.`目的是为了区分整数部分和小数部分，实际上不能这么写）根据exp进行左右移动
+
+​		sign: 0 
+
+​		exp: 5 + 127 = 132 = 0b10000100
+
+​		mantissa: 左移exp 5位 001111001
+
+ 	   result: 01000010000111001 00...00(the rest is all 0)
+
+​		0x421E4000
+
+•0xFF94BEEF:NaN   
+
+​	feature: -(FFX X is great than 8, which means X is [89ABCDEF], the last five 4 Bits are not zero)
+
+​				+(7FX X is great than 8, which means X is [89ABCDEF], the last five 4 Bits are not zero)
+
+•**-∞**: 0xFF800000 
+
+**3 More Floating Point Representation**
+
+3.1: (1 + 2^-23)*2 = 2 + 2^-22 
+
+3.2: (1 + 2^-23)*2^2 = 4 + 2^-21
+
+3.3: stepsiez for 2: 2^-22 stepsize for 4: 2^-21
+
+**3.4**: 
+
+Answer: 2^(x - 150) 默认是加signifand的最后一位了
+
+​	cur_num = 2^(x-127)*(1 + y)
+
+the 23th in significand is 1.   assume that the first index (The order of index is from left to right )0 bit in significand from right is c. diff: 2^(x -127)*2^(-c)
+
+**3.5:** 不会 
+
+贴一下答案:
+
+```html
+To find the largest odd number we can represent, we want to find when odd numbers
+will stop appearing. This will be with step size of 2.
+As a result, plugging into Part 4: 2 = 2x−150 → x = 151
+This means the number before 2151−127 was a distance of 1 (it is the first value
+whose stepsize is 2) and no number after will be odd. Thus, the odd number is
+simply subtracting the previous step size of 1.This gives,
+2^24 − 1
+```
+
+### discs4
+
 ## Policies
 
 [CS 61C (berkeley.edu)](https://inst.eecs.berkeley.edu/~cs61c/su20/policies)
@@ -480,7 +567,21 @@ PS：这个lab主要是一些man page的一些使用，同时辅助了git,因为
 
 ### lab1
 
-#### Exercise 2: Catch those bugs! && Exercise 1: See what you can C
+### Objectives
+
+1. run a C program. examine different types of control flow in C
+2. the C debugger and gain practical experience
+3. integers, characters, boolean expressions, bitwise operators
+
+#### Exercise 1: See what you can C
+
+macro的宏定义练习，change the value V0, V1, V2, V3然后得到不同的输出，这个程序设计的还是挺有意思的
+
+#### Exercise 2: Catch those bugs! 
+
+我的GDB学习笔记:
+
+
 
 - `-c`,GCC会编译并汇编该代码
 
