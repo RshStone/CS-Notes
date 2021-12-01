@@ -146,21 +146,46 @@ class Solution {
 
 ## Tree
 
+### 初学者建议
+
+先打好基础，对树基本知识有个大致了解，根节点，子节点，兄弟节点等概念，二叉树，二叉搜索树，AVL树等等，需要了解概念，对树有一个宏观的大体认识。
+
+之后是上手写代码，基本的遍历方式，递归实现，迭代。
+
+去leetcode上完成 `Tree Explore`探索的卡片, 目的是建立一些概念。 
+
+完成之后你可能对Tree的基本遍历方式，递归和迭代实现有了基本了解，同时对 `top-down` 和 `bottom-up`两种思维有一定概念。
+
+一些题目可以反复去做，争取写出 `bug-free`的代码。 做的过程可能可以举一反三，思考为什么这么做，不这么做会怎么样。这个过程其实就是思考的过程，会有思考的乐趣。
+
+刚开始的这个过程可能很难坚持，万事开头难。但坚持下去，你的收获会超过你的想象。
+
 ### 思考方式
 
-几个思考问题？  基本的遍历方式，递归实现，迭代 ， Morris Traversal， 颜色标记法。
+- 基础:
 
-树的基本框架的构建，是用BFS还是DFS，BFS怎么用，DFS的话是pre,in,post中的哪一个或者只是要对树进行单纯的遍历。结合树的类型一般的树，二叉树，二叉搜索树等。
+  基本的遍历方式，递归实现，迭代
 
-方案的时间复杂度和空间复杂度是怎么样的。
+  `top-down` 和 `bottom-up`两种思维方式，大概的适用情况，能不能用非递归方式实现？
 
-难点：想清楚递归，递归终止条件，是否是大问题转化为小问题，每个小问题是否独立。
+- 对树遍历空间的优化
 
-（非递归语言的实现，cpp,Java,go等等）
+  Morris Traversal， 颜色标记法  （强记记不住，关键是弄清楚，弄明白）
+
+- 树的基本框架的构建，是用BFS还是DFS，BFS怎么用，DFS的话是pre,in,post中的哪一个或者只是要对树进行单纯的遍历。结合树的类型一般的树，二叉树，二叉搜索树等。方案的时间复杂度和空间复杂度是怎么样的。
+
+  难点：想清楚递归，递归终止条件，是否是大问题转化为小问题，每个小问题是否独立。
+
+  （非递归语言的实现，cpp,Java,go等等）
+
+- 后序遍历为什么有两种方式：双Stack和一个Stack和lastNode遍历    left right in     in right left  
+
+
+
 
 ### 涉及到的题目
 
-[leetcode110](#110)平衡二叉树 涉及到高度
+[leetcode110](#110)平衡二叉树 涉及到高度 *(很好的一道简单题，深入思考你会发现很不一样的东西)
 
 [剑指Offer 32](#从上到下打印二叉树系列)从上到下打印二叉树 层序遍历+一些变形
 
@@ -178,22 +203,96 @@ class Solution {
 
 ### 具体的题解
 
-- leetcode<a name="110">110</a>
+- leetcode<a name="110">110</a> Balanced Binary Tree
 
-平衡二叉树 两种方法
+  平衡二叉树 两种方法
 
-自顶而下暴力解
+  自顶而下暴力解
 
-自底而上（How: 后序遍历）+ 剪枝思想
+  自底而上（How: 后序遍历）+ 剪枝思想
 
-4.8 again 写辅助函数的时候，采用DFS中的哪种模式？返回值为int的时候，终止条件，递归函数，返回值等如何思考。
+  **思考点在于如何利用最简单的模型一步一步地向上去推，得到想要的结果，也就是这个剪枝思想的核心**
 
-- 剑指Offer 32 - I, II, III <a name="从上到下打印二叉树系列">从上到下打印二叉树系列 </a>
+- leetcode104 Maximum Depth of Binary Tree
 
-基本框架是层序遍历 --> Queue数据结构 --> 实现形式 `Array` Or `LinkedList` --> if `LinkedList` 注意 `LinkedList Interface`
-API `addFirst` `addLast`
+  4.8 again 写辅助函数的时候，采用DFS中的哪种模式？返回值为int的时候，终止条件，递归函数，返回值等如何思考。
 
-API调用 一般`Queue` `FIFO` 注意 `PriorityQueue` 和 `LIFO` `Queue` --> `Stack` --> Java `Deque`
+  11.23 again and again
+
+  所有的recurision都可以用非递归来实现的话，那么自底向上的这种方式该如何用非递归来实现呢？假设我一定要使用DFS解法。
+
+  自底向上的解法之中，你会发现对每一个堆栈，它的leftHegiht和rightHeight都是在改变的，哦！对的！都是继承了上一层的结果，所以要pair啊，pair什么，pair一个高度，是当前节点的左节点还是右节点，还有当前节点的左子树高度和右子树高度。这个和自定向下有点类似，但思路不同。
+
+  自顶向下传递一个参数，参考这篇题解。[[Java\] Several Solutions (recursive and iterative) - LeetCode Discuss](https://leetcode.com/problems/maximum-depth-of-binary-tree/discuss/1121435/Java-Several-Solutions-(recursive-and-iterative))
+
+  思考过程放到了提交记录里面[Maximum Depth of Binary Tree - LeetCode](https://leetcode.com/problems/maximum-depth-of-binary-tree/submissions/)
+
+  **Mirror traverse**
+
+  核心思想在于用一个临时指向当前左侧的临时指针，看临时指针的右侧是否为null或者p1,null的情况让其指向p1指针，压入元素，p1左移循环
+
+  
+
+  *新建临时节点，令该节点为 root；*
+
+  *如果当前节点的左子节点为空，将当前节点加入答案，并遍历当前节点的右子节点；*
+
+  *如果当前节点的左子节点不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点：*
+
+  *如果前驱节点的右子节点为空，将前驱节点的右子节点设置为当前节点。然后将当前节点加入答案，并将前驱节点的右子节点更新为当前节点。当前节点更新为当前节点的左子节点。*
+
+  *如果前驱节点的右子节点为当前节点，将它的右子节点重新设为空。当前节点更新为当前节点的右子节点。*
+
+  *重复步骤 2 和步骤 3，直到遍历结束。*
+
+  ```c++
+  class Solution {
+  public:
+      vector<int> preorderTraversal(TreeNode *root) {
+          vector<int> res;
+          if (root == nullptr) {
+              return res;
+          }
+  
+          TreeNode *p1 = root, *p2 = nullptr;
+  
+          while (p1 != nullptr) {
+              p2 = p1->left;
+              if (p2 != nullptr) {
+                  while (p2->right != nullptr && p2->right != p1) {
+                      p2 = p2->right;
+                  }
+                  if (p2->right == nullptr) {
+                      res.emplace_back(p1->val);
+                      p2->right = p1;
+                      p1 = p1->left;
+                      continue;
+                  } else {
+                      p2->right = nullptr;
+                  }
+              } else {
+                  res.emplace_back(p1->val);
+              }
+              p1 = p1->right;
+          }
+          return res;
+      }
+  };
+  
+  作者：LeetCode-Solution
+  链接：https://leetcode-cn.com/problems/binary-tree-preorder-traversal/solution/er-cha-shu-de-qian-xu-bian-li-by-leetcode-solution/
+  来源：力扣（LeetCode）
+  著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+  ```
+
+  
+
+- [剑指 Offer 32 - I. 从上到下打印二叉树 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)  后面还有II，III题目
+
+  基本框架是层序遍历 --> Queue数据结构 --> 实现形式 `Array` Or `LinkedList` --> if `LinkedList` 注意 `LinkedList Interface`
+  API `addFirst` `addLast`
+
+  API调用 一般`Queue` `FIFO` 注意 `PriorityQueue` 和 `LIFO` `Queue` --> `Stack` --> Java `Deque`
 
 |         | Throws exception          | Returns special value   |
 | ------- | ------------------------- | ----------------------- |
@@ -201,13 +300,15 @@ API调用 一般`Queue` `FIFO` 注意 `PriorityQueue` 和 `LIFO` `Queue` --> `St
 | Remove  | [`remove()`](#remove())   | [`poll()`](#poll())     |
 | Examine | [`element()`](#element()) | [`peek()`](#peek())     |
 
-分别的要求
+​	分别的要求
 
-一层的节点按照从左到右的顺序打印 简单层序遍历
+​	一层的节点按照从左到右的顺序打印 简单层序遍历
 
-同一层的节点按从左到右的顺序打印，每一层打印到一行 层序遍历中加一个for语句
+​	同一层的节点按从左到右的顺序打印，每一层打印到一行 层序遍历中加一个for语句
 
-第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推 Deque + 分类处理
+​	第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推 Deque + 分类处理。    **快速观察： 正常的queue offer和poll的操作对应双端队列的情况，是First还是last，以此为思考点，同时观察新建List<Integer>的顺序，将未知量的方式以一种形式进行固定**
+
+
 
 - [剑指Offer 07]<a name = "重建二叉树"> 重建二叉树</a>(https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof)
 

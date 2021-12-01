@@ -611,9 +611,38 @@ macro的宏定义练习，change the value V0, V1, V2, V3然后得到不同的�
 
 #### Exercise 3: Debugging w/ YOU
 
+大概花了一个多小时弄清楚。。
+
  注意`gcc`版本问题使用`redirection`需要`gcc` 8.0 以上版本
 
 ​    `./a.out < fileName.txt`
+
+```txt
+Hint 1: If you’re creating a text file containing your input, you’re on the right track! Hint 2: Remember you can run things with command line args (including the redirection symbols) from CGDB as well!
+```
+
+这里应该有两种方式，第一种利用 `redirection` 。外面弄一个 `r.txt`文件存上字符，然后利用文件读写读到字符数组里面。第二种是 利用 `args`。我这里没有尝试。
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_LEN 80
+
+int main(int argc, char *argv[]) {
+    char a_word[MAX_LEN];
+
+    FILE *f;  //主义FILE 而不是File
+    f = fopen("r.txt", "rb");
+    printf("What's your name?\n");
+    fgets(a_word, MAX_LEN, f);
+    printf("Hey, %sI just really wanted to say hello to you.\nI hope you have a wonderful day.", a_word);
+
+    return 0;
+}
+```
+
+
 
 #### Exercise 4: Valgrind’ing away
 
@@ -633,7 +662,7 @@ int h = (*ptaddr).x;
 
  bohrbugs:  they manifest reliably under a well-defined, but possibly unknown, set of conditions(编译器能检测到)
 
- heisenbugs: often due to mis-managed memory(检测不到)
+ heisenbugs: often due to mis-managed memory(检测不到， 勇Valgrind进行检测) 
 
 practice: tortoise and hare(龟兔赛跑)
 
@@ -649,7 +678,23 @@ practice: tortoise and hare(龟兔赛跑)
 
 ![image-20210517093015905](CS61C-lab/001.png)
 
-删掉no_segfault_ex后的结果重新测试
+（修改代码）
+
+删掉no_segfault_ex后的结果测试
+
+```c
+#include <stdio.h>
+int main() {
+    int a[5] = {1, 2, 3, 4, 5};
+    unsigned total = 0;
+        printf("size of a: %d\n", sizeof(a));
+    for (int j = 0; j < sizeof(a)/sizeof(int); j++) {
+        total += a[j];
+        printf("%d\n",total);
+    }
+    printf("sum of array is %d\n", total);
+}
+```
 
 ![image-20210517093638634](CS61C-lab/003.png)
 
@@ -661,13 +706,29 @@ devC++结果:
 
 删掉后结果和devc++测试结果一致，说明大体是这样。
 
-为什么有错误但成功运行了呢？我个人猜测是gcc编译器在背后里帮我们把sizeof(a)的问题处理掉了，具体怎么处理。我不知道。但是这里我们发现用valgrind检测会查到memory的错误，这也是它厉害的一个地方了。
+这里我们发现用valgrind检测会查到memory的错误，这也是它厉害的一个地方了。
 
-#### lab2
+#### Exercise 5: Pointers and Structures in C
 
-#### Exercise 0: `Makefiles`(不太会，稍微看了下)
+这一个练习 ` test_ll_cycle.c`x写的很棒，可以作为自己写测试用例的一个参考。
+
+### lab2
+
+#### Exercise 0: `Makefiles`(不太会，稍微看了下）
+
+经过上面的lab和你平时写C的经历，你发现编译运行C真的是一件很麻烦的事情。怎么办腻？就要用到 `Makefile`了。
 
 `Makefile` Tutorial : [Makefile Tutorial By Example](https://makefiletutorial.com/#why-do-makefiles-exist-)
+
+官方文档: [GNU make](https://www.gnu.org/software/make/manual/make.html)
+
+
+
+**摘录初步理解下**
+
+*Makefiles are used to help decide which parts of a large program need to be recompiled*
+
+*Popular C/C++ alternative build systems are [SCons](https://scons.org/), [CMake](https://cmake.org/), [Bazel](https://bazel.build/), and [Ninja](https://ninja-build.org/). Some code editors like [Microsoft Visual Studio](https://visualstudio.microsoft.com/) have their own built in build tools. For Java, there's [Ant](https://ant.apache.org/), [Maven](https://maven.apache.org/what-is-maven.html), and [Gradle](https://gradle.org/). Other languages like Go and Rust have their own build tools.*
 
 1. Which target is part of a rule that deletes all the compiled programs?
 2. Which target is part of a rule that makes all the compiled programs?

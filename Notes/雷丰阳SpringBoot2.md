@@ -24,8 +24,6 @@ SpringBoot2:
 
 [SpringBoot2核心技术与响应式编程 · 语雀 (yuque.com)](https://www.yuque.com/atguigu/springboot)
 
-
-
 学习要求
 
 - 熟悉Spring基础
@@ -510,167 +508,9 @@ Spring Boot2.0也提供对响应式编程的自动化配置，如：Reactive Spr
 
 结合尚硅谷的教程视频
 
-## **SpringBoot(黑马6h入门Java微服务架构)**
+## Building REST services with Spring(12/1)
 
-1. 入门第一个应用程序
-
-   Spring Initializr快速构建
-
-   maven pom.xml文件解析，自动构建整个应用
-
-   main
-
-   resources 里面有一个 application.properties(我按照Spring官方文档上写的没有resources)
-
-   test
-
-   
-
-2. 起步依赖原理
-
-   starter 视频里称之为坐标
-
-   可以追到其最上面的父依赖
-
-   技术版本选择做的很好，拿来即用，如果自己配，容易出问题
-
-3. 配置文件分类
-
-   xml
-
-   properties: 格式： server.port=8080
-
-   yaml/yml
-
-   优先级: application.properties > yml > yaml
-
-   yaml优点：层次分明，计算机读取容易
-
-   **语法**
-
-   对象
-
-   ​	server:
-
-   ​		port: 8080(有一个空格, 大小写敏感)
-
-   对象行内写法：
-
-   ​	server: {port: 8080}
-
-   数组：
-
-   ​	address:
-
-   ​		- beijing         （注意空格，不能用Tab,各个系统缩进不同）
-
-   ​		- shanghai
-
-   数组内行
-
-   纯量
-
-   **读取配置内容**
-
-   ​	1 @Value   "${}"
-
-   ​	2 Environment  @Autowired env.getProperty("")
-
-   ​	3 @ConfigurationProperties  @Component  @ConfigurationProperties(prefix = "")
-
-4. profile(完成不同环境下，配置动态切换功能的)
-
-   程序被安装到不同环境（开发，测试，生产），服务器端口，数据库地址等配置不同。
-
-   1)profile配置方式
-
-   ​	多profile文件方式:
-
-   ​		application.properties:
-
-   ​		application-dev.properties
-
-   ​		application-pro.properties
-
-   ​		application-test.properties
-
-   ​		如何激活：在application.properties中写 spring.profiles.active=
-
-   ​	yml多文档方式:
-
-   ​		server: 
-
-   ​			port: 8081
-
-   ​		spring:
-
-   ​			profiles: dev
-
-   
-
-   ​		server:
-
-   ​			port: 8082
-
-   ​		spring:
-
-   ​			profiles: test
-
-   2)profile激活方式
-
-   ​	配置文件
-
-   ​	虚拟机参数:
-
-   ​		VM options:
-
-   ​		-Dspring.profiles.active=test
-
-   ​	命令行参数:
-
-   ​		maven工具打包成jar包，运行， 最后面加入 --spring.profiles.active=pro
-
-   ​		Program arguments:
-
-   ​		--spring.profiles.active=pro
-
-      优点： 不用改原有配置文件
-
-   
-
-5. SpringBoot配置-项目内部配置文件加载顺序
-
-   内部配置加载顺序：
-
-   ![002](雷丰阳SpringBoot2/002.png)
-
-   外部配置加载顺序：spring-config-location
-
-6. SpringBoot 整合其他框架
-
-   体验快速-快速整合其他框架
-
-   **SpringBoot 整合 JUnit**
-
-   @RunWith(SpringRunner.class)
-
-   @SpringBootTest(classes = 引导类名称)
-
-   **SpringBoot整合Redis**
-
-   搭建SB工程
-
-   引入redis起步依赖
-
-   配置redis相关属性
-
-   注入RedisTemplcate模板
-
-   编写测试方法
-
-7. 
-
-## Building REST 
+[Tutorial | Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 
 - **nonrest** — Simple Spring MVC app with no hypermedia
 - **rest** — Spring MVC + Spring HATEOAS app with HAL representations of each resource
@@ -773,14 +613,6 @@ Spring Boot2.0也提供对响应式编程的自动化配置，如：Reactive Spr
       
       }
       ```
-
-      `@SpringBootApplication` is a convenience annotation that adds all of the following:
-
-      - `@Configuration`: Tags the class as a source of bean definitions for the application context.
-
-      - `@EnableAutoConfiguration`: Tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings. For example, if `spring-webmvc` is on the classpath, this annotation flags the application as a web application and activates key behaviors, such as setting up a `DispatcherServlet`.
-
-      - `@ComponentScan`: Tells Spring to look for other components, configurations, and services in the `com/example` package, letting it find the controllers.
 
       - 执行代码问题
 
@@ -1261,6 +1093,12 @@ public void setName(String name) {
 
 ## SpringBoot guides
 
+官方网站： [Spring's RequestBody and ResponseBody Annotations | Baeldung](https://www.baeldung.com/spring-request-response-body)
+
+Current reading: 
+
+[Getting Started | Building a RESTful Web Service (spring.io)](https://spring.io/guides/gs/rest-service/#initial)
+
 Building a RESTful Web Service
 
 - [Accessing JPA Data with REST](https://spring.io/guides/gs/accessing-data-rest/)
@@ -1325,7 +1163,21 @@ public class GreetingController {
 }
 ```
 
+The difference between MVC controller and the RESTful web service controller:
+
+1. MVC controller 
+
+    relying on a view technology to perform server-side rendering of the greeting data to HTML
+
+2. RESTful web service controller
+
+    HTTP response body is created
+
+   returns a `Greeting` object. The object data will be written directly to the HTTP response as JSON
+
 @RestController: @Controller + @ResponseBody
+
+[Spring's RequestBody and ResponseBody Annotations | Baeldung](https://www.baeldung.com/spring-request-response-body)
 
 `Greeting`对象必须要转换成JSON,不过因为 `Spring's HTTTP`支持,你不需要手动转换，因为 `Jackson2`在路径内,[`MappingJackson2HttpMessageConverter`](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/http/converter/json/MappingJackson2HttpMessageConverter.html) is automatically chosen to convert the `Greeting` instance to JSON.
 
@@ -1518,5 +1370,148 @@ Error: Nothing to do
 
 ```
 ping: https://gems.hashicorp.com/: Name or service not known --> ping gems.hashicorp.com
+```
+
+
+
+#### Accessing Data with JPA(15min)
+
+```java
+package com.example.accessingdatajpa;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Customer {
+
+  @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  private Long id;
+  private String firstName;
+  private String lastName;
+
+  protected Customer() {}
+
+  public Customer(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  @Override
+  public String toString() {
+    return String.format(
+        "Customer[id=%d, firstName='%s', lastName='%s']",
+        id, firstName, lastName);
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+}
+```
+
+- `@Entity`, indicating that it is a JPA entity
+- `@Id` so that JPA recognizes it as the object’s ID
+- The `id` property annotated with `@GeneratedValue` indicates that the ID should be generated automatically.
+
+**Create Simple Queries：**
+
+```java
+package com.example.accessingdatajpa;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
+
+  List<Customer> findByLastName(String lastName);
+
+  Customer findById(long id);
+}
+```
+
+Spring Data JPA uses JPA to store data in a relational database. 
+
+Create repository implementations automatically, at runtime, from a repository interface.
+
+**Change AccessingDataJpaApplication**
+
+玩code还可以，不过具体实现细节可以琢磨深入
+
+关于 `Log`部分可以结合  **7.4. Logging** [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.logging.log-format)
+
+****
+
+```java
+package com.example.accessingdatajpa;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class AccessingDataJpaApplication {
+
+	private static final Logger log = LoggerFactory.getLogger(AccessingDataJpaApplication.class);
+
+	public static void main(String[] args) {
+		SpringApplication.run(AccessingDataJpaApplication.class);
+	}
+
+	@Bean
+	public CommandLineRunner demo(CustomerRepository repository) {
+		return (args) -> {
+			// save a few customers
+			repository.save(new Customer("Jack", "Bauer"));
+			repository.save(new Customer("Chloe", "O'Brian"));
+			repository.save(new Customer("Kim", "Bauer"));
+			repository.save(new Customer("David", "Palmer"));
+			repository.save(new Customer("Michelle", "Dessler"));
+
+			// fetch all customers
+			log.info("Customers found with findAll():");
+			log.info("-------------------------------");
+			for (Customer customer : repository.findAll()) {
+				log.info(customer.toString());
+			}
+			log.info("");
+
+			// fetch an individual customer by ID
+			Customer customer = repository.findById(1L);
+			log.info("Customer found with findById(1L):");
+			log.info("--------------------------------");
+			log.info(customer.toString());
+			log.info("");
+
+			// fetch customers by last name
+			log.info("Customer found with findByLastName('Bauer'):");
+			log.info("--------------------------------------------");
+			repository.findByLastName("Bauer").forEach(bauer -> {
+				log.info(bauer.toString());
+			});
+			// for (Customer bauer : repository.findByLastName("Bauer")) {
+			// 	log.info(bauer.toString());
+			// }
+			log.info("");
+		};
+	}
+
+}
+
 ```
 
