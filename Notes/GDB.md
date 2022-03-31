@@ -28,3 +28,9 @@ https://github.com/huangrt01/CS-Notes/blob/master/Notes/Output/Debugging-and-Pro
 
 CS107:
 
+**My Notes**
+
+https://missing.csail.mit.edu/2020/debugging-profiling/
+
+上课的文件:https://missing.csail.mit.edu/static/files/logger.py
+

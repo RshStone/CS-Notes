@@ -765,6 +765,14 @@ for 状态1 in 状态1的所有取值：
 
  正则表达式、背包问题、矩阵相乘、最短路径问题、树中的独立积问题
 
+（很有意思的DP题目，很具有思考价值，怎么写，慢慢弄）
+
+[Regular Expression Matching - LeetCode](https://leetcode.com/problems/regular-expression-matching/)
+
+[正则表达式匹配 - 正则表达式匹配 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/regular-expression-matching/solution/zheng-ze-biao-da-shi-pi-pei-by-leetcode-solution/)
+
+
+
 ### 具体题解
 
 - <a name = "斐列纳波数列">斐列纳波数列</a>
@@ -1439,3 +1447,63 @@ i≤r≤n−1
 `"abcdefghijklmnopqrstuvwxyz".indexOf(encodedText.substring(index, index + 1)) >= 0`应该是`>=0`而不是">0"确实逻辑检查没问题，最后检查用IDEA查出来的
 
 不过感觉还是有所提升的了
+
+
+
+# 剑指Offer
+
+按照刷题指南二刷剑指Offer
+
+[「剑指 Offer」 - 学习计划 - 力扣（LeetCode）全球极客挚爱的技术成长平台 (leetcode-cn.com)](https://leetcode-cn.com/study-plan/lcof/?progress=d71igym)
+
+## Day1栈与队列（简单）
+
+### [剑指 Offer 09. 用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)
+
+针对不同语言的 <u>Stack</u>的实现形式，Java语言 Stack类的使用问题
+
+一个主栈，一个辅助栈
+
+### [剑指 Offer 30. 包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/)
+
+一个主栈，一个辅助栈（设计含有pop出min的功能）
+
+## Day2 链表（简单）
+
+### [剑指 Offer 06. 从尾到头打印链表](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
+
+充分说明了递归的本质就是栈，栈的时候可以用递归去表示。
+
+我的思路是遍历两遍，没有思考进一步优化的方法。
+
+### [剑指 Offer 24. 反转链表](https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/)
+
+遍历写出来了，递归版本不熟练没写出来。练
+
+### [剑指 Offer 35. 复杂链表的复制](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
+
+方法问题， HashMap原表映射新表
+
+## Day3 字符串（简单）
+
+### [剑指 Offer 05. 替换空格](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/)
+
+涉及到字符串的可变性问题。 
+
+java中常考面试题， StringBuilder 和 StringBuffer的区别。
+
+[`StringBuffer`](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuffer.html) is synchronized, [`StringBuilder`](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html) is not.
+
+
+
+### [剑指 Offer 58 - II. 左旋转字符串](https://leetcode-cn.com/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/)
+
+
+
+
+
+## Day4 查找算法（简单）
+
+## Day5 查找算法（中等）
+
+## 

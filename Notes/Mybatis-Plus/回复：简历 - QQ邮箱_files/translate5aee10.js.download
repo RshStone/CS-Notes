@@ -1,0 +1,188 @@
+var translateStatus=1;
+var isReadmailTranslate=false;
+var originReadMailHtml,originReadMailSubject,translateReadMailHtml,translateReadMainSubject;
+function handleTranslate()
+{
+var g=document.querySelectorAll('.readmail_translate .readmail_translate_item');
+if(translateStatus===1||translateStatus===4)
+{
+if(translateStatus===1)
+{
+reportTranslateBar('Translatebar_web_translate_click');
+}
+else if(translateStatus===4)
+{
+reportTranslateBar('Translatebar_web_tryagain_click');
+}
+if(isReadmailTranslate)
+{
+translateStatus=3;
+for(var a=0;a<g.length;a++)
+{
+if(a===2)
+{
+g[a].style.display='inline-block';
+}
+else{
+g[a].style.display='none';
+}
+}
+;document.querySelector('#mailContentContainer').innerHTML=translateReadMailHtml;
+document.getElementById('subject').textContent=translateReadMainSubject;
+}
+else{
+translateStatus=2;
+for(var a=0;a<g.length;a++)
+{
+if(a===1)
+{
+g[a].style.display='inline-block';
+}
+else{
+g[a].style.display='none';
+}
+}
+;var c=document.querySelector('#mailContentContainer');
+var b={};
+var d=c.getElementsByTagName('iframe');
+for(var a=0;a<d.length;a++)
+{
+if(!d[a].id)
+d[a].id='originIframes'+a;
+b[d[a].id]=d[a].src;
+}
+var e=c.innerHTML;
+var f=document.getElementById('subject').textContent;
+getTop().doXmailRequest('mgr/translation',{mailcontent:e,subject:f,from:'en',to:'zh_CN'},function(m,h){
+if(m&&h&&h.dst_mailcontent)
+{
+translateStatus=3;
+isReadmailTranslate=true;
+originReadMailSubject=f;
+originReadMailHtml=e;
+for(var k=0;k<g.length;k++)
+{
+if(k===2)
+{
+g[k].style.display='inline-block';
+}
+else{
+g[k].style.display='none';
+}
+}
+;c.innerHTML=h.dst_mailcontent.replace(/<mailTTag class="mailAppOrigin"(([\s\S])*?)<\/mailTTag>/gi,'').replace(/<mailTTag class="mailTranslated">/gi,'').replace(/<\/mailTTag>/gi,'');
+var n=c.getElementsByTagName('iframe');
+for(var l=0;l<n.length;l++)
+{
+if(!n[l].src&&b[n[l].id])
+{
+n[l].src=b[n[l].id];
+}
+}
+translateReadMailHtml=c.innerHTML;
+document.getElementById('subject').textContent=translateReadMainSubject=h.dst_subject;
+}
+else if(!m)
+{
+translateStatus=4;
+for(var k=0;k<g.length;k++)
+{
+if(k===3)
+{
+g[k].style.display='inline-block';
+}
+else{
+g[k].style.display='none';
+}
+}
+;
+}
+});
+}
+}
+else if(translateStatus===3)
+{
+translateStatus=1;
+for(var a=0;a<g.length;a++)
+{
+if(a===0)
+{
+g[a].style.display='inline-block';
+}
+else{
+g[a].style.display='none';
+}
+}
+;document.querySelector('#mailContentContainer').innerHTML=originReadMailHtml;
+document.getElementById('subject').textContent=originReadMailSubject;
+reportTranslateBar('Translatebar_web_return_click');
+}
+}
+function isEnChar(a)
+{
+return (a>=0x41&&a<=0x5A)||(a>=0x61&&a<=0x7A);
+}
+(function initTranslate(){
+var c=navigator.language||navigator.userLanguage;
+c=c.toLowerCase();
+if(c==='zh-cn')
+{
+var e=document.querySelector('#mailContentContainer').cloneNode(true);
+var h=e.getElementsByTagName('style');
+var j=h.length;
+for(var b=j-1;b>=0;b--)
+{
+if(h[b].parentNode)
+{
+h[b].parentNode.removeChild(h[b]);
+}
+}
+var f=e.getElementsByTagName('script');
+var g=f.length;
+for(var b=g-1;b>=0;b--)
+{
+if(f[b].parentNode)
+{
+f[b].parentNode.removeChild(f[b]);
+}
+}
+var l=0;
+var k=0;
+var d=e.textContent||e.innerText;
+d=d.replace(/([A-Z]+:\/\/)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,'').replace(/[\s0-9]+/g,'');
+for(var b=0;b<d.length;b++)
+{
+var a=d.charCodeAt(b);
+if(a===0x20)
+continue;
+l++;
+if(isEnChar(a))
+{
+k++;
+}
+}
+if(l&&(k/l)>0.3)
+{
+getTop().addClass(document.getElementById('readmail_translate'),'readmail_translate_show');
+document.getElementById('readmail_show_translate').style.display='inline';
+reportTranslateBar('Translatebar_web_bar_expose');
+}
+}
+})();
+function handleTranslateClose()
+{
+getTop().rmClass(document.getElementById('readmail_translate'),'readmail_translate_show');
+reportTranslateBar('Translatebar_web_close_click');
+}
+function showTranslateColumn()
+{
+if(document.getElementById('readmail_translate').className.indexOf('readmail_translate_show')<0)
+{
+reportTranslateBar('Translatebar_web_bar_expose');
+getTop().addClass(document.getElementById('readmail_translate'),'readmail_translate_show');
+}
+}
+function reportTranslateBar(a)
+{
+getTop().xmailReport({itemName:a,expand:mailid,logId:16811});
+}

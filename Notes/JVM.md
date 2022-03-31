@@ -1,4 +1,6 @@
+我的目标： 了解内存管理和初步了解内存结构和垃圾回收机制
 
+## 起步准备
 
 学习资料：
 
@@ -114,6 +116,19 @@ make[1]: *** [/mnt/d/Downloads/jdk12-06222165c35f/make/Init.gmk:310: main] Error
 make: *** [/mnt/d/Downloads/jdk12-06222165c35f/make/Init.gmk:186: images] Error 2
 ```
 
+## 自动内存管理
+
+第2章 Java内存区域与内存溢出异常 
+
+第3章 垃圾收集器与内存分配策略 
+
+第4章 虚拟机性能监控、故障处理工具 
+
+第5章 调优案例分析与实战
+
+###  Java内存区域与内存溢出异常 
+
+​	![image-20220316104514459](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220316104514459.png)
 
 
-​	
+

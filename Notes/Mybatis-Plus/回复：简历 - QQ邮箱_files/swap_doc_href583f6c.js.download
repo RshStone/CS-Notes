@@ -1,0 +1,60 @@
+(function(a){
+var c=getTop();
+var b=c.S('contentDiv',a);
+var h=function(i){
+c.getWeDocToken(function(l,m){
+if(l)
+{
+window.open('https://doc.weixin.qq.com/disklogin/login?product=2&from=20&code='+m+'&redirect_url='+encodeURIComponent(i));
+}
+});
+};
+var d=b.getElementsByTagName('a');
+if(d.length>0)
+{
+for(var e=0;e<d.length;e++)
+{
+var f=d[e];
+var g=f.href;
+if(g.indexOf('https://doc.weixin.qq.com/')===0)
+{
+f.href='javascript:void(0);';
+f.addEventListener('click',function(){
+h(g);
+});
+}
+if(g.indexOf('#/ftnPurchase')>-1)
+{
+var k=c.xmailSid;
+f.target='_blank';
+var j=encodeURIComponent(window.top.location.href+'&ftn=1');
+if(k)
+{
+if(g.indexOf('#/ftnPurchase/history')>-1)
+{
+f.href='https://wx.mail.qq.com/home/index?t=ftn&mail=1&f=q&sid='+k+'&u='+j+'#/ftnPurchase/history';
+}
+else{
+f.href='https://wx.mail.qq.com/home/index?t=ftn&f=q&sid='+k+'&u='+j+'#/ftnPurchase';
+}
+}
+else{
+(function(i){
+c.checkXmailSid(function(l){
+if(l)
+{
+if(i.href.indexOf('#/ftnPurchase/history')>-1)
+{
+i.href='https://wx.mail.qq.com/home/index?t=ftn&mail=1&f=q&sid='+c.xmailSid+'&u='+j+'#/ftnPurchase/history';
+}
+else{
+i.href='https://wx.mail.qq.com/home/index?t=ftn&f=q&sid='+c.xmailSid+'&u='+j+'#/ftnPurchase';
+}
+}
+});
+})(f);
+}
+}
+}
+}
+})(window);

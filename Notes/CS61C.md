@@ -7,7 +7,7 @@ consider that if you will learn it or if you have the similar ideas with me.
 
 - I have finished Nand2TetrisI on coursera and learn CS according
   to [Teach yourselfCS-CN](https://github.com/keithnull/TeachYourselfCS-CN/blob/master/TeachYourselfCS-CN.md) .
-- I'm not majoring material science in university and I want to learn the basic about CS which makes me lose myself in.
+- I'm not majoring computer science in university and I want to learn the basic about CS which makes me lose myself in.
 - It is not easy for most students to learn the most famous foreign country's CS course by themselves so I want to
   record my study note concretely as possible as I can.
 - Enjoy study!

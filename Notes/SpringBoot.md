@@ -1,494 +1,289 @@
-
-
-
-
-
-
-
-
-
-
-## SpringBoot2视频
-
-### P1课程介绍
-
-SpringBoot2: 
-
-第一季：SpringBoot2核心技术:入门，核心功能，场景整合
-
-第二季：SpringBoot2响应式编程:基础开发用响应式来替代，基础，Webflux开发web应用，少量资源——大并发，极高吞吐量的应用;持久化访问;响应式安全开发;响应式原理(Reactor, Netty)
-
-语雀平台
-
-### 官方笔记参考网站
-
-[SpringBoot2核心技术与响应式编程 · 语雀 (yuque.com)](https://www.yuque.com/atguigu/springboot)
-
-学习要求
-
-- 熟悉Spring基础
-- 熟悉Maven使用
-
-底层注解
-
-### P08底层注解`@Configuration`
-
-@Configuration(proxyBeanMethods = true)    告诉SpringBoot这是一个配置类 == 配置文件
-
-之前在beans.xml里面用 `bean`标签
-
-现在使用 `@Bean`注解
-
-默认是单实例的
-
-![image-20210919151612805](雷丰阳SpringBoot2/001.png)
-
-![image-20210928155226157](雷丰阳SpringBoot2/003.png)
-
-配置速度， `false`的情况下启动会非常快。 `true`的情况下，容器依赖另外一个容器
-
-笔记文档
-
-[03、了解自动配置原理 · 语雀 (yuque.com)](https://www.yuque.com/atguigu/springboot/qb7hy2#0tCTs)
-
-### P09 底层注解`@Import`
-
-除了Spring里原先有的 
-
-`@Import`导入组件
-
-### P10 底层注解`@Conditional`
-
-条件装配
-
-### P11底层注解`@ImportResource`
-
-`@ImportResource("classpath:beans.xml")`  允许使用以前Spring导入配置文件形式导入`Bean`
-
-内路径
-
-### P12 底层注解`@ConfigurationProperties`(prefix = "")配置绑定
-
-在容器中生效，前面加上 `@Component`;和核心配置文件 `application.properties`下哪个 **'prefix'** 有关
-
-2:配置类中其启动 `@EnableConfigurationProperties(Car.class)`
-
-**P13 自动配置 自动包规则原理**
-
-`@SpringBootApplication`点进去源码，`@SpringBootConfiguration`代表配置类
-
-最重要`@EnableAutoConfiguration`源码 `@Import`下 `@AutoConfigurationPackage`自动配置包，将包下文件夹内所有组件导入
-
-**P14 源码分析 初始加载自动配置类**
-
-127个场景自动配置启动，默认全部加载。最终按照条件装配规则(`@Conditional`)，按需配置。
-
-**P15 自动配置 自动装配流程**
-
- 看得晕
-
-### P16 最佳实践
-
- 引入`start`,实践更改`banner`
-
-### P22web场景-web开发简洁
-
-先用在细节
-
-雷电之神而不是锤子之神
-
-![image-20210929174708259](雷丰阳SpringBoot2/004.png)
-
-### P25web场景，源码分析，静态资源管理
-
-
-
-### P26请求处理Rest映射及源码分析
-
-- 什么是请求处理？  `@xxxMapping`注解
-
-- Rest风格（使用HTTP GET, POST, DELETE, PUT请求方式动词来表示对资源操作）
-
-  ![image-20211013175736319](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20211013175736319.png)
-
-  问题 `PUT`, `DELETE`默认`GET`
-
-  `@RequestMapping(value= , method = RequestMethod.XXX)` == `@XxxMapping("")`  注意大小写
-
-- 查看 `WebMvcAutoConfiguration`
-
-  ![image-20211013181358048](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20211013181358048.png)
-
-Rest风格
-
-**P27请求处理怎么改变默认的method**
-
-- 在 `config`目录下写 `WebConfig`。 写 `HiddenHttpMethodFilter`方法  自定义规则
-
-### P28请求处理-源码分析-请求映射原理
-
-所有的请求都回到 `DispatchServlet`
-
-要研究（SPRIGNBOOT SpringMVC）请求处理最终都会到 `doDispatch`  官方笔记有图
-
-自动调用 `HandlerMapping`
-
-### P29请求处理常用参数注解使用
-
-详细见视频和文档的使用，大致是接受请求，处理请求，打印请求，输出请求。
-
-只要我们在括号参数里加上`@相应类型`注解, `SpringMVC`自动将参数确定好值
-
-### P30请求处理-@RequestAttribute
-
-页面转发的时候获取 `request`域属性
-
-一个跳到另一个
-
-### P31-@MatrixVariable与UrlPathHelper
-
-补看，讲的针不错。需要结合文档，视频，慢慢领会。
-
-### P32、请求处理-【源码分析】-各种类型参数解析原理
-
-看源码 结合官方笔记
-
-打断点，执行程度。不打断点，不执行程序，光靠Ctrl + Click 不能像断点debug模式下的那样一层层地深入。
-
-从 `DispatchServlet`开始 `debug`来看每一个的过程
-
-HandlerMapping中找到处理请求的Handler
-
-HandlerAdapter适配器(四种 RequestMappingHandler, HandlerFunction, HttpRequestHandler, SimpleControllerHandler) 适配器处理方法
-
-执行目标方法 
-
-执行目标方法关键设置参数解析器(26个，Argument Resolver) (含判断参数支不支持解析，所以决定了放进去的参数)
-
-
-
-### P33、请求处理-【源码分析】-Servlet API参数解析原理
-
-
-
-### P34、请求处理-【源码分析】-Model、Map原理
-
-
-
-
-
-### P35、请求处理-【源码分析】-自定义参数绑定原理
-
-### P36、请求处理-【源码分析】-自定义Converter原理
-
-### P37、响应处理-【源码分析】-ReturnValueHandler原理
-
-### P38、响应处理-【源码分析】-HTTPMessageConverter原理
-
-
-
-### P39、响应处理-【源码分析】-内容协商原理
-
-
-
-### P40、响应处理-【源码分析】-基于请求参数的内容协商原理
-
-### P44
-
-模板解析经过请求处理最终由模板引擎来解析
-
-直接访问只能访问静态文件夹
-
-处理了一个请求，请求名叫 */main.html* *最终跳到main*页面
-
-
-
-### P45
-
-
-
 ## Spring Boot（官方文档）
 
 [GitHub - spring-projects/spring-boot: Spring Boot](https://github.com/spring-projects/spring-boot)
 
-1. Introducing Spring Boot
+### Introducing Spring Boot
 
-   -  create stand-alone, production-grade Spring-based applications .
+-  create stand-alone, production-grade Spring-based applications .
 
-2. Developing Your First Spring Boot Application
+### Developing Your First Spring Boot Application
 
-   `@RestController`:  *stereotype* （刻板印象）annotation. 告诉你或者别的程序员our class is a web `@Controller`, so Spring considers it when handling incoming web requests.
+`@RestController`:  *stereotype* （刻板印象）annotation. 告诉你或者别的程序员our class is a web `@Controller`, so Spring considers it when handling incoming web requests.
 
-   
 
-   `@RequestMapping`:  provides “routing” information; The `@RestController("/")` annotation tells Spring ( any HTTP request with the `/` path) to render the resulting string(annotation下面的方法) directly back to the caller.
 
-   
+`@RequestMapping`:  provides “routing” information; The `@RestController("/")` annotation tells Spring ( any HTTP request with the `/` path) to render the resulting string(annotation下面的方法) directly back to the caller.
 
-   `@EnableAutoConfiguration`. tells Spring Boot to “guess” how you want to configure Spring, based on the jar dependencies that you have added. 
 
-   (e.g.)Since `spring-boot-starter-web` added Tomcat and Spring MVC, the auto-configuration assumes that you are developing a web application and sets up Spring accordingly.
 
-   - 要在`pom.xml`下执行 `mvn spring-boot:run`
+`@EnableAutoConfiguration`. tells Spring Boot to “guess” how you want to configure Spring, based on the jar dependencies that you have added. 
 
-   - 执行`mvn spring-boot:run` `出现cannot find symbol   symbol: class "RestController"`错误。解决办法：在`Intellij`里导入项目，然后根据自动提示，`import`所需的类，IDEA里成功运行，换到命令行，运行成功。
+(e.g.)Since `spring-boot-starter-web` added Tomcat and Spring MVC, the auto-configuration assumes that you are developing a web application and sets up Spring accordingly.
 
-     
+- 要在`pom.xml`下执行 `mvn spring-boot:run`
 
-     **main** method: SpringApplication.run(MyApplication.class, args);
+- 执行`mvn spring-boot:run` `出现cannot find symbol   symbol: class "RestController"`错误。解决办法：在`Intellij`里导入项目，然后根据自动提示，`import`所需的类，IDEA里成功运行，换到命令行，运行成功。
 
-   ### Creating an Executable Jar
+  
 
-   To create an executable jar, we need to add the `spring-boot-maven-plugin` to our `pom.xml`. 
+  **main** method: SpringApplication.run(MyApplication.class, args);
 
-   ```xml
-   <build>
-       <plugins>
-           <plugin>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-maven-plugin</artifactId>
-           </plugin>
-       </plugins>
-   </build>
-   ```
+### Creating an Executable Jar
 
-   peek inside, "jar tvf"
+To create an executable jar, we need to add the `spring-boot-maven-plugin` to our `pom.xml`. 
 
-   `$ jar tvf target/myproject-0.0.1-SNAPSHOT.jar`
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+```
 
-   `java -jar target/myproject-0.0.1-SNAPSHOT.jar`
+peek inside, "jar tvf"
 
-3. 进阶学习
+`$ jar tvf target/myproject-0.0.1-SNAPSHOT.jar`
 
-   task-oriented type of developer: jump over to [spring.io](https://spring.io/) and check out some of the [getting started](https://spring.io/guides/) guides that solve specific “How do I do that with Spring?” problems. We also have Spring Boot-specific “[How-to](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto)” reference documentation
+`java -jar target/myproject-0.0.1-SNAPSHOT.jar`
 
-   Otherwise, the next logical step is to read *[using.html](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using)*.  impatient,  jump ahead and read about *[Spring Boot features](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features)*.
 
-4. Developing with Spring Boot
 
-   - site: [Developing with Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using)
+进阶学习
 
-   - Builder Systems, dependency management: 
+task-oriented type of developer: jump over to [spring.io](https://spring.io/) and check out some of the [getting started](https://spring.io/guides/) guides that solve specific “How do I do that with Spring?” problems. We also have Spring Boot-specific “[How-to](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto)” reference documentation
 
-     ​	**Maven**:	
+Otherwise, the next logical step is to read *[using.html](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using)*.  impatient,  jump ahead and read about *[Spring Boot features](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features)*.
 
-     - Reference ([HTML](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/reference/htmlsingle/) and [PDF](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/reference/pdf/spring-boot-maven-plugin-reference.pdf))
+Developing with Spring Boot
 
-     - [API](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/api/)
+- site: [Developing with Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using)
 
-     - ###      Gradle
+- Builder Systems, dependency management: 
 
-       - Reference ([HTML](https://docs.spring.io/spring-boot/docs/2.5.4/gradle-plugin/reference/htmlsingle/) and [PDF](https://docs.spring.io/spring-boot/docs/2.5.4/gradle-plugin/reference/pdf/spring-boot-gradle-plugin-reference.pdf))
+  ​	**Maven**:	
 
-       - [API](https://docs.spring.io/spring-boot/docs/2.5.4/gradle-plugin/api/)
+  - Reference ([HTML](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/reference/htmlsingle/) and [PDF](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/reference/pdf/spring-boot-maven-plugin-reference.pdf))
 
-         **Ant**:Apache Ant+Ivy
+  - [API](https://docs.spring.io/spring-boot/docs/2.5.4/maven-plugin/api/)
 
-   - Starters
+  - ###      Gradle
 
-     Starters are a set of convenient dependency descriptors that you can include in your application. 
+    - Reference ([HTML](https://docs.spring.io/spring-boot/docs/2.5.4/gradle-plugin/reference/htmlsingle/) and [PDF](https://docs.spring.io/spring-boot/docs/2.5.4/gradle-plugin/reference/pdf/spring-boot-gradle-plugin-reference.pdf))
 
-     one-stop shop for all the Spring and relative technologies.(e.g. Spring and JPA to access the database, `spring-boot-starter-data-jpa`)
+    - [API](https://docs.spring.io/spring-boot/docs/2.5.4/gradle-plugin/api/)
 
-     starters: application starters, production starters, technical starters
+      **Ant**:Apache Ant+Ivy
 
-     More details about the starters([Developing with Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using))
+- Starters
 
-   - Structuring your code
+  Starters are a set of convenient dependency descriptors that you can include in your application. 
 
-     A class which does not have a `package` declaration is "default package". But, it is not recommended. It will cause problems when use the `@ComponentScan`, `@ConfigurationPropertiesScan`, `@EntityScan`.
+  one-stop shop for all the Spring and relative technologies.(e.g. Spring and JPA to access the database, `spring-boot-starter-data-jpa`)
 
-     `@SpringBootApplication` annotation locates your main application class in a root package above other classes.
+  starters: application starters, production starters, technical starters
 
-     
+  More details about the starters([Developing with Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using))
 
-   - Configuration Classes
+- Structuring your code
 
-     primary source be a single `@Configuration` class
+  A class which does not have a `package` declaration is "default package". But, it is not recommended. It will cause problems when use the `@ComponentScan`, `@ConfigurationPropertiesScan`, `@EntityScan`.
 
-     Spring配置： `SpringApplication` with XML
+  `@SpringBootApplication` annotation locates your main application class in a root package above other classes.
 
-     The `@Import` annotation can be used to import additional configuration classes.
+  
 
-     `@ComponentScan`：pick up all Spring components
+- Configuration Classes
 
-     **must** (如果一定要使用)use XML based configuration：start with a `@Configuration` class
+  primary source be a single `@Configuration` class
 
-     use an `@ImportResource` annotation to load XML configuration files
+  Spring配置： `SpringApplication` with XML
 
-   - Auto-configuration
+  The `@Import` annotation can be used to import additional configuration classes.
 
-     automatically configure your Spring application based on the jar dependencies
+  `@ComponentScan`：pick up all Spring components
 
-     opt-in to auto-configuration: adding the `@EnableAutoConfiguration` or `@SpringBootApplication` annotations to one of your `@Configuration` classes
+  **must** (如果一定要使用)use XML based configuration：start with a `@Configuration` class
 
-     - ### Gradually Replacing Auto-configuration: define your own configuration,  `--debug` switch to see the current configuration 
+  use an `@ImportResource` annotation to load XML configuration files
 
-     - ### Disabling Specific Auto-configuration Classes
+- Auto-configuration
 
-       ```java
-       @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class }) public class MyApplication { }
-       ```
+  automatically configure your Spring application based on the jar dependencies
 
-       
+  opt-in to auto-configuration: adding the `@EnableAutoConfiguration` or `@SpringBootApplication` annotations to one of your `@Configuration` classes
 
-   - Spring Beans and Dependency Injection
+  - ### Gradually Replacing Auto-configuration: define your own configuration,  `--debug` switch to see the current configuration 
 
-     - Sprign Beans: 简单来讲就是被Ioc(Inversion of control)所管理的对象,具体需要通过案例理解：[What is a Spring Bean? | Baeldung](https://www.baeldung.com/spring-bean)
+  - ### Disabling Specific Auto-configuration Classes
 
-     - Recommend using constructor injection to wire up dependencies and `@ComponentScan` to find beans.
+    ```java
+    @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class }) public class MyApplication { }
+    ```
 
-       ​	constructor injection: [Constructor Dependency Injection in Spring | Baeldung](https://www.baeldung.com/constructor-injection-in-spring)
+    
 
-     - If you use the recommended way: add `@ComponentScan` without any arguments or use the `@SpringBootApplication` annotation which implicitly includes it. 
+- Spring Beans and Dependency Injection
 
-       application components (`@Component`, `@Service`, `@Repository`, `@Controller` etc.) are automatically registered as Spring Beans
+  - Sprign Beans: 简单来讲就是被Ioc(Inversion of control)所管理的对象,具体需要通过案例理解：[What is a Spring Bean? | Baeldung](https://www.baeldung.com/spring-bean)
 
-       (e.g. `@Service` Bean that uses constructor injection to obtain a required `RiskAssessor` bean:
+  - Recommend using constructor injection to wire up dependencies and `@ComponentScan` to find beans.
 
-       ​	
+    ​	constructor injection: [Constructor Dependency Injection in Spring | Baeldung](https://www.baeldung.com/constructor-injection-in-spring)
 
-       ```java
-       @Service
-       public class MyAccountService implements AccountService {
-       
-           private final RiskAssessor riskAssessor;
-       
-           public MyAccountService(RiskAssessor riskAssessor) {
-               this.riskAssessor = riskAssessor;
-           }
-       
-           // ...
-       
-       }
-       ```
+  - If you use the recommended way: add `@ComponentScan` without any arguments or use the `@SpringBootApplication` annotation which implicitly includes it. 
 
-       
+    application components (`@Component`, `@Service`, `@Repository`, `@Controller` etc.) are automatically registered as Spring Beans
 
-       ```java
-       @Service
-       public class MyAccountService implements AccountService {
-       
-           private final RiskAssessor riskAssessor;
-       
-           private final PrintStream out;
-       
-           @Autowired  //use to mark which one you want Spring to use with @Autowired
-           public MyAccountService(RiskAssessor riskAssessor) {
-               this.riskAssessor = riskAssessor;
-               this.out = System.out;
-           }
-       
-           public MyAccountService(RiskAssessor riskAssessor, PrintStream out) {
-               this.riskAssessor = riskAssessor;
-               this.out = out;
-           }
-       
-           // ...
-       
-       }
-       ```
+    (e.g. `@Service` Bean that uses constructor injection to obtain a required `RiskAssessor` bean:
 
-       
+    ​	
 
-       )
+    ```java
+    @Service
+    public class MyAccountService implements AccountService {
+    
+        private final RiskAssessor riskAssessor;
+    
+        public MyAccountService(RiskAssessor riskAssessor) {
+            this.riskAssessor = riskAssessor;
+        }
+    
+        // ...
+    
+    }
+    ```
 
-     - Using the @SpringBootApplication Annotation
+    
 
-       `@SpringBootApplication` annotation enable three features: @SpringBootConfiguration, @ComponentScan, @EnableAutoConfiguration
+    ```java
+    @Service
+    public class MyAccountService implements AccountService {
+    
+        private final RiskAssessor riskAssessor;
+    
+        private final PrintStream out;
+    
+        @Autowired  //use to mark which one you want Spring to use with @Autowired
+        public MyAccountService(RiskAssessor riskAssessor) {
+            this.riskAssessor = riskAssessor;
+            this.out = System.out;
+        }
+    
+        public MyAccountService(RiskAssessor riskAssessor, PrintStream out) {
+            this.riskAssessor = riskAssessor;
+            this.out = out;
+        }
+    
+        // ...
+    
+    }
+    ```
 
-       
+    
 
-       
+    )
 
-     - Running Your Application
+  - Using the @SpringBootApplication Annotation
 
-       - IDE
+    `@SpringBootApplication` annotation enable three features: @SpringBootConfiguration, @ComponentScan, @EnableAutoConfiguration
 
-       - as a Packaged Application
+    
 
-       - Using the Maven Plugin
+    
 
-       - Using the Gradle Plugin
+  - Running Your Application
 
-       - Hot Swapping: 
+    - IDE
 
-         ​	Hot swapping is the term given to **the process of replacing a key component of a computer system while it's still running**
+    - as a Packaged Application
 
-         
+    - Using the Maven Plugin
 
-     - Developer Tools
+    - Using the Gradle Plugin
 
-       make the application development experience a little more pleasant
+    - Hot Swapping: 
 
-       To include devtools support, add the module dependency to your build
+      ​	Hot swapping is the term given to **the process of replacing a key component of a computer system while it's still running**
 
-       Maven:
+      
 
-       ```xml
-       <dependencies>
-           <dependency>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-devtools</artifactId>
-               <optional>true</optional>
-           </dependency>
-       </dependencies>
-       ```
+  - Developer Tools
 
-       Gradle:
+    make the application development experience a little more pleasant
 
-       ```groovy
-       dependencies {
-           developmentOnly("org.springframework.boot:spring-boot-devtools")
-       }
-       ```
+    To include devtools support, add the module dependency to your build
 
-        	
+    Maven:
 
-     - Developer Tools
+    ```xml
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+    ```
 
-       1. Spring Boot use caches to improve performance
+    Gradle:
 
-          ​	it can be counter-productive during development, preventing you from seeing the changes you just made in your application. For this reason, spring-boot-devtools disables the caching options by default
+    ```groovy
+    dependencies {
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
+    }
+    ```
 
-          ​	For a complete list of the properties that are applied by the devtools:
+     	
 
-          ​		[DevToolsPropertyDefaultsPostProcessor](https://github.com/spring-projects/spring-boot/tree/v2.5.4/spring-boot-project/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/env/DevToolsPropertyDefaultsPostProcessor.java).
+  - Developer Tools
 
-       2. Property Defaults
+    1. Spring Boot use caches to improve performance
 
-          - Automatic Restart
-          - LiveReload
-          - Global Settings
-          - Remote Applications
+       ​	it can be counter-productive during development, preventing you from seeing the changes you just made in your application. For this reason, spring-boot-devtools disables the caching options by default
 
-       3. 
+       ​	For a complete list of the properties that are applied by the devtools:
 
-       4. 
+       ​		[DevToolsPropertyDefaultsPostProcessor](https://github.com/spring-projects/spring-boot/tree/v2.5.4/spring-boot-project/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/env/DevToolsPropertyDefaultsPostProcessor.java).
 
-   
+    2. Property Defaults
 
-   - Spring Boot Features
+       - Automatic Restart
+       - LiveReload
+       - Global Settings
+       - Remote Applications
 
-     dives into the details of Spring Boot;the key features that you may want to use and customize.
+    3. 
 
-     [Spring Boot Features](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.spring-application)
+    4. 
 
-     - Spring Application
 
-       The `SpringApplication` class provides a convenient way to bootstrap a Spring application that is started from a `main()` method
 
-       
+- Spring Boot Features
 
-     - 1
+  dives into the details of Spring Boot;the key features that you may want to use and customize.
 
-     - 2
+  [Spring Boot Features](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.spring-application)
 
-   - Spring Boot Actuator: Production-ready Features
+  - Spring Application
+
+    The `SpringApplication` class provides a convenient way to bootstrap a Spring application that is started from a `main()` method
+
+    
+
+  - 1
+
+  - 2
+
+- Spring Boot Actuator: Production-ready Features
 
 5. 
 
    
+
+
 
 ## **SpringBoot一些博客阅读**
 
@@ -508,7 +303,7 @@ Spring Boot2.0也提供对响应式编程的自动化配置，如：Reactive Spr
 
 结合尚硅谷的教程视频
 
-## Building REST services with Spring(12/1)
+## (Tutorial)Building REST services with Spring(12/1)
 
 [Tutorial | Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 
@@ -523,7 +318,9 @@ Spring Boot2.0也提供对响应式编程的自动化配置，如：Reactive Spr
 
   [表现层状态转换 - 维基百科，自由的百科全书 (wikipedia.org)](https://zh.wikipedia.org/wiki/表现层状态转换)
 
-  
+   Roy Fielding（涉及到这个人）
+
+  关于REST更详尽的论文（[Fielding Dissertation: CHAPTER 5: Representational State Transfer (REST) (uci.edu)](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)）
 
   表现层状态转换是根基于[超文本传输协议（HTTP）](https://zh.wikipedia.org/wiki/超文本传输协议)之上而确定的一组约束和属性，是一种设计提供万维网络服务的[软件构建风格](https://zh.wikipedia.org/wiki/軟件架構)。符合或兼容于这种架构风格（简称为 REST 或 RESTful）的网络服务，允许客户端发出以[统一资源标识符](https://zh.wikipedia.org/wiki/统一资源标志符)访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。因此表现层状态转换提供了在互联网络的计算系统之间，彼此资源可交互使用的协作性质（interoperability）。相对于其它种类的网络服务，例如SOAP服务，则是以本身所定义的操作集，来访问网络上的资源。
 
@@ -699,6 +496,8 @@ Spring Boot2.0也提供对响应式编程的自动化配置，如：Reactive Spr
 
 To wrap your repository with a web layer, you must turn to Spring MVC. 
 
+（这里涉及到了Spring MVC的一些知识， 具体的一些补充https://spring.io/guides/gs/serving-web-content/https://spring.io/guides/gs/serving-web-content/）
+
 - EmployeeController.java
 
   ```java
@@ -838,7 +637,7 @@ To wrap your repository with a web layer, you must turn to Spring MVC.
     - Merely using `GET`, `POST`, etc. isn’t REST.
     - Having all the CRUD operations laid out isn’t REST.
 
-    This statement of Roy Fielding’s may further lend a clue to the difference between **REST** and **RPC**:
+    This statement of Roy Fielding’s may further lend a clue to the difference between **REST** and **RPC（Remote procedure call）**:
 
     > I am getting frustrated by the number of people calling any HTTP-based interface a REST API. Today’s example is the SocialSite REST API. That is RPC. It screams RPC. There is so much coupling on display that it should be given an X rating.
     >
@@ -846,7 +645,15 @@ To wrap your repository with a web layer, you must turn to Spring MVC.
 
     — Roy Fielding
     https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven
-
+  
+    （12/2 没有看的特别明白）
+  
+  补充文章： [如何给老婆解释什么是RESTful - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/30396391)
+  
+  
+  
+  
+  
   The side effect of NOT including hypermedia in our representations is that clients MUST hard code URIs to navigate the API. This leads to the same brittle nature that predated the rise of e-commerce on the web. It’s a signal that our JSON output needs a little help.（JSON需要一点帮助的信号？预示了电子商务的兴起？）
 
 **Spring HATEOAS**
@@ -885,6 +692,8 @@ EntityModel<Employee> one(@PathVariable Long id) {
 One of Spring HATEOAS’s core types is `Link`. It includes a **URI** and a **rel** (relation). Links are what empower the web. Before the World Wide Web, other document systems would render information or links, but it was the linking of documents WITH this kind of relationship metadata that stitched the web together.
 
 Roy Fielding encourages building APIs with the same techniques that made the web successful, and links are one of them.
+
+**The result: curl -v localhost:8080/employees/1**
 
 ```java
 {

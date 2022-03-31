@@ -1,7 +1,16 @@
 ## Spring Framework Overview
 
 - use the [GitHub Issues](https://github.com/spring-projects/spring-framework/issues).
+
 - Stack Overflow. Click [here](https://stackoverflow.com/questions/tagged/spring+or+spring-mvc+or+spring-aop+or+spring-jdbc+or+spring-r2dbc+or+spring-transactions+or+spring-annotations+or+spring-jms+or+spring-el+or+spring-test+or+spring+or+spring-remoting+or+spring-orm+or+spring-jmx+or+spring-cache+or+spring-webflux+or+spring-rsocket?tab=Newest) 
+
+- Reference: 
+
+  Design pattern: http://w3sdesign.com/index0100.php （一个很好的在线学习设计模式的网站）
+
+  **Design Patterns: Elements of Reusable Object-Oriented Software.** 	                	                     
+
+   Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides. Published October 1994. Copyright © 1995 by Addison-Wesley.  (The authors of the book are commonly referred to as "GoF" or "Gang of Four".) 	                    
 
 ### Design Philosophy
 
@@ -52,6 +61,28 @@
   - Application-layer specific contexts such as the `WebApplicationContext` for use in web applications.
 
   beans: form the backbone of your application,  are instantiated, assembled, and managed by a Spring IoC container
+
+- Addition
+
+  **Factory method pattern**:
+
+  **Creational pattern:**https://en.wikipedia.org/wiki/Creational_pattern
+
+  - Current Problem: Object creation could result in design problems or in added complexity to the design
+
+  - Aim: To solve the Current Problem
+
+  - Two dominant ideas: 
+
+    ​	Encapsulating knowledge about which concrete classes the system uses Or
+
+    ​	Hiding how instances of these concrete classes are created and combined
+
+  - Categories: object-creational patterns(Object creation) and Class-creational patterns(Class-instantiation)
+
+  ​	
+
+  
 
 #### 1.2 Container Overview
 
@@ -533,279 +564,6 @@ class SimpleMovieLister(private val movieFinder: MovieFinder) {
 1.9Annotation-based Container Configuration
 
 
-
-
-
-## Spring尚硅谷
-
-### IOC容器
-
-- 底层原理
-
-  什么是IOC：
-
-  ​	i. 控制反转， 对象创建和控制交给spring管理
-
-  ​	ii. 使用目的： 降低耦合度
-
-  ​	iii. 入门案例是ioc实现
-
-  底层原理：
-
-  ​	i. xml解析、工厂模式、反射
-
-  原始方案——工厂模式——IOC容器 逐渐降低耦合度
-
-  ![image-20210523193526614](Spring/001.png)
-
-  
-
-- IOC接口(`BeanFactory`)
-
-  i. IOC思想基于IOC容器完成，	IOC容器底层就是对象工厂
-
-  ii. Spring提供IOC容器实现的两种方式：（两种方式）
-
-  ​	加载配置文件获取bean对象
-
-   1. `BeanFactory`
-
-      IOC容器基本实现方式： Spring里面内部使用，不提供开发人员使用
-
-      *加载配置文件不会创建对象，使用对象采取创建对象
-
-   2. `ApplicationContext`：`BeanFactory`的子接口，提供更多等强大功能，一般是开发人员使用
-
-      *加载配置文件时会把配置文件对象进行创建
-
-   3. `ApplicationContext`接口有实现类
-
-      ```
-      FileSystemXmlApplicationContext
-      ClassPathXmlApplicationContext
-      ```
-
-      
-
-- IOC操作Bean管理（基于xml）(基于注解)
-
-  1、什么是Bean管理
-
-  ​	Bean管理包括两个操作
-
-  ​	i. Spring创建对象
-
-  ​	ii. Spring注入属性
-
-  2、Bean管理操作有两种方式
-
-  (1)基于xml配置文件方式
-
-  `<bean id="user"class="com.rshstone.spring5.User"></bean>`
-
-  i. 在spring配置文件中，使用bean标签，标签里面添加对应属性，可以实现对象创建
-
-  ii. 在bean标签中有很多属性，介绍常见的属性
-
-  *id属性：唯一标识
-
-  *class属性：类全路径(包类路径)
-
-  ii. 创建类对象时，默认无参数构造方s法
-
-  (2)基于xml方式注释方式
-
-  i.  DI：依赖注入，就是注入属性 ，需要在创建对象时完成
-
-  ​	DI和ioc的关系：DI时IOC中具体实现，
-
-  ​	第一种使用set方法注入
-
-  ​		<bean id = "" class = "">
-
-  ​				<property name = "" value = "">
-
-  ​				</property> 
-
-  ​		</bean>
-
-  ​	第二种使用有参数构造注入
-
-  ​	i. 类里面创建有参构造
-
-  ​	ii. 配置xml <bean id = "" class = "">
-
-  ​				<constructor-arg name = "" value = "">
-
-  ​				</constructor-arg> 
-
-  ​				</bean>
-
-  ​	第三种p名称空间注入(了解一下)
-
-### AOP操作
-
-### Jdbc Template
-
-事务操作
-
-Spring5新功能-Webflux
-
-
-
-```java
-F:\Java\JDK\jdk-version\jdk-8\bin\java.exe -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:C:\Users\ASUS\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\203.7148.57\lib\idea_rt.jar=3862:C:\Users\ASUS\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\203.7148.57\bin -Dfile.encoding=UTF-8 -classpath C:\Users\ASUS\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\203.7148.57\lib\idea_rt.jar;C:\Users\ASUS\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\203.7148.57\plugins\junit\lib\junit5-rt.jar;C:\Users\ASUS\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\203.7148.57\plugins\junit\lib\junit-rt.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\charsets.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\deploy.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\access-bridge.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\cldrdata.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\dnsns.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\jaccess.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\jfxrt.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\localedata.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\nashorn.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\sunec.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\sunjce_provider.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\sunmscapi.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\sunpkcs11.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\ext\zipfs.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\javaws.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\jce.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\jfr.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\jfxswt.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\jsse.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\management-agent.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\plugin.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\resources.jar;F:\Java\JDK\jdk-version\jdk-8\jre\lib\rt.jar;D:\Downloads\SpringiA4_SourceCode\Chapter_02\stereo-autoconfig\out\test\classes;D:\Downloads\SpringiA4_SourceCode\Chapter_02\stereo-autoconfig\out\test\resources;D:\Downloads\SpringiA4_SourceCode\Chapter_02\stereo-autoconfig\out\production\classes;D:\Downloads\SpringiA4_SourceCode\Chapter_02\stereo-autoconfig\out\production\resources;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.springframework\spring-context\4.0.7.RELEASE\8a4aa735f3691a1985381b3c6c69d32b835f51b4\spring-context-4.0.7.RELEASE.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.springframework\spring-test\4.0.7.RELEASE\148c20e5170e6081dfcc5afefa613e27a7b1b814\spring-test-4.0.7.RELEASE.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.github.stefanbirkner\system-rules\1.5.0\a98ed9e2775d57586a420d52b9bf8b2384edc58b\system-rules-1.5.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.springframework\spring-aop\4.0.7.RELEASE\caadec5dc4ea4899d89004ff46053f8e391e0343\spring-aop-4.0.7.RELEASE.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.springframework\spring-beans\4.0.7.RELEASE\fdd041f086972cc16f9b09ee420a98604cd0bc07\spring-beans-4.0.7.RELEASE.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.springframework\spring-core\4.0.7.RELEASE\777e9502c4c2de150918a746fa22734d3eff81e0\spring-core-4.0.7.RELEASE.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.springframework\spring-expression\4.0.7.RELEASE\46a4cfe181b1f15940b5ea7530fcad1f8b98c561\spring-expression-4.0.7.RELEASE.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\commons-io\commons-io\2.10.0\79384da84646660c57b89aa86a5a1eb98af50e00\commons-io-2.10.0.jar;C:\Users\ASUS\.m2\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.3\f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f\commons-logging-1.1.3.jar;C:\Users\ASUS\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\ASUS\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 soundsystem.CDPlayerXMLConfigTest,play
-Jun 21, 2021 4:05:59 PM org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
-INFO: Could not instantiate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [javax/servlet/ServletContext]
-Jun 21, 2021 4:05:59 PM org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
-INFO: Could not instantiate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
-Jun 21, 2021 4:05:59 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
-INFO: Loading XML bean definitions from class path resource [META-INF/spring/soundsystem.xml]
-Jun 21, 2021 4:06:00 PM org.springframework.context.support.GenericApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.GenericApplicationContext@17b1517: startup date [Mon Jun 21 16:06:00 CST 2021]; root of context hierarchy
-Playing Sgt. Pepper's Lonely Hearts Club Band by The Beatles
-
-org.junit.ComparisonFailure: 
-<Click to see difference>
-
-
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at org.junit.Assert.assertEquals(Assert.java:144)
-	at soundsystem.CDPlayerXMLConfigTest.play(CDPlayerXMLConfigTest.java:34)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
-	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:48)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
-	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
-	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
-	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:220)
-	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:53)
-
-
-Process finished with exit code -1
-```
-
-```java
-:compileJava UP-TO-DATE
-:processResources UP-TO-DATE
-:classes UP-TO-DATE
-:compileTestJava UP-TO-DATE
-:processTestResources UP-TO-DATE
-:testClasses UP-TO-DATE
-:test
-Jun 21, 2021 4:12:31 PM org.springframework.test.context.support.AbstractContextLoader generateDefaultLocations
-INFO: Detected default resource location "classpath:/soundsystem/CNamespaceReferenceTest-context.xml" for test class [soundsystem.CNamespaceReferenceTest]
-Jun 21, 2021 4:12:31 PM org.springframework.test.context.support.AbstractDelegatingSmartContextLoader processContextConfiguration
-INFO: GenericXmlContextLoader detected default locations for context configuration [ContextConfigurationAttributes@bc6a271 declaringClass = 'soundsystem.CNamespaceReferenceTest', classes = '{}', locations = '{classpath:/soundsystem/CNamespaceReferenceTest-context.xml}', inheritLocations = true, initializers = '{}', inheritInitializers = true, name = [null], contextLoaderClass = 'org.springframework.test.context.ContextLoader'].
-Jun 21, 2021 4:12:31 PM org.springframework.test.context.support.AnnotationConfigContextLoaderUtils detectDefaultConfigurationClasses
-INFO: Could not detect default configuration classes for test class [soundsystem.CNamespaceReferenceTest]: CNamespaceReferenceTest does not declare any static, non-private, non-final, inner classes annotated with @Configuration.
-Jun 21, 2021 4:12:31 PM org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
-INFO: Could not instantiate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [javax/servlet/ServletContext]
-Jun 21, 2021 4:12:31 PM org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
-INFO: Could not instantiate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
-Jun 21, 2021 4:12:31 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
-INFO: Loading XML bean definitions from class path resource [soundsystem/CNamespaceReferenceTest-context.xml]
-Jun 21, 2021 4:12:31 PM org.springframework.context.support.GenericApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.GenericApplicationContext@5e0e6a05: startup date [Mon Jun 21 16:12:31 CST 2021]; root of context hierarchy
-Playing Sgt. Pepper's Lonely Hearts Club Band by The Beatles
-
-expected:<... Band by The Beatles[]
-]
->
-<Click to see difference>
-
-org.junit.ComparisonFailure: expected:<... Band by The Beatles[]
-]
->
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at org.junit.Assert.assertEquals(Assert.java:144)
-	at soundsystem.CNamespaceReferenceTest.play(CNamespaceReferenceTest.java:26)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
-	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:48)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
-	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:109)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:377)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:54)
-	at org.gradle.internal.concurrent.StoppableExecutorImpl$1.run(StoppableExecutorImpl.java:40)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at java.lang.Thread.run(Thread.java:748)
-
-
-soundsystem.CNamespaceReferenceTest > play FAILED
-    org.junit.ComparisonFailure at CNamespaceReferenceTest.java:26
-1 test completed, 1 failed
-:test FAILED
-FAILURE: Build failed with an exception.
-* What went wrong:
-Execution failed for task ':test'.
-> There were failing tests. See the report at: file:///D:/Downloads/SpringiA4_SourceCode/Chapter_02/stereo-xmlconfig/build/reports/tests/test/index.html
-* Try:
-Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
-BUILD FAILED
-Total time: 3.984 secs
-```
 
 
 
