@@ -2,13 +2,17 @@
 
 [GitHub - spring-projects/spring-boot: Spring Boot](https://github.com/spring-projects/spring-boot)
 
+项目
+
+学习方式，跟着项目敲，模仿。 先会使用之后在思考why的细节问题
+
 ### Introducing Spring Boot
 
 -  create stand-alone, production-grade Spring-based applications .
 
 ### Developing Your First Spring Boot Application
 
-`@RestController`:  *stereotype* （刻板印象）annotation. 告诉你或者别的程序员our class is a web `@Controller`, so Spring considers it when handling incoming web requests.
+`@RestController`:  *stereotype* （刻板印象）annotation. 告诉你或者别的程序员our class is a web `@Controller`, so Spring considers it when handling incoming web requests.  =》 
 
 
 

@@ -9,6 +9,22 @@ Java后端是我现阶段学习的一个主要的方向。
 
 - 如何打好基础，教材阅读Java 核心基础 I,II。辅助github开源项目JavaGuide面试指南。
 
+**11:1**
+
+新的阶段 
+
+终身学习
+
+保持健康
+
+保持好奇
+
+赤子之心
+
+专业性
+
+好的程序员，老手，他解决问题能力很快，在相同技术下，知道什么能做，什么不能做。
+
 ## 对Java学习路线图的思考
 
 Java8新特性
@@ -26,6 +42,76 @@ Maven
 Spring
 
 SpringBoot2
+
+### The Date and Time API
+
+Java 1.0 Date class
+
+Java 1.1 Calendar类出来 Date Class deprecated
+
+Java 8 java.time API
+
+#### The Time Line
+
+**The time scale that Java uses**
+
+The Java Date and Time API specification requires that Java uses a time scale that 
+
+• Has 86,400 seconds per day 
+
+• Exactly matches the official time at noon each day
+
+ • Closely matches it elsewhere, in a precisely defined way That gives Java the flexibility to adjust to future changes in the official time.
+
+**Instant**
+
+an Instant represents **a point** on the time line
+
+The epoch: is arbitrarily set at midnight of January 1, 1970 at the prime meridian; same with UNIX/POSIX time convention
+
+Instant 文档：
+
+https://docs.oracle.com/javase/8/docs/api/java/time/Instant.html. 
+
+几个重要的类型： EPOCH,MAX,MIN
+
+
+
+
+
+
+
+#### Local Dates
+
+
+
+#### Date Adjusters
+
+
+
+#### Local Time
+
+
+
+#### Zoned Time
+
+
+
+#### Formatting and Parsing
+
+
+
+#### Interoperating with Legacy Code
+
+
+
+
+
+
+
+
+
+
 
 ## 尚硅谷宋康红主讲Java零基础小白七节必修课
 
@@ -190,3 +276,19 @@ Java职业晋升路线图
 
 不过几个模型得去写，comparable接口，接口作为传递参数等等。常见的传递到Arrays类中的sort方法。
 
+
+
+### Optional 类方法
+
+Optional该掌握的方法
+
+| static Optional ofNullable(T value)                    | 为指定的value创建一个Optional。若value为null，则返回空的Optional |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| Optional map(Function<? super T, ? extends U> mapper)  | 若有值，则对其执行调用mapper映射函数得到返回值。若返回值不为 null，则创建包含映射返回值的Optional作为map方法返回值，否则返回空Optional |
+| T orElse(T other)                                      | 若存在该值则将其返回， 否则返回 other                        |
+| T orElseGet(Supplier<? extends T> other)               | 若存在该值则将其返回，否则触发 other，并返回 other 调用的结果。注意，该方法为惰性计算 |
+| void ifPresent(Consumer<? super T> consumer)           | 若Optional实例有值则为其调用consumer，否则不做处理           |
+| Optional filter(Predicate<? super T> predicate)        | 若有值并且满足断言条件返回包含该值的Optional，否则返回空Optional |
+| T orElseThrow(Supplier<? extends X> exceptionSupplier) | 若存在该值则将其返回，否则抛出由 Supplier 继承的异常         |
+
+https://www.cnblogs.com/clover-toeic/p/10906824.html
