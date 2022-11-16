@@ -1,5 +1,23 @@
 # React
 
+基本知识： js基本知识、浏览器的基本知识
+
+### 学习React之前，需要知道JavaScript这些前置内容：
+
+- 变量
+- 箭头函数
+- 使用拓展运算符处理对象和数组
+- 对象和数组的解构
+- 模板字符串
+- 回调函数
+- es模块化
+
+**JS**
+
+**ES6**
+
+两周的时间
+
 ## [Tutorial: Intro to React – React (reactjs.org)](https://reactjs.org/tutorial/tutorial.html#what-is-react)
 
 declarative, efficient, flexible
@@ -98,6 +116,28 @@ React DOM 会负责更新 DOM 来与 React 元素保持一致。
 更新已渲染的元素
 
 计时器的例子
+
+React元素是**不可变对象**，一个元素像电影里单帧，代表了某个特定时刻UI
+
+更新UI唯一方式
+
+```react
+const root = ReactDOM.createRoot(
+  document.getElementById('root')
+);
+
+function tick() {
+  const element = (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+    </div>
+  );
+  root.render(element);
+}
+
+setInterval(tick, 1000);
+```
 
 
 
