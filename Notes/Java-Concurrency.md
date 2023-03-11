@@ -14,8 +14,16 @@ java.util.concurrent.Locks: https://www.baeldung.com/java-concurrent-locks
 
 Future 模式: https://www.cnblogs.com/Joe-Go/p/9815143.html
 
+网络学习
+
 [Socks5 代理协议详解 & 基于 Netty 的实现](https://segmentfault.com/a/1190000038498680)
 
 [kongwu-/netty-proxy-server: 基于 Netty 实现的代理服务器，Web Proxy Server（普通 Web 代理和 SSL 隧道代理），Socks5 Proxy Server 和混合模式（同时支持以上两种，自动选择） (github.com)](https://github.com/kongwu-/netty-proxy-server)
 
 [WEB 代理服务器原理 & 基于 Netty 的实现 - SegmentFault 思否](https://segmentfault.com/a/1190000038447906)
+
+JVM 学习 从StringBuilder和StringBuffer区别开始
+
+[How to Warm Up the JVM | Baeldung](https://www.baeldung.com/java-jvm-warmup)
+
+[openjdk/jmh: https://openjdk.java.net/projects/code-tools/jmh/ (github.com)](https://github.com/openjdk/jmh)

@@ -229,3 +229,24 @@ Ctrl + F "staging area"
 
 ## ProGit
 
+## Problems-Driven-Learning
+
+Q1: 前面的提交代码有误，需要回退前面的版本
+
+[How do I revert a Git repository to a previous commit?](https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit)
+
+[version control - How do I undo the most recent local commits in Git? - Stack Overflow](https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git)
+
+[git-reset(1)](file:///D:/Git/mingw64/share/doc/git-doc/git-reset.html)
+
+
+
+[What does "unstaged changes after reset" mean in git?](https://stackoverflow.com/questions/65832923/what-does-unstaged-changes-after-reset-mean-in-git)
+
+
+
+
+
+
+
+Q2: 

@@ -2,7 +2,7 @@
 
 [压电换能器及超声传输的模拟和分析 (comsol.com)](http://cn.comsol.com/video/piezoelectric-transducers-and-ultrasonic-simulations-in-comsol-multiphysics-webinar-cn)
 
-![1](Graduate-Design-Processdure/1.png)
+
 
 
 
@@ -38,7 +38,7 @@
 
 ​	the piezo disks 压电片
 
-​	RMS
+​	RMS *root mean square*: 均方根
 
 ​	the radiated pressure field  辐射应力场
 
@@ -59,6 +59,10 @@ An interesting websites: [Rotational Symmetry (mathsisfun.com)](https://www.math
 Piezoelectric actuator technology: 压电驱动技术  基本原理是基于[压电陶瓷](https://baike.baidu.com/item/压电陶瓷/4787841)材料的逆压电效应，通过控制其机械变形产生旋转或直线运动。
 
 
+
+三本对声学书的介绍 + 马大猷
+
+一个很有意思的网站: [infocobuild - Expand Your Knowledge](http://www.infocobuild.com/index.html)
 
 
 
@@ -150,7 +154,9 @@ TVR 表示在距离 1 m 处测得的、由 1 V 额定电压驱动的换能器灵
 
 
 
-## 
+##
 
 
+
+Problem:
 

@@ -8,6 +8,8 @@
 
 实习时看了一些，感觉还行。不过得加大输出写博客的力度。
 
+课程书籍阅读可能有点困难，需要坚持。但仔细读下去，还是很有意思的。
+
 ### 学习资源网站:
 
 [Operating Systems: Three Easy Pieces (wisc.edu)](https://pages.cs.wisc.edu/~remzi/OSTEP/)
@@ -19,6 +21,8 @@
 [Operating Systems Lecture 4: Process Execution Mechanisms - YouTube](https://www.youtube.com/watch?v=RxLJvh-nzQ8&list=PL0xjfw-F3f1R6wVpkGXAVmY2JyVIprJpQ&index=4)
 
 [Lectures on Operating Systems (iitb.ac.in)](https://www.cse.iitb.ac.in/~mythili/os/)
+
+http://jyywiki.cn/
 
 博客参考：
 
@@ -40,7 +44,75 @@ ps:看了下这俩家伙的博客，越看越吃惊。 huangrt01学习的知识�
 
 [book (wisc.edu)](https://pages.cs.wisc.edu/~remzi/OSTEP/toc.pdf)
 
-### Dialogue:
+### Preface
+
+本书的前言部分，作者向每个读者关于本书内容和呈现形式的介绍。 然后是向教育工作者和学生的部分。最后是对本书贡献者罗列的人名库。
+
+**To Everyone**
+
+本书的三个主要大主题： virtualization, concurrency, and persistence. 大主题下面有很多个小主题。
+
+本书的一些特色部分： 
+
+​	the crux of the problem: 描述某个问题的重要性。
+
+​	timelines: 时间线为了帮助你更好理解某个场景和问题
+
+​	asides and tips: Asides用来讨论和文章主要内容相关的某个事情。 tips可以应用到你构建的系统。
+
+​	dialogue: 用一种不一样的方式来展现章节内容的主题，一般来说，阅读的趣味性非常棒。
+
+​	abstraction: abstraction是计算机科学各个方向中的基础，在操作系统中特别重要。
+
+​	real code: 提供真实的代码供读者去实践练习，毕竟理论结合实践才是学习的最好的方式~
+
+​	homework: 提供一些作业
+
+​	projects: 所有的projects都是以C语言的形式呈现的。
+
+**To Educators**
+
+我不是教育工作者，就跳过了。
+
+**To Students**
+
+很真诚地感谢读者愿意花时间阅读他们的书籍。 有木有！国内高校的教材有木有这样的！ 此处应该有掌声。
+
+讲了为什么这本书免费供大家阅读。
+
+以及如何挖深去阅读，每章节背后都有非常丰富的参考文献。
+
+**Acknowledgements**
+
+对一堆人的感谢。
+
+这里我也想感谢作者和这一帮人，谢谢开源了这本免费的有趣的书供大家学习。
+
+**Final Words**
+
+这些话很有震撼力，可以反复阅读。
+
+我这里摘录令我感触很深的话。
+
+And while we understand this fire won’t light for all of you, we hope it does for many, or even a few. Because once that fire is lit, well, that is when you truly become capable of doing something great. And thus the real point of the educational process: to go forth, to study many new and fascinating topics, to learn, to mature, and most importantly, to find something that lights a fire for you.
+
+
+
+**References**
+[CK+08] “The xv6 Operating System” by Russ Cox, Frans Kaashoek, Robert Morris, Nickolai
+Zeldovich. From: http://pdos.csail.mit.edu/6.828/2008/index.html. xv6 was developed as a port of the original U NIX version 6 and represents a beautiful, clean, and simple way to understand a modern operating system.
+[F96] “Six Easy Pieces: Essentials Of Physics Explained By Its Most Brilliant Teacher” by
+Richard P. Feynman. Basic Books, 1996. This book reprints the six easiest chapters of Feynman’s Lectures on Physics, from 1963. If you like Physics, it is a fantastic read.
+[HP90] “Computer Architecture a Quantitative Approach” (1st ed.) by David A. Patterson and
+John L. Hennessy . Morgan-Kaufman, 1990. A book that encouraged each of us at our undergraduate institutions to pursue graduate studies; we later both had the pleasure of working with Patterson, who greatly shaped the foundations of our research careers.
+[KR88] “The C Programming Language” by Brian Kernighan and Dennis Ritchie. Prentice-
+Hall, April 1988. The C programming reference that everyone should have, by the people who invented the language.
+[K62] “The Structure of Scientific Revolutions” by Thomas S. Kuhn. University of Chicago
+Press, 1962. A great and famous read about the fundamentals of the scientific process. Mop-up work, anomaly, crisis, and revolution. We are mostly destined to do mop-up work, alas.
+
+
+
+### 1 Dialogue:
 
 - 本书名称来源， *Operating System: Three Easy Pieces*。作者提到了费曼写的一本物理学的教材 *Six Easy Pieces*。作者开了个玩笑，提到OS只有物理的一半难
 
@@ -67,7 +139,7 @@ ps:看了下这俩家伙的博客，越看越吃惊。 huangrt01学习的知识�
 
 - dialogue作用是简单展示学些什么，让你自发进行部分的思考。
 
-### Introduction to Operating Systems:
+### 2 Introduction to Operating Systems:
 
 ​	My questions: 什么是操作系统？ 有什么用？ 如何作用的？ 如何将硬件资源和软件进行一个结合的
 
@@ -76,6 +148,8 @@ Some questions and notes in this chapter that you can think about them by yourse
 8/5/2021 read again: 
 
 ​	脑袋里多了一个system call
+
+作者说这本书可能对低年级的有点难： 建议先阅读CSAPP或者 Patt & Patel的*Introduction to Computing Systems*
 
 Virtualization:
 
@@ -240,11 +314,23 @@ Some History:
 
 ## Virtualization:
 
-### Dialogue:
+### 3 Dialogue:
 
  操作系统分配进程和很多人吃peach，peach的分配相关联
 
-### The Process:
+### 4 The Process:
+
+Process
+
+Time sharing space sharing
+
+mechanisms  policies
+
+Process API: create destroy wait miscellaneous control status
+
+Process States: Running Ready Blocked
+
+Data Structures 
 
 作者写书的思路： 什么是线程 ，线程是如何被创造出来的。
 
@@ -518,7 +604,7 @@ the low-level mechanisms needed to implement processes, and the higher-level pol
 
    `-S SWITCH_ON_END`
 
-### **Interlude: Process API**:
+### **5 Interlude: Process API**:
 
 Interludes will cover more practical aspects of systems, including a particular focus on operating system APIs and how to use them.
 
@@ -683,7 +769,7 @@ Note:
     
     
 
-### Mechanism: Limited Direct Execution(LDE)
+### 6 Mechanism: Limited Direct Execution(LDE)
 
 - two challenges about virtualizing the physical CPU: performance and control
 
@@ -872,7 +958,79 @@ hardware and OS required; OS use a bit of hardware
 
 ## Concurrency:
 
-​	
+
+
+### 25 Dialoue:
+
+试想一个场景： 很多人抢桌子上的桃子。 会发生什么情况， 很多人同一时刻马上抢桃子， 一个人先拿到了桃子之后，另一个原本想拿这个桃子的人就拿不到这个桃子。
+
+怎么改进？排队拿桃子。  速度很慢 。 不符合实际，实际上应该速度快并且效率高。
+
+多线程的程序中，每一个线程都在运行项目中独立的任务。这些线程都会访问内存，内存很大，就像桌子上的很多桃子。如果我们不能协调线程间进入内存的状态，程序就不会按照预期运行。
+
+OS其实就是一个多线程的应用程序，它必须支持一些多线程的应用程序比如锁(locks)和条件变量(condition variables)。
+
+你知道吗？OS是第一个多线程的程序。OS在访问你的内存的时候，必须特别地仔细和小心，不然会出现特别重大的问题。
+
+### 26 Concurrency: An Introduction
+
+A new abstaction for a single running process: that of a **thread**
+
+Process: PCB
+
+Thread: TCB
+
+
+
+**Why Use Threads?**
+
+​	parallelism
+
+​	to avoid blocking program progress
+
+multiple processes **VS** threads
+
+ 	threads:
+
+​		pros: threads share an address space, easy to share data.
+
+​	multiple processes:
+
+​		听上去很少分享内存的数据结构
+
+
+
+**An Example: Thread Creation**
+
+
+
+**Why It Gets Worse: Shared Data**
+
+
+
+**The Heart Of The Problem: Uncontrolled Scheduling**
+
+
+
+**The Wish For Atomicity**
+
+
+
+**One More Problem: Waiting For Another**
+
+
+
+**Summary: Why in OS Class?**
+
+
+
+### 27
+
+### 28
+
+### 29
+
+
 
 ## Persistence:
 
